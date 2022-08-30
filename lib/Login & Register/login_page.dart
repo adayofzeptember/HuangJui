@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:huangjui/theColor.dart';
+import 'package:huangjui/info_check.dart';
+import 'package:huangjui/main_Calendar.dart';
+import 'package:huangjui/Etc/theMainColor.dart';
 
 class Login_Page extends StatefulWidget {
   Login_Page({Key? key}) : super(key: key);
@@ -9,7 +12,13 @@ class Login_Page extends StatefulWidget {
   State<Login_Page> createState() => _Login_PageState();
 }
 
+
 class _Login_PageState extends State<Login_Page> {
+  @override
+  void initState() {
+      
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,20 +47,20 @@ class _Login_PageState extends State<Login_Page> {
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
-                          color: Color.fromARGB(255, 245, 219, 219),
+                          color: Color.fromARGB(255, 255, 239, 224),
                         ),
                         width: double.infinity,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(30, 40, 30, 55),
+                          padding: const EdgeInsets.fromLTRB(30, 25.0, 30, 50),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Center(
-                                child: Text('สมัครสมาชิก',
+                                child: Text('เข้าสู่ระบบ',
                                     style: TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
@@ -60,7 +69,10 @@ class _Login_PageState extends State<Login_Page> {
                               SizedBox(
                                 height: 20,
                               ),
-                              Text('ลงทะเบียนด้วยเบอร์โทรศัพท์'),
+                              Text(
+                                'เข้าสู่ระบบด้วยเบอร์โทรศัพท์',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -69,9 +81,10 @@ class _Login_PageState extends State<Login_Page> {
                                       0.057,
                                   width: double.infinity,
                                   child: TextField(
+                                    keyboardType: TextInputType.number,
                                     onSubmitted: (value) {
                                       if (value.isEmpty) {
-                                        print("input something.");
+                                        print("กรุณากรอกหมายเลขเบอร์มือถือ ");
                                       } else {
                                         print(value);
                                       }
@@ -113,12 +126,19 @@ class _Login_PageState extends State<Login_Page> {
                                           side: BorderSide(
                                               color: Palette.thisRed),
                                           primary: Color.fromARGB(
-                                              255, 245, 219, 219),
+                                              255, 255, 239, 224),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                           )),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Main_Calendar(),
+                                          ),
+                                        );
+                                      },
                                       child: Padding(
                                         padding: const EdgeInsets.all(15.0),
                                         child: Container(
@@ -170,7 +190,11 @@ class _Login_PageState extends State<Login_Page> {
                               SizedBox(
                                 height: 15,
                               ),
-                              Center(child: Text('หรือ')),
+                              Center(
+                                  child: Text(
+                                'หรือ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              )),
                               SizedBox(
                                 height: 15,
                               ),
@@ -198,7 +222,7 @@ class _Login_PageState extends State<Login_Page> {
                                             width: 20,
                                           ),
                                           Text(
-                                            "ลงทะเบียนด้วย Facebook",
+                                            "เข้าสู่ระบบด้วย Facebook",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15),
@@ -213,7 +237,9 @@ class _Login_PageState extends State<Login_Page> {
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    // side: BorderSide(color: Palette.kToDark),
+                                    side: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 223, 223, 223)),
                                     primary: Colors.white,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -234,7 +260,7 @@ class _Login_PageState extends State<Login_Page> {
                                             width: 20,
                                           ),
                                           Text(
-                                            "ลงทะเบียนด้วย Google",
+                                            "เข้าสู่ระบบด้วย Google",
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 15),
@@ -270,7 +296,7 @@ class _Login_PageState extends State<Login_Page> {
                                             width: 20,
                                           ),
                                           Text(
-                                            "ลงทะเบียนด้วย Apple",
+                                            "เข้าสู่ระบบด้วย Apple",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15),

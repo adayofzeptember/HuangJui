@@ -10,8 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_svg: ^1.0.3
   cupertino_icons: ^1.0.2
+  flutter_svg: ^1.0.3
+  syncfusion_flutter_datepicker: ^20.2.46
+
   
 
 dev_dependencies:
@@ -25,6 +27,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/zodiac & elements/
     - assets/fonts/
 
 

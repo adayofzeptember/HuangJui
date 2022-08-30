@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:huangjui/login.dart';
+import 'package:huangjui/Login%20&%20Register/login_page.dart';
+import 'package:huangjui/Login%20&%20Register/register_page.dart';
+import 'package:huangjui/info_check.dart';
+import 'package:huangjui/main_Calendar.dart';
+import 'package:huangjui/Etc/theMainColor.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,8 +20,8 @@ class Start_Page_HuangJui extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: 'Kanit',
-        primarySwatch: Colors.red,
-        appBarTheme: AppBarTheme(color: Colors.red),
+        primarySwatch: Palette.thisRed,
+        appBarTheme: AppBarTheme(color: Palette.thisRed),
       ),
       home: AppBackground(),
     );
@@ -33,22 +37,18 @@ class AppBackground extends StatefulWidget {
 class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
-    _Load_AndGo();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-
     super.initState();
   }
 
-  Future _Load_AndGo() async {
-    await Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Login_Page(),
-        ),
-      );
-    });
+  _Load_And_Go() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Login_Page(),
+      ),
+    );
   }
 
   @override
@@ -58,10 +58,15 @@ class _AppBackgroundState extends State<AppBackground> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              'assets/images/start.svg',
-              fit: BoxFit.fill,
-              height: MediaQuery.of(context).size.height * 1,
+            InkWell(
+              onTap: () {
+                _Load_And_Go();
+              },
+              child: SvgPicture.asset(
+                'assets/images/start.svg',
+                fit: BoxFit.fill,
+                height: MediaQuery.of(context).size.height * 1,
+              ),
             )
           ],
         ),
@@ -69,4 +74,3 @@ class _AppBackgroundState extends State<AppBackground> {
     );
   }
 }
-
