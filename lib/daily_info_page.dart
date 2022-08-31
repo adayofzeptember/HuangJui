@@ -15,14 +15,12 @@ class _Info_PageState extends State<Info_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          elevation: 0,
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.of(context).pop();
+                  Navigator.pop(context);
                 },
                 child: Icon(
                   Icons.arrow_back_ios,
@@ -30,21 +28,19 @@ class _Info_PageState extends State<Info_Page> {
                 ),
               ),
               Text(
-                'วันอังคาร ที่ 30 สิงหาคม 2022',
+                'วันอังคารที่ 30 พฤษจิกายน 2565',
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
-              Text(
-                '',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              )
+              Text('')
             ],
           ),
           systemOverlayStyle: SystemUiOverlayStyle(
               statusBarIconBrightness: Brightness.light,
               statusBarBrightness: Brightness.light,
               statusBarColor: Palette.thisRed),
+          automaticallyImplyLeading: false,
+          elevation: 0,
           backgroundColor: Palette.thisRed,
         ),
         body: Stack(
@@ -57,7 +53,7 @@ class _Info_PageState extends State<Info_Page> {
             Column(
               children: [
                 Stack(
-                  overflow: Overflow.visible,
+                
                   children: [
                     Center(
                       child: Column(
@@ -174,8 +170,7 @@ class _Info_PageState extends State<Info_Page> {
                 ),
                 SizedBox(height: 15),
                 Stack(
-          
-                  overflow: Overflow.visible,
+               
                   children: [
                     Center(
                       child: Column(

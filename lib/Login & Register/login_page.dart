@@ -13,13 +13,12 @@ class Login_Page extends StatefulWidget {
   State<Login_Page> createState() => _Login_PageState();
 }
 
-
 class _Login_PageState extends State<Login_Page> {
   @override
   void initState() {
-      
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,7 +135,8 @@ class _Login_PageState extends State<Login_Page> {
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => Main_Calendar(),
+                                            builder: (context) =>
+                                                Main_Calendar(),
                                           ),
                                         );
                                       },
@@ -168,9 +168,7 @@ class _Login_PageState extends State<Login_Page> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                           )),
-                                      onPressed: () {
-                                      
-                                      },
+                                      onPressed: () {},
                                       child: Padding(
                                         padding: const EdgeInsets.all(15.0),
                                         child: Container(

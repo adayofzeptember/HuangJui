@@ -38,19 +38,36 @@ class AppBackground extends StatefulWidget {
 class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
+    _Load_And_Go();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    systemOverlayStyle:
+    SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light,
+        statusBarColor: Palette.thisRed);
     super.initState();
   }
 
-  _Load_And_Go() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Profile(),
-      ),
-    );
+  Future _Load_And_Go() async {
+    await Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Main_Calendar(),
+        ),
+      );
+    });
   }
+
+  // _Load_And_Go() {
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => Main_Calendar(),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

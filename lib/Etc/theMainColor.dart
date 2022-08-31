@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Palette {
-  static const MaterialColor thisRed = const MaterialColor(
+  static const MaterialColor thisRed = MaterialColor(
     0xFF840202,
     const <int, Color>{
       50: const Color(0xffce5641), //10%

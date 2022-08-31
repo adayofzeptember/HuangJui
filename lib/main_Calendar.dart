@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/theMainColor.dart';
 import 'package:huangjui/daily_info_page.dart';
+import 'package:huangjui/profile.dart';
 
 class Main_Calendar extends StatefulWidget {
   Main_Calendar({Key? key}) : super(key: key);
@@ -17,14 +18,36 @@ class _Main_CalendarState extends State<Main_Calendar> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Center(
-          child: Text(
-            'ปฏิทินฮวงจุ้ย',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-                color: Color.fromARGB(215, 190, 138, 1)),
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('     '),
+            Text(
+              'ปฏิทินฮวงจุ้ย',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                  color: Color.fromARGB(215, 190, 138, 1)),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Profile(),
+                  ),
+                );
+              },
+              child: CircleAvatar(
+                radius: 15,
+                child: Icon(
+                  Icons.person,
+                  color: Palette.thisRed,
+                ),
+                backgroundColor: Color.fromARGB(255, 255, 253, 237),
+              ),
+            ),
+          ],
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarIconBrightness: Brightness.light,
@@ -71,15 +94,30 @@ class _Main_CalendarState extends State<Main_Calendar> {
                           children: [
                             Row(
                               children: [
-                                CircleAvatar(
-                                  radius: 30,
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Palette.thisRed,
+                                Container(
+                                  height: 70,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Palette.thisRed, width: 2),
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                          'assets/images/for Mock Up Only/kurt.jpeg',
+                                        ),
+                                        fit: BoxFit.cover),
                                   ),
-                                  backgroundColor:
-                                      Color.fromARGB(255, 245, 227, 66),
                                 ),
+                                // CircleAvatar(
+                                //   radius: 30,
+                                //   child: Icon(
+                                //     Icons.person,
+                                //     color: Palette.thisRed,
+                                //   ),
+                                //   backgroundColor:
+                                //       Color.fromARGB(255, 255, 253, 237),
+                                // ),
                                 SizedBox(
                                   width: 10,
                                 ),
@@ -88,7 +126,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'ชื่อ นามสกุล',
+                                      'Drain You',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),
@@ -119,7 +157,8 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                           ),
                                         ),
                                         decoration: BoxDecoration(
-                                            color: Color.fromARGB(255, 255, 221, 99),
+                                            color: Color.fromARGB(
+                                                255, 255, 221, 99),
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5)))),
                                   ],
