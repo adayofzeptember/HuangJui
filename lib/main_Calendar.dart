@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/theMainColor.dart';
-import 'package:huangjui/info_check.dart';
+import 'package:huangjui/daily_info_page.dart';
 
 class Main_Calendar extends StatefulWidget {
   Main_Calendar({Key? key}) : super(key: key);
@@ -88,14 +88,14 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'มีเงิน ร่ำรวย',
+                                      'ชื่อ นามสกุล',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),
                                     ),
                                     Container(
                                         child: Padding(
-                                          padding: const EdgeInsets.all(2.0),
+                                          padding: const EdgeInsets.all(5.0),
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -110,7 +110,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                                 width: 3,
                                               ),
                                               Text(
-                                                'premium member',
+                                                'Premium Member',
                                                 style: TextStyle(
                                                     color: Color.fromARGB(
                                                         255, 143, 97, 1)),
@@ -119,7 +119,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                           ),
                                         ),
                                         decoration: BoxDecoration(
-                                            color: Colors.yellow,
+                                            color: Color.fromARGB(255, 255, 221, 99),
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5)))),
                                   ],

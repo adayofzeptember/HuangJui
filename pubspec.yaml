@@ -1,5 +1,5 @@
 name: huangjui
-description: A new Flutter project.
+description: good app for your luck.
 
 publish_to: "none"
 
@@ -14,8 +14,6 @@ dependencies:
   flutter_svg: ^1.0.3
   syncfusion_flutter_datepicker: ^20.2.46
 
-  
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -27,9 +25,9 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/for Mock Up Only/
     - assets/images/zodiac & elements/
     - assets/fonts/
-
 
   fonts:
     - family: Kanit

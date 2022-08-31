@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Login%20&%20Register/login_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_page.dart';
-import 'package:huangjui/info_check.dart';
+import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/main_Calendar.dart';
 import 'package:huangjui/Etc/theMainColor.dart';
+import 'package:huangjui/profile.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +47,7 @@ class _AppBackgroundState extends State<AppBackground> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => Login_Page(),
+        builder: (context) => Profile(),
       ),
     );
   }

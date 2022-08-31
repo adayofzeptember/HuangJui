@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:huangjui/info_check.dart';
+import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/main_Calendar.dart';
 import 'package:huangjui/Etc/theMainColor.dart';
+import 'package:huangjui/profile.dart';
 
 class Login_Page extends StatefulWidget {
   Login_Page({Key? key}) : super(key: key);
@@ -167,7 +168,9 @@ class _Login_PageState extends State<Login_Page> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                           )),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                      
+                                      },
                                       child: Padding(
                                         padding: const EdgeInsets.all(15.0),
                                         child: Container(

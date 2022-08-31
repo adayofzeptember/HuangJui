@@ -174,6 +174,7 @@ class _Info_PageState extends State<Info_Page> {
                 ),
                 SizedBox(height: 15),
                 Stack(
+          
                   overflow: Overflow.visible,
                   children: [
                     Center(
@@ -264,7 +265,7 @@ class _Info_PageState extends State<Info_Page> {
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Text(
-                                  'ดวงวันนี้ให้คุณ5555+',
+                                  'ดวงวันนี้ให้คุณ',
                                   style: TextStyle(
                                       color: Colors.green,
                                       fontSize: 20,
