@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
-import 'package:huangjui/Etc/theMainColor.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
@@ -49,9 +49,9 @@ class MyAppState extends State<MyApp> {
               systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarIconBrightness: Brightness.light,
                   statusBarBrightness: Brightness.light,
-                  statusBarColor: Palette.thisRed),
+                  statusBarColor: theRed),
               elevation: 0,
-              backgroundColor: Palette.thisRed,
+              backgroundColor: theRed,
               title: Center(child: const Text('Datepicker Demo')),
             ),
             body: Column(
@@ -62,9 +62,9 @@ class MyAppState extends State<MyApp> {
                   right: 0,
                   bottom: 0,
                   child: SfDateRangePicker(
-                    todayHighlightColor: Palette.thisRed,
+                    todayHighlightColor: theRed,
                     view: DateRangePickerView.year,
-                    selectionColor: Palette.thisRed,
+                    selectionColor: theRed,
                     onSelectionChanged: _onSelectionChanged,
                     selectionMode: DateRangePickerSelectionMode.single,
                   ),

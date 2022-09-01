@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:huangjui/Etc/theMainColor.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
 
 class Profile extends StatefulWidget {
   Profile({Key? key}) : super(key: key);
@@ -39,10 +39,10 @@ class _ProfileState extends State<Profile> {
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarIconBrightness: Brightness.light,
             statusBarBrightness: Brightness.light,
-            statusBarColor: Palette.thisRed),
+            statusBarColor: theRed),
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: Palette.thisRed,
+        backgroundColor: theRed,
       ),
       body: Stack(
         children: [
@@ -243,7 +243,7 @@ class _ProfileState extends State<Profile> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         elevation: 0,
-                                        primary: Palette.thisRed,
+                                        primary: theRed,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5),
@@ -283,7 +283,7 @@ class _ProfileState extends State<Profile> {
                                         "การสมัครแพ็คเกจ",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Palette.thisRed,
+                                            color: theRed,
                                             fontSize: 15),
                                       ),
                                     ),

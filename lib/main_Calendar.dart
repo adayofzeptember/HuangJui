@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:huangjui/Etc/theMainColor.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/profile.dart';
 
@@ -17,6 +17,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,7 +43,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                 radius: 15,
                 child: Icon(
                   Icons.person,
-                  color: Palette.thisRed,
+                  color: theRed,
                 ),
                 backgroundColor: Color.fromARGB(255, 255, 253, 237),
               ),
@@ -52,8 +53,8 @@ class _Main_CalendarState extends State<Main_Calendar> {
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarIconBrightness: Brightness.light,
             statusBarBrightness: Brightness.light,
-            statusBarColor: Palette.thisRed),
-        backgroundColor: Palette.thisRed,
+            statusBarColor: theRed),
+        backgroundColor: theRed,
       ),
       body: InkWell(
         onTap: () {
@@ -98,8 +99,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                   height: 70,
                                   width: 70,
                                   decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Palette.thisRed, width: 2),
+                                    border: Border.all(color: theRed, width: 2),
                                     color: Colors.white,
                                     shape: BoxShape.circle,
                                     image: DecorationImage(

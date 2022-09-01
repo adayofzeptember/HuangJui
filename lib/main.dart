@@ -5,8 +5,9 @@ import 'package:huangjui/Login%20&%20Register/login_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_page.dart';
 import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/main_Calendar.dart';
-import 'package:huangjui/Etc/theMainColor.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/profile.dart';
+import 'Login & Register/register_otp.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +22,8 @@ class Start_Page_HuangJui extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: 'Kanit',
-        primarySwatch: Palette.thisRed,
-        appBarTheme: AppBarTheme(color: Palette.thisRed),
+        primarySwatch: theRed,
+        appBarTheme: AppBarTheme(color: theRed),
       ),
       home: AppBackground(),
     );
@@ -45,29 +46,20 @@ class _AppBackgroundState extends State<AppBackground> {
     SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.light,
-        statusBarColor: Palette.thisRed);
+        statusBarColor: theRed);
     super.initState();
   }
 
-  Future _Load_And_Go() async {
+  Future<void> _Load_And_Go() async {
     await Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => Main_Calendar(),
+          builder: (context) => Register_Page_OTP(),
         ),
       );
     });
   }
-
-  // _Load_And_Go() {
-  //   Navigator.pushReplacement(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => Main_Calendar(),
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {

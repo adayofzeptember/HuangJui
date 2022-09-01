@@ -15,6 +15,7 @@ dependencies:
   flutter_rounded_date_picker: ^2.0.2
   syncfusion_flutter_datepicker: ^19.4.38
   responsive_framework: ^0.1.9
+  otp_text_field: ^1.1.3
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:huangjui/Login%20&%20Register/register_page.dart';
 import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/main_Calendar.dart';
-import 'package:huangjui/Etc/theMainColor.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/profile.dart';
 
 class Login_Page extends StatefulWidget {
@@ -23,6 +24,7 @@ class _Login_PageState extends State<Login_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+         
         children: <Widget>[
           SvgPicture.asset('assets/images/Background.svg',
               alignment: Alignment.center,
@@ -41,16 +43,16 @@ class _Login_PageState extends State<Login_Page> {
                       style: TextStyle(
                           fontSize: 45,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(215, 190, 138, 1)),
+                          color: Color.fromARGB(255,215, 190, 138)),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Color.fromARGB(255, 255, 239, 224),
                         ),
                         width: double.infinity,
@@ -64,7 +66,7 @@ class _Login_PageState extends State<Login_Page> {
                                     style: TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
-                                        color: Palette.thisRed)),
+                                        color: theRed)),
                               ),
                               SizedBox(
                                 height: 20,
@@ -124,7 +126,7 @@ class _Login_PageState extends State<Login_Page> {
                                       style: ElevatedButton.styleFrom(
                                           elevation: 0,
                                           side: BorderSide(
-                                              color: Palette.thisRed),
+                                              color: theRed),
                                           primary: Color.fromARGB(
                                               255, 255, 239, 224),
                                           shape: RoundedRectangleBorder(
@@ -136,7 +138,7 @@ class _Login_PageState extends State<Login_Page> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                Main_Calendar(),
+                                                Register_Page(),
                                           ),
                                         );
                                       },
@@ -146,10 +148,10 @@ class _Login_PageState extends State<Login_Page> {
                                           width: double.infinity,
                                           alignment: Alignment.center,
                                           child: Text(
-                                            "เข้าสู่ระบบ",
+                                            "สมัครสมาชิก",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                color: Palette.thisRed,
+                                                color: theRed,
                                                 fontSize: 15),
                                           ),
                                         ),
@@ -162,8 +164,8 @@ class _Login_PageState extends State<Login_Page> {
                                       style: ElevatedButton.styleFrom(
                                           elevation: 0,
                                           side: BorderSide(
-                                              color: Palette.thisRed),
-                                          primary: Palette.thisRed,
+                                              color: theRed),
+                                          primary: theRed,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5),

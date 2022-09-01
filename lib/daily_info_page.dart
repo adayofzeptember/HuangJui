@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:huangjui/Etc/theMainColor.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
 
 class Info_Page extends StatefulWidget {
   Info_Page({Key? key}) : super(key: key);
@@ -9,6 +9,21 @@ class Info_Page extends StatefulWidget {
   @override
   State<Info_Page> createState() => _Info_PageState();
 }
+
+Map<int, Color> color = {
+  50: const Color(0xffce5641), //10%
+  100: const Color(0xffb74c3a), //20%
+  200: const Color(0xffa04332), //30%
+  300: const Color(0xff89392b), //40%
+  400: const Color(0xff733024), //50%
+  500: const Color(0xff5c261d), //60%
+  600: const Color(0xff451c16), //70%
+  700: const Color(0xff2e130e), //80%
+  800: const Color(0xff170907), //90%
+  900: const Color(0xff000000), //100%
+};
+
+MaterialColor colorCustom = MaterialColor(0xFF840202, color);
 
 class _Info_PageState extends State<Info_Page> {
   @override
@@ -38,10 +53,10 @@ class _Info_PageState extends State<Info_Page> {
           systemOverlayStyle: SystemUiOverlayStyle(
               statusBarIconBrightness: Brightness.light,
               statusBarBrightness: Brightness.light,
-              statusBarColor: Palette.thisRed),
+              statusBarColor: theRed),
           automaticallyImplyLeading: false,
           elevation: 0,
-          backgroundColor: Palette.thisRed,
+          backgroundColor: theRed,
         ),
         body: Stack(
           children: <Widget>[
@@ -53,7 +68,6 @@ class _Info_PageState extends State<Info_Page> {
             Column(
               children: [
                 Stack(
-                
                   children: [
                     Center(
                       child: Column(
@@ -94,7 +108,7 @@ class _Info_PageState extends State<Info_Page> {
                                         Text(
                                           'ราศีบน',
                                           style: TextStyle(
-                                              color: Palette.thisRed,
+                                              color: theRed,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
@@ -170,7 +184,6 @@ class _Info_PageState extends State<Info_Page> {
                 ),
                 SizedBox(height: 15),
                 Stack(
-               
                   children: [
                     Center(
                       child: Column(
@@ -211,7 +224,7 @@ class _Info_PageState extends State<Info_Page> {
                                         Text(
                                           'ราศีล่าง',
                                           style: TextStyle(
-                                              color: Palette.thisRed,
+                                              color: theRed,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
@@ -253,7 +266,7 @@ class _Info_PageState extends State<Info_Page> {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: Palette.thisRed, width: 3),
+                                      color: theRed, width: 3),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                   color: Colors.white),
