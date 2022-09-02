@@ -23,7 +23,6 @@ class Start_Page_HuangJui extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Kanit',
         primarySwatch: theRed,
-        appBarTheme: AppBarTheme(color: theRed),
       ),
       home: AppBackground(),
     );
@@ -39,14 +38,14 @@ class AppBackground extends StatefulWidget {
 class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
-    _Load_And_Go();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+     _Load_And_Go();
+
     systemOverlayStyle:
     SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.light,
         statusBarColor: theRed);
+
     super.initState();
   }
 
@@ -55,7 +54,7 @@ class _AppBackgroundState extends State<AppBackground> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => Register_Page_OTP(),
+          builder: (context) => Register_Page(),
         ),
       );
     });
@@ -72,9 +71,10 @@ class _AppBackgroundState extends State<AppBackground> {
               onTap: () {
                 _Load_And_Go();
               },
-              child: SvgPicture.asset(
-                'assets/images/start.svg',
+              child: Image.asset(
+                'assets/images/background_splash.jpg',
                 fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width * 1,
                 height: MediaQuery.of(context).size.height * 1,
               ),
             )

@@ -20,7 +20,7 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SvgPicture.asset('assets/images/Background.svg',
+           Image.asset('assets/images/background_full.jpg',
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width * 1,
               height: MediaQuery.of(context).size.height * 1,

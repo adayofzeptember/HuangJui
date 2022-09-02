@@ -12,6 +12,8 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.0.3
+  google_sign_in: ^5.3.3
+  flutter_facebook_auth: ^4.3.4+2
   flutter_rounded_date_picker: ^2.0.2
   syncfusion_flutter_datepicker: ^19.4.38
   responsive_framework: ^0.1.9

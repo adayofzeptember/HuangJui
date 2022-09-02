@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/Login%20&%20Register/login_page.dart';
@@ -13,13 +14,15 @@ class Register_Form extends StatefulWidget {
   State<Register_Form> createState() => _Register_FormState();
 }
 
+
+
 class _Register_FormState extends State<Register_Form> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SvgPicture.asset('assets/images/Background.svg',
+          SvgPicture.asset('assets/images/background_full.svg',
               color: Colors.black,
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width * 1,
@@ -89,7 +92,6 @@ class _Register_FormState extends State<Register_Form> {
                                     print("Changed: " + pin);
                                   },
                                   onCompleted: (pin) {
-                                  
                                     print("Completed: " + pin);
                                   }),
                               SizedBox(

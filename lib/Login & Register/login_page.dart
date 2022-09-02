@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Login%20&%20Register/register_page.dart';
 import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/main_Calendar.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/profile.dart';
+
+import '../api/google_auth.dart';
 
 class Login_Page extends StatefulWidget {
   Login_Page({Key? key}) : super(key: key);
@@ -15,6 +18,30 @@ class Login_Page extends StatefulWidget {
 }
 
 class _Login_PageState extends State<Login_Page> {
+  Future<dynamic> useGoogle_toLogin() async {
+    final userGoogle = await GoogoleSignInApi.google_SignIn2();
+    GoogoleSignInApi.google_SignIn2().then((result) {
+      result!.authentication.then((googleKey) {
+        print("id----------------> " + userGoogle!.id.toString());
+        print("access token ------------------> " +
+            googleKey.accessToken.toString());
+        print("เมล ------------------> " + userGoogle.email.toString());
+        print("ชื่อ -------------------> " + userGoogle.displayName.toString());
+        print("รูป ------------------> " + userGoogle.photoUrl.toString());
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Main_Calendar(),
+          ),
+        );
+      }).catchError((error1) {
+        print('error in');
+      });
+    }).catchError((error2) {
+      print('error out');
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -24,9 +51,8 @@ class _Login_PageState extends State<Login_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-         
         children: <Widget>[
-          SvgPicture.asset('assets/images/Background.svg',
+          Image.asset('assets/images/background_full.jpg',
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width * 1,
               height: MediaQuery.of(context).size.height * 1,
@@ -43,7 +69,7 @@ class _Login_PageState extends State<Login_Page> {
                       style: TextStyle(
                           fontSize: 45,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255,215, 190, 138)),
+                          color: Color.fromARGB(255, 215, 190, 138)),
                     ),
                     SizedBox(
                       height: 40,
@@ -125,8 +151,7 @@ class _Login_PageState extends State<Login_Page> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           elevation: 0,
-                                          side: BorderSide(
-                                              color: theRed),
+                                          side: BorderSide(color: theRed),
                                           primary: Color.fromARGB(
                                               255, 255, 239, 224),
                                           shape: RoundedRectangleBorder(
@@ -163,8 +188,7 @@ class _Login_PageState extends State<Login_Page> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           elevation: 0,
-                                          side: BorderSide(
-                                              color: theRed),
+                                          side: BorderSide(color: theRed),
                                           primary: theRed,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -247,7 +271,9 @@ class _Login_PageState extends State<Login_Page> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
-                                onPressed: () {},
+                                onPressed: () {
+                                  useGoogle_toLogin();
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Container(
@@ -283,7 +309,9 @@ class _Login_PageState extends State<Login_Page> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
-                                onPressed: () {},
+                                onPressed: () {
+                                  GoogoleSignInApi.google_LogOut();
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Container(

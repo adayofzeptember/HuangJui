@@ -6,7 +6,9 @@ import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/profile.dart';
 
 class Main_Calendar extends StatefulWidget {
-  Main_Calendar({Key? key}) : super(key: key);
+  String? name;
+  String? ipic;
+  Main_Calendar({Key? key, this.name, this.ipic}) : super(key: key);
 
   @override
   State<Main_Calendar> createState() => _Main_CalendarState();
@@ -22,20 +24,23 @@ class _Main_CalendarState extends State<Main_Calendar> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('     '),
+            Text(' '),
             Text(
               'ปฏิทินฮวงจุ้ย',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
-                  color: Color.fromARGB(215, 190, 138, 1)),
+                  color: Color.fromARGB(255, 215, 190, 138)),
             ),
             InkWell(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Profile(),
+                    builder: (context) => Profile(
+                      name: widget.name.toString(),
+                      ipic: widget.ipic.toString(),
+                    ),
                   ),
                 );
               },
@@ -67,8 +72,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
         },
         child: Stack(
           children: <Widget>[
-            SvgPicture.asset('assets/images/Background.svg',
-                alignment: Alignment.center,
+            Image.asset('assets/images/background_full.jpg',
                 width: MediaQuery.of(context).size.width * 1,
                 height: MediaQuery.of(context).size.height * 1,
                 fit: BoxFit.fill),
@@ -103,9 +107,11 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                     color: Colors.white,
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                        image: AssetImage(
-                                          'assets/images/for Mock Up Only/kurt.jpeg',
-                                        ),
+                                        image: NetworkImage(
+                                            widget.ipic.toString()),
+                                        // AssetImage(
+                                        //   'assets/images/for Mock Up Only/kurt.jpeg',
+                                        // ),
                                         fit: BoxFit.cover),
                                   ),
                                 ),
@@ -126,11 +132,12 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Drain You',
+                                      widget.name.toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20),
+                                          fontSize: 15),
                                     ),
+                                    SizedBox(height: 5,),
                                     Container(
                                         child: Padding(
                                           padding: const EdgeInsets.all(5.0),

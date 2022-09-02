@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:huangjui/main.dart';
+
+import 'api/google_auth.dart';
 
 class Profile extends StatefulWidget {
-  Profile({Key? key}) : super(key: key);
+  String? name;
+  String? ipic;
+  Profile({Key? key, this.name, this.ipic}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -20,7 +25,7 @@ class _ProfileState extends State<Profile> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
               },
               child: Icon(
@@ -46,8 +51,8 @@ class _ProfileState extends State<Profile> {
       ),
       body: Stack(
         children: [
-          SvgPicture.asset('assets/images/Background.svg',
-              alignment: Alignment.center,
+          Image.asset('assets/images/background_half.jpg',
+
               width: queryData.size.width * 1,
               height: MediaQuery.of(context).size.height * 1,
               fit: BoxFit.fill),
@@ -65,15 +70,18 @@ class _ProfileState extends State<Profile> {
                     color: Colors.white,
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/for Mock Up Only/kurt.jpeg',
-                        ),
+                        image: NetworkImage(widget.ipic.toString())
+
+                        // AssetImage(
+                        //   'assets/images/for Mock Up Only/kurt.jpeg',
+                        // )
+                        ,
                         fit: BoxFit.cover),
                   ),
                 ),
                 SizedBox(height: 15),
                 Text(
-                  'Drain You',
+                  widget.name.toString(),
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -138,7 +146,7 @@ class _ProfileState extends State<Profile> {
                                     height: 5,
                                   ),
                                   Text(
-                                    'Drain You',
+                                    widget.name.toString(),
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
@@ -276,11 +284,20 @@ class _ProfileState extends State<Profile> {
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         )),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      GoogoleSignInApi.google_LogOut();
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              Start_Page_HuangJui(),
+                                        ),
+                                      );
+                                    },
                                     child: Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Text(
-                                        "การสมัครแพ็คเกจ",
+                                        "ออกจากระบบ",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: theRed,
@@ -288,6 +305,9 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                   ),
+                                ),
+                                SizedBox(
+                                  height: 5,
                                 ),
                               ],
                             )

@@ -3,9 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/Login%20&%20Register/login_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_otp.dart';
+import 'package:huangjui/main_Calendar.dart';
+import '../api/google_auth.dart';
 
 var phoneNumber_Controller = TextEditingController();
 String? k;
+
+String? a;
+String? b;
 
 class Register_Page extends StatefulWidget {
   Register_Page({Key? key}) : super(key: key);
@@ -15,14 +20,45 @@ class Register_Page extends StatefulWidget {
 }
 
 class _Register_PageState extends State<Register_Page> {
+  Future<dynamic> useGoogle_toLogin() async {
+    final userGoogle = await GoogoleSignInApi.google_SignIn2();
+    GoogoleSignInApi.google_SignIn2().then((result) {
+      result!.authentication.then((googleKey) {
+        print("id----------------> " + userGoogle!.id.toString());
+        print("access token ------------------> " +
+            googleKey.accessToken.toString());
+        print("เมล ------------------> " + userGoogle.email.toString());
+        print("ชื่อ -------------------> " + userGoogle.displayName.toString());
+        print("รูป ------------------> " + userGoogle.photoUrl.toString());
+        setState(() {
+          a = userGoogle.displayName.toString();
+          b = userGoogle.photoUrl.toString();
+        });
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Main_Calendar(
+              name: a,
+              ipic: b,
+            ),
+          ),
+        );
+      }).catchError((error1) {
+        print('error in');
+      });
+    }).catchError((error2) {
+      print('error out');
+    });
+  }
+
   final formKey_phoneNumber = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SvgPicture.asset('assets/images/Background.svg',
-              alignment: Alignment.center,
+          Image.asset('assets/images/background_full.jpg',
+     
               width: MediaQuery.of(context).size.width * 1,
               height: MediaQuery.of(context).size.height * 1,
               fit: BoxFit.fill),
@@ -77,7 +113,7 @@ class _Register_PageState extends State<Register_Page> {
                                 ),
                                 Container(
                                     height: MediaQuery.of(context).size.height *
-                                        0.057,
+                                        0.08,
                                     width: double.infinity,
                                     child: TextFormField(
                                       validator: (value) {
@@ -266,7 +302,9 @@ class _Register_PageState extends State<Register_Page> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       )),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    useGoogle_toLogin();
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Container(
@@ -302,7 +340,9 @@ class _Register_PageState extends State<Register_Page> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       )),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    GoogoleSignInApi.google_LogOut();
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Container(
