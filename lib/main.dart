@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Login%20&%20Register/login_page.dart';
-import 'package:huangjui/Login%20&%20Register/register_page.dart';
+import 'package:huangjui/Login%20&%20Register/register_1_page.dart';
 import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/main_Calendar.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/profile.dart';
-import 'Login & Register/register_otp.dart';
+import 'Login & Register/register_2_otp.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +38,7 @@ class AppBackground extends StatefulWidget {
 class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
-     _Load_And_Go();
+    _Load_And_Go();
 
     systemOverlayStyle:
     SystemUiOverlayStyle(
@@ -72,7 +72,7 @@ class _AppBackgroundState extends State<AppBackground> {
                 _Load_And_Go();
               },
               child: Image.asset(
-                'assets/images/background_splash.jpg',
+                'assets/images/loading.jpg',
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width * 1,
                 height: MediaQuery.of(context).size.height * 1,

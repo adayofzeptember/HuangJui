@@ -1,14 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/Login%20&%20Register/login_page.dart';
-import 'package:huangjui/Login%20&%20Register/register_otp.dart';
+import 'package:huangjui/Login%20&%20Register/register_2_otp.dart';
+import 'package:huangjui/api/OTP_SMS/otp_request.dart';
 import 'package:huangjui/main_Calendar.dart';
 import '../api/google_auth.dart';
 
 var phoneNumber_Controller = TextEditingController();
 String? k;
-
 String? a;
 String? b;
 
@@ -20,6 +22,13 @@ class Register_Page extends StatefulWidget {
 }
 
 class _Register_PageState extends State<Register_Page> {
+  late OTP_Request_Provider otp_provider_model;
+  @override
+  void initState() {
+    super.initState();
+    otp_provider_model = OTP_Request_Provider();
+  }
+
   Future<dynamic> useGoogle_toLogin() async {
     final userGoogle = await GoogoleSignInApi.google_SignIn2();
     GoogoleSignInApi.google_SignIn2().then((result) {
@@ -58,7 +67,6 @@ class _Register_PageState extends State<Register_Page> {
       body: Stack(
         children: <Widget>[
           Image.asset('assets/images/background_full.jpg',
-     
               width: MediaQuery.of(context).size.width * 1,
               height: MediaQuery.of(context).size.height * 1,
               fit: BoxFit.fill),
@@ -126,6 +134,12 @@ class _Register_PageState extends State<Register_Page> {
                                       keyboardType: TextInputType.number,
                                       onSaved: (input) {
                                         k = input.toString();
+                                        otp_provider_model.key =
+                                            '1743122628803977';
+                                        otp_provider_model.secret =
+                                            'fe2b8dc85833369fad71662c34db2149';
+                                        otp_provider_model.msisdn =
+                                            input.toString();
                                       },
                                       textInputAction: TextInputAction.done,
                                       decoration: InputDecoration(
@@ -214,15 +228,16 @@ class _Register_PageState extends State<Register_Page> {
                                             formKey_phoneNumber.currentState
                                                 ?.save();
 
-                                            print(k);
+                                          send_otp_request(otp_provider_model);
+                                          // print(jsonEncode(otp_provider_model));
 
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Register_Page_OTP(),
-                                              ),
-                                            );
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         Register_Page_OTP(),
+                                            //   ),
+                                            // );
                                           }
                                         },
                                         child: Padding(
