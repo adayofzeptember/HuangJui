@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Login%20&%20Register/login_page.dart';
@@ -20,6 +27,17 @@ class Start_Page_HuangJui extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          DefaultCupertinoLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        locale: Locale('th', 'TH'),
+        supportedLocales: [
+          const Locale('th', 'TH'), // Thai
+        ],
       theme: ThemeData(
         fontFamily: 'Kanit',
         primarySwatch: theRed,
@@ -50,7 +68,7 @@ class _AppBackgroundState extends State<AppBackground> {
   }
 
   Future<void> _Load_And_Go() async {
-    await Future.delayed(const Duration(seconds: 3), () {
+    await Future.delayed(const Duration(seconds: 1), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

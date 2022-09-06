@@ -4,6 +4,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/profile.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class Main_Calendar extends StatefulWidget {
   String? name;
@@ -15,6 +24,27 @@ class Main_Calendar extends StatefulWidget {
 }
 
 class _Main_CalendarState extends State<Main_Calendar> {
+  String _selectedDate = '';
+  String _dateCount = '';
+  String _range = '';
+  String _rangeCount = '';
+
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    print(args.value.toString());
+    setState(() {
+      if (args.value is PickerDateRange) {
+        _range = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+            ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+      } else if (args.value is DateTime) {
+        _selectedDate = args.value.toString();
+      } else if (args.value is List<DateTime>) {
+        _dateCount = args.value.length.toString();
+      } else {
+        _rangeCount = args.value.length.toString();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,17 +108,17 @@ class _Main_CalendarState extends State<Main_Calendar> {
                 fit: BoxFit.fill),
             Center(
               child: Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 20,
+                      height: 25,
                     ),
                     Container(
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: Color.fromARGB(255, 243, 243, 243)),
-                          color: Color.fromARGB(255, 243, 243, 243),
+                              color: Color.fromARGB(255, 232, 229, 229)),
+                          color: Color.fromARGB(255, 232, 229, 229),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15))),
@@ -115,15 +145,6 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                         fit: BoxFit.cover),
                                   ),
                                 ),
-                                // CircleAvatar(
-                                //   radius: 30,
-                                //   child: Icon(
-                                //     Icons.person,
-                                //     color: Palette.thisRed,
-                                //   ),
-                                //   backgroundColor:
-                                //       Color.fromARGB(255, 255, 253, 237),
-                                // ),
                                 SizedBox(
                                   width: 10,
                                 ),
@@ -137,7 +158,9 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15),
                                     ),
-                                    SizedBox(height: 5,),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
                                     Container(
                                         child: Padding(
                                           padding: const EdgeInsets.all(5.0),
@@ -197,15 +220,95 @@ class _Main_CalendarState extends State<Main_Calendar> {
                       ),
                     ),
                     Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Color.fromARGB(255, 243, 243, 243)),
-                            color: Color.fromARGB(255, 243, 243, 243),
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15),
-                                bottomRight: Radius.circular(15))),
-                        width: double.infinity,
-                        child: SvgPicture.asset('assets/images/cal.svg'))
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 243, 243, 243),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(15),
+                              bottomLeft: Radius.circular(15))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            SfDateRangePicker(
+                              headerStyle: DateRangePickerHeaderStyle(
+                                  textAlign: TextAlign.center,
+                                  textStyle: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 34, 43, 69))),
+                              selectionShape:
+                                  DateRangePickerSelectionShape.rectangle,
+                              allowViewNavigation: true,
+                              selectionTextStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                              monthViewSettings:
+                                  DateRangePickerMonthViewSettings(
+                                      viewHeaderStyle:
+                                          DateRangePickerViewHeaderStyle(
+                                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 143, 155, 179),
+                                fontFamily: 'Kanit',
+                              ))),
+                              monthCellStyle: DateRangePickerMonthCellStyle(
+                                  textStyle: TextStyle(
+                                      fontFamily: 'Kanit',
+                                      color: Color.fromARGB(255, 34, 43, 69),
+                                      fontWeight: FontWeight.bold)),
+                              backgroundColor:
+                                  Color.fromARGB(255, 243, 243, 243),
+                              todayHighlightColor: Palette.thisRed,
+                              selectionColor: Palette.thisRed,
+                              selectionMode:
+                                  DateRangePickerSelectionMode.single,
+                              view: DateRangePickerView.month,
+                              onSelectionChanged: _onSelectionChanged,
+                              initialSelectedRange: PickerDateRange(
+                                  DateTime.now()
+                                      .subtract(const Duration(days: 4)),
+                                  DateTime.now().add(const Duration(days: 3))),
+                            ),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    // side: BorderSide(color: Palette.kToDark),
+                                    primary: Palette.thisRed,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
+                                onPressed: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Container(
+                                      width: double.infinity,
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          SvgPicture.asset(
+                                              'assets/images/compass.svg'),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            "ดูเข็มทิศ",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15),
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                              SizedBox(height: 15,)
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

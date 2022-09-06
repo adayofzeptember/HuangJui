@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 
 class Info_Page extends StatefulWidget {
@@ -9,7 +16,6 @@ class Info_Page extends StatefulWidget {
   @override
   State<Info_Page> createState() => _Info_PageState();
 }
-
 
 class _Info_PageState extends State<Info_Page> {
   @override
@@ -47,7 +53,6 @@ class _Info_PageState extends State<Info_Page> {
         body: Stack(
           children: <Widget>[
             Image.asset('assets/images/background_half.jpg',
-         
                 width: MediaQuery.of(context).size.width * 1,
                 height: MediaQuery.of(context).size.height * 1,
                 fit: BoxFit.fill),
@@ -251,8 +256,7 @@ class _Info_PageState extends State<Info_Page> {
                               alignment: Alignment.center,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: theRed, width: 3),
+                                  border: Border.all(color: theRed, width: 3),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                   color: Colors.white),

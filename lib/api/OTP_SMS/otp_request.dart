@@ -53,15 +53,12 @@ Future<OTP_Request_Response> send_otp_request(
     Uri.parse(urlPost),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-    
     },
     body: {
       "key": otp_RequestModel.key,
       "secret": otp_RequestModel.secret,
       "msisdn": otp_RequestModel.msisdn
     },
-
-    
   );
 
   print('body..........'+body_otp);

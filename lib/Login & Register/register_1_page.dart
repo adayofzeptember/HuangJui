@@ -228,16 +228,17 @@ class _Register_PageState extends State<Register_Page> {
                                             formKey_phoneNumber.currentState
                                                 ?.save();
 
-                                          send_otp_request(otp_provider_model);
-                                          // print(jsonEncode(otp_provider_model));
+                                            send_otp_request(
+                                                otp_provider_model);
+                                            // print(jsonEncode(otp_provider_model));
 
-                                            // Navigator.push(
-                                            //   context,
-                                            //   MaterialPageRoute(
-                                            //     builder: (context) =>
-                                            //         Register_Page_OTP(),
-                                            //   ),
-                                            // );
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Register_Page_OTP(),
+                                              ),
+                                            );
                                           }
                                         },
                                         child: Padding(
