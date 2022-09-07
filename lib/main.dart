@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:huangjui/compass_page.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:flutter/services.dart';
@@ -27,17 +28,17 @@ class Start_Page_HuangJui extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          DefaultCupertinoLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        locale: Locale('th', 'TH'),
-        supportedLocales: [
-          const Locale('th', 'TH'), // Thai
-        ],
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: Locale('th', 'TH'),
+      supportedLocales: [
+        const Locale('th', 'TH'), // Thai
+      ],
       theme: ThemeData(
         fontFamily: 'Kanit',
         primarySwatch: theRed,
@@ -63,7 +64,6 @@ class _AppBackgroundState extends State<AppBackground> {
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.light,
         statusBarColor: theRed);
-
     super.initState();
   }
 
@@ -72,7 +72,7 @@ class _AppBackgroundState extends State<AppBackground> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => Register_Page(),
+          builder: (context) => Compass_Page(),
         ),
       );
     });

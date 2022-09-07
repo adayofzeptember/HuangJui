@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 
-
 class ProgressHUD extends StatelessWidget {
   final Widget child;
   final bool inAsyncCall;
@@ -9,7 +8,7 @@ class ProgressHUD extends StatelessWidget {
   final Color color;
 
   ProgressHUD({
-   key,
+    key,
     required this.child,
     required this.inAsyncCall,
     this.opacity = 1,
@@ -27,8 +26,10 @@ class ProgressHUD extends StatelessWidget {
             opacity: opacity,
             child: ModalBarrier(dismissible: false, color: color),
           ),
-          Center(child: CircularProgressIndicator(color: Colors.white,)),
-       
+          Center(
+              child: CircularProgressIndicator(
+            color: Colors.white,
+          )),
         ],
       );
       widgetList.add(modal);
@@ -38,4 +39,3 @@ class ProgressHUD extends StatelessWidget {
     );
   }
 }
- 

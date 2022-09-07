@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:huangjui/compass_page.dart';
 import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/profile.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,8 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class Main_Calendar extends StatefulWidget {
@@ -271,40 +270,50 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                   DateTime.now().add(const Duration(days: 3))),
                             ),
                             ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                    // side: BorderSide(color: Palette.kToDark),
-                                    primary: Palette.thisRed,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  // side: BorderSide(color: Palette.kToDark),
+                                  primary: Palette.thisRed,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  )),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Compass_Page(),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                            'assets/images/compass.svg'),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "ดูเข็มทิศ",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15),
+                                        ),
+                                      ],
                                     )),
-                                onPressed: () {},
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Container(
-                                      width: double.infinity,
-                                      alignment: Alignment.center,
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SvgPicture.asset(
-                                              'assets/images/compass.svg'),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            "ดูเข็มทิศ",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15),
-                                          ),
-                                        ],
-                                      )),
-                                ),
                               ),
-                              SizedBox(height: 15,)
+                            ),
+                            SizedBox(
+                              height: 15,
+                            )
                           ],
                         ),
                       ),

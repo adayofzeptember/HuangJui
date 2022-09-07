@@ -105,9 +105,9 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                                       context: context,
                                       builder: (context) {
                                         return AlertDialog(
-                                          title: Text("Verification Code"),
+                                          title: Text("รหัส"),
                                           content: Text(
-                                              'Code entered is $verificationCode'),
+                                              '$verificationCode'),
                                         );
                                       });
                                 }, // end onSubmit

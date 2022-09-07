@@ -55,6 +55,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_compass:
+    dependency: "direct main"
+    description:
+      name: flutter_compass
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0"
   flutter_facebook_auth:
     dependency: "direct main"
     description:
@@ -95,6 +102,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  flutter_sensors:
+    dependency: transitive
+    description:
+      name: flutter_sensors
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -264,6 +278,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smooth_compass:
+    dependency: "direct main"
+    description:
+      name: smooth_compass
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   source_span:
     dependency: transitive
     description:
@@ -342,5 +363,5 @@ packages:
     source: hosted
     version: "5.3.1"
 sdks:
-  dart: ">=2.17.0-0 <3.0.0"
+  dart: ">=2.17.5 <3.0.0"
   flutter: ">=2.8.0"
