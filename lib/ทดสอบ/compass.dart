@@ -18,6 +18,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Future<void> _Load_And_Go(String hh) async {
+    await Future.delayed(const Duration(minutes: 10), () {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        setState(() {});
+      });
+    });
+  }
+
   bool _hasPermissions = false;
   CompassEvent? _lastRead;
   DateTime? _lastReadAt;
@@ -32,56 +40,56 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0,
-          systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarIconBrightness: Brightness.light,
-              statusBarBrightness: Brightness.light,
-              statusBarColor: theRed),
-          backgroundColor: Palette.thisRed,
-          title: const Text('Compass 555'),
-        ),
-        body: Builder(builder: (context) {
-          return Column(
-            children: <Widget>[
-              //_buildManualReader(),
-              Expanded(child: _buildCompass()),
-              SmoothCompass(
-                rotationSpeed: 500,
-                height: 300,
-                width: 300,
-                compassBuilder: (context,
-                    AsyncSnapshot<CompassModel>? compassData,
-                    Widget compassAsset) {
-                  return compassAsset;
-                },
+        home: Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              elevation: 0,
+              systemOverlayStyle: SystemUiOverlayStyle(
+                  statusBarIconBrightness: Brightness.light,
+                  statusBarBrightness: Brightness.light,
+                  statusBarColor: theRed),
+              backgroundColor: Palette.thisRed,
+              title: const Text('Compass 555'),
+            ),
+            body: Center(
+              child: Column(
+                children: <Widget>[
+                  _buildManualReader(),
+                  Expanded(child: _buildCompass()),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SmoothCompass(
+                        rotationSpeed: 200,
+                        compassAsset: Container(
+                          height: 500,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/needles.png'),
+                                  fit: BoxFit.cover)),
+                        ),
+                        compassBuilder: (context,
+                            AsyncSnapshot<CompassModel>? compassData,
+                            Widget compassAsset) {
+                          //print(compassData!.data!.angle);
+
+                          return compassAsset;
+                        },
+                      ),
+                      // Container(
+                      //   height: 550,
+                      //   decoration: BoxDecoration(
+                      //       image: DecorationImage(
+                      //           image: AssetImage('assets/images/needles.png'),
+                      //           fit: BoxFit.cover)),
+                      // ),
+                    ],
+                  )
+                ],
               ),
-              SmoothCompass(
-                rotationSpeed: 200,
-                height: 250,
-                width: 250,
-                compassAsset: Container(
-                  height: 300,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/needles.png'),
-                          fit: BoxFit.cover)),
-                ),
-                compassBuilder: (context,
-                    AsyncSnapshot<CompassModel>? compassData,
-                    Widget compassAsset) {
-                  return compassAsset;
-                },
-              )
-            ],
-          );
-        }),
-      ),
-    );
+            )));
   }
 
   Widget _buildManualReader() {
@@ -127,6 +135,7 @@ class _MyAppState extends State<MyApp> {
       stream: FlutterCompass.events,
       builder: (context, snapshot) {
         double? direction = snapshot.data!.heading;
+        print('---------------'+direction.toString());
 
         if (direction == null)
           return Center(
@@ -137,47 +146,62 @@ class _MyAppState extends State<MyApp> {
           shape: CircleBorder(),
           clipBehavior: Clip.antiAlias,
           elevation: 0.0,
-          child: Container(
-            padding: EdgeInsets.all(16.0),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color.fromARGB(255, 96, 214, 145),
-              // image: DecorationImage(
-              //     image: AssetImage("assets/images/loading.jpg"),
-              //     fit: BoxFit.cover)
+          child: InkWell(
+            onTap: () {
+              print('object');
+              setState(() {});
+            },
+            child: Container(
+              padding: EdgeInsets.all(16.0),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color.fromARGB(255, 96, 214, 145),
+              ),
+              child: Transform.rotate(
+                  angle: (direction * (math.pi / 180)),
+                  child: Image.asset(
+                    "assets/images/needles.png",
+                    height: 550,
+                  )),
             ),
-            child: Transform.rotate(
-                angle: (direction * (math.pi / 180) * -1),
-                child: Stack(
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Main_Calendar(),
-                            ),
-                          );
-                        },
-                        child: Image.asset(
-                          "assets/images/needles.png",
-                          height: 550,
-                        )
-                        // Text(
-                        //   '>',
-                        //   style: TextStyle(
-                        //       color: Colors.black,
-                        //       fontFamily: 'Kanit',
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 50),
-                        // ),
-                        ),
-                  ],
-                )),
           ),
         );
       },
+    );
+  }
+
+  Widget _buildManualReader1() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        children: <Widget>[
+          ElevatedButton(
+            child: Text('Read Value'),
+            onPressed: () async {
+              final CompassEvent tmp = await FlutterCompass.events!.first;
+              setState(() {
+                _lastRead = tmp;
+                _lastReadAt = DateTime.now();
+              });
+            },
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    '$_lastRead',
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
