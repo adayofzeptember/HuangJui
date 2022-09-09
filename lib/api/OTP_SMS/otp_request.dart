@@ -1,8 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
 
 class OTP_Request_Response {
@@ -19,10 +16,10 @@ class OTP_Request_Response {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['token'] = this.token;
-    data['refno'] = this.refno;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['token'] = token;
+    data['refno'] = refno;
     return data;
   }
 }
@@ -35,33 +32,33 @@ class OTP_Request_Provider {
   OTP_Request_Provider({this.key, this.secret, this.msisdn});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    data['secret'] = this.secret;
-    data['msisdn'] = this.msisdn;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['key'] = key;
+    data['secret'] = secret;
+    data['msisdn'] = msisdn;
 
     return data;
   }
 }
 
 Future<OTP_Request_Response> send_otp_request(
-    OTP_Request_Provider otp_RequestModel) async {
+    OTP_Request_Provider otpRequestModel) async {
   String urlPost = "https://otp.thaibulksms.com/v2/otp/request";
 
-  var body_otp = json.encode(otp_RequestModel.toJson());
+  var bodyOtp = json.encode(otpRequestModel.toJson());
   final response = await http.post(
     Uri.parse(urlPost),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: {
-      "key": otp_RequestModel.key,
-      "secret": otp_RequestModel.secret,
-      "msisdn": otp_RequestModel.msisdn
+      "key": otpRequestModel.key,
+      "secret": otpRequestModel.secret,
+      "msisdn": otpRequestModel.msisdn
     },
   );
 
-  print('body..........'+body_otp);
+  print('body..........'+bodyOtp);
   var jsonRes = json.decode(response.body);
   print('jsonres........'+jsonRes.toString());
 

@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/Login%20&%20Register/login_page.dart';
-import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/otp_field_style.dart';
-import 'package:otp_text_field/style.dart';
 
 class Register_Page_OTP extends StatefulWidget {
-  Register_Page_OTP({Key? key}) : super(key: key);
+  const Register_Page_OTP({Key? key}) : super(key: key);
 
   @override
   State<Register_Page_OTP> createState() => _Register_Page_OTPState();
@@ -48,13 +41,13 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                     //       fontWeight: FontWeight.bold,
                     //       color: Color.fromARGB(255, 215, 190, 138)),
                     // ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Color.fromARGB(255, 255, 239, 224),
                         ),
@@ -71,20 +64,20 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                                         fontWeight: FontWeight.bold,
                                         color: theRed)),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 100,
                               ),
-                              Text(
+                              const Text(
                                 'ป้อนรหัส OTP ที่ได้รับทาง SMS เพื่อยืนยันตัวตน',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 12),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               OtpTextField(
                                 textStyle:
-                                    TextStyle(fontWeight: FontWeight.bold),
+                                    const TextStyle(fontWeight: FontWeight.bold),
                                 focusedBorderColor: Palette.thisRed,
                                 numberOfFields: 5,
                                 mainAxisAlignment:
@@ -92,7 +85,7 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                                 fieldWidth: 50,
                                 borderWidth: 1,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
+                                    const BorderRadius.all(Radius.circular(10.0)),
                                 enabledBorderColor: Colors.grey,
                                 borderColor: Palette.thisRed,
                                 showFieldAsBox: true,
@@ -105,9 +98,9 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                                       context: context,
                                       builder: (context) {
                                         return AlertDialog(
-                                          title: Text("รหัส"),
+                                          title: const Text("รหัส"),
                                           content: Text(
-                                              '$verificationCode'),
+                                              verificationCode),
                                         );
                                       });
                                 }, // end onSubmit
@@ -136,7 +129,7 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                               //     onCompleted: (pin) {
                               //       print("Completed: " + pin);
                               //     }),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               InkWell(
@@ -147,7 +140,7 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                                     width: double.infinity,
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
+                                      children: const [
                                         Icon(Icons.refresh_outlined),
                                         SizedBox(
                                           width: 2,
@@ -162,7 +155,7 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                                       ],
                                     )),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 80,
                               ),
                             ],

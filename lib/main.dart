@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/compass_page.dart';
-import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:huangjui/Login%20&%20Register/login_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_1_page.dart';
-import 'package:huangjui/daily_info_page.dart';
-import 'package:huangjui/main_Calendar.dart';
-import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/profile.dart';
-import 'Login & Register/register_2_otp.dart';
+import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(Start_Page_HuangJui()));
+      .then((value) => runApp(const Start_Page_HuangJui()));
 }
 
 class Start_Page_HuangJui extends StatelessWidget {
@@ -29,27 +19,27 @@ class Start_Page_HuangJui extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         DefaultCupertinoLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: Locale('th', 'TH'),
-      supportedLocales: [
-        const Locale('th', 'TH'), // Thai
+      locale: const Locale('th', 'TH'),
+      supportedLocales: const [
+        Locale('th', 'TH'), // Thai
       ],
       theme: ThemeData(
         fontFamily: 'Kanit',
         primarySwatch: theRed,
       ),
-      home: AppBackground(),
+      home: const AppBackground(),
     );
   }
 }
 
 class AppBackground extends StatefulWidget {
-  AppBackground({Key? key}) : super(key: key);
+  const AppBackground({Key? key}) : super(key: key);
   @override
   State<AppBackground> createState() => _AppBackgroundState();
 }
@@ -67,14 +57,42 @@ class _AppBackgroundState extends State<AppBackground> {
     super.initState();
   }
 
+  Route route_animated(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
   Future<void> _Load_And_Go() async {
-    await Future.delayed(const Duration(seconds: 1), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Compass_Page(),
-        ),
-      );
+    await Future.delayed(const Duration(seconds: 3), () {
+
+     Navigator.push(
+                  context,
+                  PageTransition(
+                    duration: Duration(seconds: 1),
+                    type: PageTransitionType.rightToLeft,
+                    child: Register_Page(),
+                  ),
+                );
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) =>  Register_Page(),
+      //   ),
+      // );
     });
   }
 

@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/compass_page.dart';
 import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/profile.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:intl/intl.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class Main_Calendar extends StatefulWidget {
@@ -29,6 +24,12 @@ class _Main_CalendarState extends State<Main_Calendar> {
   String _rangeCount = '';
 
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Info_Page(),
+      ),
+    );
     print(args.value.toString());
     setState(() {
       if (args.value is PickerDateRange) {
@@ -53,8 +54,8 @@ class _Main_CalendarState extends State<Main_Calendar> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(' '),
-            Text(
+            const Text(' '),
+            const Text(
               'ปฏิทินฮวงจุ้ย',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -65,10 +66,12 @@ class _Main_CalendarState extends State<Main_Calendar> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => Profile(
-                      name: widget.name.toString(),
-                      ipic: widget.ipic.toString(),
+                  PageTransition(
+                    duration: Duration(milliseconds: 500),
+                    type: PageTransitionType.rightToLeft,
+                    child: Profile(
+                      name: widget.name,
+                      ipic: widget.ipic,
                     ),
                   ),
                 );
@@ -79,7 +82,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                   Icons.person,
                   color: theRed,
                 ),
-                backgroundColor: Color.fromARGB(255, 255, 253, 237),
+                backgroundColor: const Color.fromARGB(255, 255, 253, 237),
               ),
             ),
           ],
@@ -95,7 +98,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Info_Page(),
+              builder: (context) => const Info_Page(),
             ),
           );
         },
@@ -110,15 +113,15 @@ class _Main_CalendarState extends State<Main_Calendar> {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     Container(
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: Color.fromARGB(255, 232, 229, 229)),
-                          color: Color.fromARGB(255, 232, 229, 229),
-                          borderRadius: BorderRadius.only(
+                              color: const Color.fromARGB(255, 232, 229, 229)),
+                          color: const Color.fromARGB(255, 232, 229, 229),
+                          borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15))),
                       child: Padding(
@@ -144,7 +147,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                         fit: BoxFit.cover),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Column(
@@ -153,11 +156,11 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                   children: [
                                     Text(
                                       widget.name.toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
                                     Container(
@@ -173,10 +176,10 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                                 'assets/images/crown.svg',
                                                 height: 8,
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 3,
                                               ),
-                                              Text(
+                                              const Text(
                                                 'Premium Member',
                                                 style: TextStyle(
                                                     color: Color.fromARGB(
@@ -185,7 +188,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                             ],
                                           ),
                                         ),
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                             color: Color.fromARGB(
                                                 255, 255, 221, 99),
                                             borderRadius: BorderRadius.all(
@@ -202,10 +205,10 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                   'assets/images/zodiac & elements/fire.svg',
                                   height: 40,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 3,
                                 ),
-                                Text(
+                                const Text(
                                   'ธาตุไฟ +',
                                   style: TextStyle(
                                       fontSize: 10,
@@ -219,7 +222,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 243, 243, 243),
                           borderRadius: BorderRadius.only(
                               bottomRight: Radius.circular(15),
@@ -229,7 +232,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                         child: Column(
                           children: [
                             SfDateRangePicker(
-                              headerStyle: DateRangePickerHeaderStyle(
+                              headerStyle: const DateRangePickerHeaderStyle(
                                   textAlign: TextAlign.center,
                                   textStyle: TextStyle(
                                       fontSize: 17,
@@ -238,12 +241,12 @@ class _Main_CalendarState extends State<Main_Calendar> {
                               selectionShape:
                                   DateRangePickerSelectionShape.rectangle,
                               allowViewNavigation: true,
-                              selectionTextStyle: TextStyle(
+                              selectionTextStyle: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                               monthViewSettings:
-                                  DateRangePickerMonthViewSettings(
+                                  const DateRangePickerMonthViewSettings(
                                       viewHeaderStyle:
                                           DateRangePickerViewHeaderStyle(
                                               textStyle: TextStyle(
@@ -251,13 +254,15 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                 color: Color.fromARGB(255, 143, 155, 179),
                                 fontFamily: 'Kanit',
                               ))),
-                              monthCellStyle: DateRangePickerMonthCellStyle(
-                                  textStyle: TextStyle(
-                                      fontFamily: 'Kanit',
-                                      color: Color.fromARGB(255, 34, 43, 69),
-                                      fontWeight: FontWeight.bold)),
+                              monthCellStyle:
+                                  const DateRangePickerMonthCellStyle(
+                                      textStyle: TextStyle(
+                                          fontFamily: 'Kanit',
+                                          color:
+                                              Color.fromARGB(255, 34, 43, 69),
+                                          fontWeight: FontWeight.bold)),
                               backgroundColor:
-                                  Color.fromARGB(255, 243, 243, 243),
+                                  const Color.fromARGB(255, 243, 243, 243),
                               todayHighlightColor: Palette.thisRed,
                               selectionColor: Palette.thisRed,
                               selectionMode:
@@ -272,18 +277,17 @@ class _Main_CalendarState extends State<Main_Calendar> {
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   elevation: 0,
-                                  // side: BorderSide(color: Palette.kToDark),
                                   primary: Palette.thisRed,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   )),
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Compass_Page(),
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => Compass_Page(),
+                                //   ),
+                                // );
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
@@ -298,10 +302,10 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                       children: [
                                         SvgPicture.asset(
                                             'assets/images/compass.svg'),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
-                                        Text(
+                                        const Text(
                                           "ดูเข็มทิศ",
                                           style: TextStyle(
                                               color: Colors.white,
@@ -311,7 +315,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                     )),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             )
                           ],

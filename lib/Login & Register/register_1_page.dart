@@ -1,21 +1,22 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/Login%20&%20Register/login_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_2_otp.dart';
 import 'package:huangjui/api/OTP_SMS/otp_request.dart';
 import 'package:huangjui/main_Calendar.dart';
+import 'package:page_transition/page_transition.dart';
+import '../Etc/ProgressHUD.dart';
 import '../api/google_auth.dart';
 
 var phoneNumber_Controller = TextEditingController();
 String? k;
 String? a;
 String? b;
+bool circleHUD = false;
+final formKey_phoneNumber = GlobalKey<FormState>();
 
 class Register_Page extends StatefulWidget {
-  Register_Page({Key? key}) : super(key: key);
+  const Register_Page({Key? key}) : super(key: key);
 
   @override
   State<Register_Page> createState() => _Register_PageState();
@@ -32,6 +33,9 @@ class _Register_PageState extends State<Register_Page> {
   Future<dynamic> useGoogle_toLogin() async {
     final userGoogle = await GoogoleSignInApi.google_SignIn2();
     GoogoleSignInApi.google_SignIn2().then((result) {
+      setState(() {
+        circleHUD = false;
+      });
       result!.authentication.then((googleKey) {
         print("id----------------> " + userGoogle!.id.toString());
         print("access token ------------------> " +
@@ -45,24 +49,37 @@ class _Register_PageState extends State<Register_Page> {
         });
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (context) => Main_Calendar(
+          PageTransition(
+            duration: Duration(milliseconds: 500),
+            type: PageTransitionType.rightToLeft,
+            child: Main_Calendar(
               name: a,
               ipic: b,
             ),
           ),
         );
       }).catchError((error1) {
+        setState(() {
+          circleHUD = false;
+        });
         print('error in');
       });
     }).catchError((error2) {
+      setState(() {
+        circleHUD = false;
+      });
       print('error out');
     });
   }
 
-  final formKey_phoneNumber = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    return ProgressHUD(
+        child: _uiSetUp(context), inAsyncCall: circleHUD, opacity: 0.3);
+  }
+
+  @override
+  Widget _uiSetUp(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -77,20 +94,20 @@ class _Register_PageState extends State<Register_Page> {
               Center(
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'ปฏิทินฮวงจุ้ย',
                       style: TextStyle(
                           fontSize: 45,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 215, 190, 138)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Color.fromARGB(255, 255, 239, 224),
                         ),
@@ -109,17 +126,17 @@ class _Register_PageState extends State<Register_Page> {
                                           fontWeight: FontWeight.bold,
                                           color: theRed)),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
-                                Text(
+                                const Text(
                                   'ลงทะเบียนด้วยเบอร์โทรศัพท์',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
-                                Container(
+                                SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.08,
                                     width: double.infinity,
@@ -128,6 +145,7 @@ class _Register_PageState extends State<Register_Page> {
                                         if (value!.isEmpty) {
                                           return "กรุณากรอกหมายเลขเบอร์มือถือ";
                                         }
+                                        return null;
                                       },
                                       controller: phoneNumber_Controller,
                                       maxLength: 10,
@@ -142,7 +160,7 @@ class _Register_PageState extends State<Register_Page> {
                                             input.toString();
                                       },
                                       textInputAction: TextInputAction.done,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         counterText: "",
                                         filled: true,
                                         fillColor: Colors.white,
@@ -166,7 +184,7 @@ class _Register_PageState extends State<Register_Page> {
                                         ),
                                       ),
                                     )),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Row(
@@ -176,9 +194,9 @@ class _Register_PageState extends State<Register_Page> {
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             elevation: 0,
-                                            side: BorderSide(color: theRed),
-                                            primary: Color.fromARGB(
+                                            primary: const Color.fromARGB(
                                                 255, 255, 239, 224),
+                                            side: BorderSide(color: theRed),
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -208,13 +226,13 @@ class _Register_PageState extends State<Register_Page> {
                                         ),
                                       ),
                                     ),
-                                    VerticalDivider(width: 5),
+                                    const VerticalDivider(width: 5),
                                     Expanded(
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             elevation: 0,
-                                            side: BorderSide(color: theRed),
                                             primary: theRed,
+                                            side: BorderSide(color: theRed),
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -236,7 +254,7 @@ class _Register_PageState extends State<Register_Page> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    Register_Page_OTP(),
+                                                    const Register_Page_OTP(),
                                               ),
                                             );
                                           }
@@ -246,7 +264,7 @@ class _Register_PageState extends State<Register_Page> {
                                           child: Container(
                                             width: double.infinity,
                                             alignment: Alignment.center,
-                                            child: Text(
+                                            child: const Text(
                                               "ต่อไป",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
@@ -260,23 +278,22 @@ class _Register_PageState extends State<Register_Page> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
-                                Center(
+                                const Center(
                                     child: Text(
                                   'หรือ',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 )),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       elevation: 0,
-                                      // side: BorderSide(color: Palette.kToDark),
-                                      primary:
-                                          Color.fromARGB(255, 24, 119, 242),
+                                      primary: const Color.fromARGB(
+                                          255, 24, 119, 242),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       )),
@@ -292,10 +309,10 @@ class _Register_PageState extends State<Register_Page> {
                                           children: [
                                             SvgPicture.asset(
                                                 'assets/images/facebook-icon.svg'),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
-                                            Text(
+                                            const Text(
                                               "ลงทะเบียน Facebook",
                                               style: TextStyle(
                                                   color: Colors.white,
@@ -305,20 +322,23 @@ class _Register_PageState extends State<Register_Page> {
                                         )),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       elevation: 0,
-                                      side: BorderSide(
+                                      primary: Colors.white,
+                                      side: const BorderSide(
                                           color: Color.fromARGB(
                                               255, 223, 223, 223)),
-                                      primary: Colors.white,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       )),
                                   onPressed: () {
+                                      setState(() {
+                                          circleHUD = true;
+                                        });
                                     useGoogle_toLogin();
                                   },
                                   child: Padding(
@@ -332,10 +352,10 @@ class _Register_PageState extends State<Register_Page> {
                                           children: [
                                             SvgPicture.asset(
                                                 'assets/images/google-icon.svg'),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
-                                            Text(
+                                            const Text(
                                               "ลงทะเบียนด้วย Google",
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -345,13 +365,12 @@ class _Register_PageState extends State<Register_Page> {
                                         )),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       elevation: 0,
-                                      // side: BorderSide(color: Palette.kToDark),
                                       primary: Colors.black,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -370,10 +389,10 @@ class _Register_PageState extends State<Register_Page> {
                                           children: [
                                             SvgPicture.asset(
                                                 'assets/images/apple-icon.svg'),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 20,
                                             ),
-                                            Text(
+                                            const Text(
                                               "ลงทะเบียนด้วย Apple",
                                               style: TextStyle(
                                                   color: Colors.white,

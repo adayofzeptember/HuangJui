@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 
 class Info_Page extends StatefulWidget {
-  Info_Page({Key? key}) : super(key: key);
+  const Info_Page({Key? key}) : super(key: key);
 
   @override
   State<Info_Page> createState() => _Info_PageState();
@@ -29,17 +22,17 @@ class _Info_PageState extends State<Info_Page> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back_ios,
                   color: Colors.white,
                 ),
               ),
-              Text(
+              const Text(
                 'วันอังคารที่ 30 พฤษจิกายน 2565',
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
-              Text('')
+              const Text('')
             ],
           ),
           systemOverlayStyle: SystemUiOverlayStyle(
@@ -63,7 +56,7 @@ class _Info_PageState extends State<Info_Page> {
                     Center(
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Padding(
@@ -71,11 +64,11 @@ class _Info_PageState extends State<Info_Page> {
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Color.fromARGB(255, 215, 190, 138),
+                                    color: const Color.fromARGB(255, 215, 190, 138),
                                     width: 5),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                color: Color.fromARGB(255, 255, 244, 220),
+                                    const BorderRadius.all(Radius.circular(5)),
+                                color: const Color.fromARGB(255, 255, 244, 220),
                               ),
                               width: double.infinity,
                               child: Stack(
@@ -102,29 +95,29 @@ class _Info_PageState extends State<Info_Page> {
                                               color: theRed,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
-                                        Text(
+                                        const Text(
                                           'ถ่ายเท',
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text(
+                                        const Text(
                                           '(พิฆาตติถี พลังเดียวกัน)',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 8,
                                         ),
-                                        Text(
+                                        const Text(
                                             'ดาวอำนาจฝ่ายบู๊ เกี่ยวกับเรื่องตำแหน่ง ยศศักดิ์ การสอบแข่งขัน เลือกตั้งจะทำให้มีจิตใจแบบนักเลง คือยึดถือสัจจะพูดจาขวานผ่า ซาก ตรงประเด็นไม่อ้อมค้อม ถ้าติถีมีกำลังจะเป็นขุนนาง ฝ่ายบู๊ปราบอิทธิพลถ้าติถีอ่อนแอมากจะถูกผู้ใหญ่ข่มเหง'),
                                       ],
                                     ),
@@ -141,7 +134,7 @@ class _Info_PageState extends State<Info_Page> {
                       right: 35,
                       child: CircleAvatar(
                         radius: 43,
-                        backgroundColor: Color.fromARGB(255, 215, 190, 138),
+                        backgroundColor: const Color.fromARGB(255, 215, 190, 138),
                         child: CircleAvatar(
                           radius: 40,
                           backgroundColor: Colors.white,
@@ -155,10 +148,10 @@ class _Info_PageState extends State<Info_Page> {
                                   'assets/images/zodiac & elements/fire.svg',
                                   height: 40,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 3,
                                 ),
-                                Text(
+                                const Text(
                                   'ธาตุไฟ +',
                                   style: TextStyle(
                                       fontSize: 10,
@@ -173,13 +166,13 @@ class _Info_PageState extends State<Info_Page> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Stack(
                   children: [
                     Center(
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Padding(
@@ -187,11 +180,11 @@ class _Info_PageState extends State<Info_Page> {
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Color.fromARGB(255, 215, 190, 138),
+                                    color: const Color.fromARGB(255, 215, 190, 138),
                                     width: 5),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                color: Color.fromARGB(255, 255, 244, 220),
+                                    const BorderRadius.all(Radius.circular(5)),
+                                color: const Color.fromARGB(255, 255, 244, 220),
                               ),
                               width: double.infinity,
                               child: Stack(
@@ -218,29 +211,29 @@ class _Info_PageState extends State<Info_Page> {
                                               color: theRed,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
-                                        Text(
+                                        const Text(
                                           'โชคลาภ',
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text(
+                                        const Text(
                                           '(พิฆาตติถี พลังเดียวกัน)',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 8,
                                         ),
-                                        Text(
+                                        const Text(
                                             'ดาวอำนาจฝ่ายบู๊ เกี่ยวกับเรื่องตำแหน่ง ยศศักดิ์ การสอบแข่งขัน เลือกตั้งจะทำให้มีจิตใจแบบนักเลง คือยึดถือสัจจะพูดจาขวานผ่า ซาก ตรงประเด็นไม่อ้อมค้อม ถ้าติถีมีกำลังจะเป็นขุนนาง ฝ่ายบู๊ปราบอิทธิพลถ้าติถีอ่อนแอมากจะถูกผู้ใหญ่ข่มเหง'),
                                       ],
                                     ),
@@ -258,10 +251,10 @@ class _Info_PageState extends State<Info_Page> {
                               decoration: BoxDecoration(
                                   border: Border.all(color: theRed, width: 3),
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                      const BorderRadius.all(Radius.circular(10)),
                                   color: Colors.white),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
                                 child: Text(
                                   'ดวงวันนี้ให้คุณ',
                                   style: TextStyle(
@@ -280,7 +273,7 @@ class _Info_PageState extends State<Info_Page> {
                       right: 35,
                       child: CircleAvatar(
                         radius: 43,
-                        backgroundColor: Color.fromARGB(255, 215, 190, 138),
+                        backgroundColor: const Color.fromARGB(255, 215, 190, 138),
                         child: CircleAvatar(
                           radius: 40,
                           backgroundColor: Colors.white,
@@ -294,10 +287,10 @@ class _Info_PageState extends State<Info_Page> {
                                   'assets/images/zodiac & elements/marong.svg',
                                   height: 40,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 3,
                                 ),
-                                Text(
+                                const Text(
                                   'มะโรง',
                                   style: TextStyle(
                                       fontSize: 10,

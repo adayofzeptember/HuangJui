@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Login%20&%20Register/register_1_page.dart';
-import 'package:huangjui/daily_info_page.dart';
 import 'package:huangjui/main_Calendar.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/profile.dart';
 
 import '../api/google_auth.dart';
 
 class Login_Page extends StatefulWidget {
-  Login_Page({Key? key}) : super(key: key);
+  const Login_Page({Key? key}) : super(key: key);
 
   @override
   State<Login_Page> createState() => _Login_PageState();
@@ -64,20 +60,20 @@ class _Login_PageState extends State<Login_Page> {
               Center(
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'ปฏิทินฮวงจุ้ย',
                       style: TextStyle(
                           fontSize: 45,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 215, 190, 138)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Color.fromARGB(255, 255, 239, 224),
                         ),
@@ -94,17 +90,17 @@ class _Login_PageState extends State<Login_Page> {
                                         fontWeight: FontWeight.bold,
                                         color: theRed)),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Text(
+                              const Text(
                                 'เข้าสู่ระบบด้วยเบอร์โทรศัพท์',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Container(
+                              SizedBox(
                                   height: MediaQuery.of(context).size.height *
                                       0.057,
                                   width: double.infinity,
@@ -118,7 +114,7 @@ class _Login_PageState extends State<Login_Page> {
                                       }
                                     },
                                     textInputAction: TextInputAction.done,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       filled: true,
                                       fillColor: Colors.white,
                                       hintText: 'กรอกเบอร์โทรศัพท์',
@@ -141,7 +137,7 @@ class _Login_PageState extends State<Login_Page> {
                                       ),
                                     ),
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
@@ -150,10 +146,9 @@ class _Login_PageState extends State<Login_Page> {
                                   Expanded(
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          side: BorderSide(color: theRed),
-                                          primary: Color.fromARGB(
+                                          elevation: 0, primary: const Color.fromARGB(
                                               255, 255, 239, 224),
+                                          side: BorderSide(color: theRed),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -163,7 +158,7 @@ class _Login_PageState extends State<Login_Page> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                Register_Page(),
+                                                const Register_Page(),
                                           ),
                                         );
                                       },
@@ -183,13 +178,12 @@ class _Login_PageState extends State<Login_Page> {
                                       ),
                                     ),
                                   ),
-                                  VerticalDivider(width: 5),
+                                  const VerticalDivider(width: 5),
                                   Expanded(
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          elevation: 0,
+                                          elevation: 0, primary: theRed,
                                           side: BorderSide(color: theRed),
-                                          primary: theRed,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -200,7 +194,7 @@ class _Login_PageState extends State<Login_Page> {
                                         child: Container(
                                           width: double.infinity,
                                           alignment: Alignment.center,
-                                          child: Text(
+                                          child: const Text(
                                             "ต่อไป",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
@@ -214,22 +208,20 @@ class _Login_PageState extends State<Login_Page> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Center(
+                              const Center(
                                   child: Text(
                                 'หรือ',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                    // side: BorderSide(color: Palette.kToDark),
-                                    primary: Color.fromARGB(255, 24, 119, 242),
+                                    elevation: 0, primary: const Color.fromARGB(255, 24, 119, 242),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
@@ -245,10 +237,10 @@ class _Login_PageState extends State<Login_Page> {
                                         children: [
                                           SvgPicture.asset(
                                               'assets/images/facebook-icon.svg'),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 20,
                                           ),
-                                          Text(
+                                          const Text(
                                             "เข้าสู่ระบบด้วย Facebook",
                                             style: TextStyle(
                                                 color: Colors.white,
@@ -258,16 +250,15 @@ class _Login_PageState extends State<Login_Page> {
                                       )),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                    side: BorderSide(
+                                    elevation: 0, primary: Colors.white,
+                                    side: const BorderSide(
                                         color:
                                             Color.fromARGB(255, 223, 223, 223)),
-                                    primary: Colors.white,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
@@ -285,10 +276,10 @@ class _Login_PageState extends State<Login_Page> {
                                         children: [
                                           SvgPicture.asset(
                                               'assets/images/google-icon.svg'),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 20,
                                           ),
-                                          Text(
+                                          const Text(
                                             "เข้าสู่ระบบด้วย Google",
                                             style: TextStyle(
                                                 color: Colors.black,
@@ -298,14 +289,12 @@ class _Login_PageState extends State<Login_Page> {
                                       )),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                    // side: BorderSide(color: Palette.kToDark),
-                                    primary: Colors.black,
+                                    elevation: 0, primary: Colors.black,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
@@ -323,10 +312,10 @@ class _Login_PageState extends State<Login_Page> {
                                         children: [
                                           SvgPicture.asset(
                                               'assets/images/apple-icon.svg'),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 20,
                                           ),
-                                          Text(
+                                          const Text(
                                             "เข้าสู่ระบบด้วย Apple",
                                             style: TextStyle(
                                                 color: Colors.white,

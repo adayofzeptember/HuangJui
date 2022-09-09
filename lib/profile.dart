@@ -28,17 +28,17 @@ class _ProfileState extends State<Profile> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white,
               ),
             ),
-            Text(
+            const Text(
               'โปรไฟล์',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
-            Text('')
+            const Text('')
           ],
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -50,7 +50,6 @@ class _ProfileState extends State<Profile> {
         backgroundColor: theRed,
       ),
       body: SingleChildScrollView(
-        
         child: Stack(
           children: [
             Image.asset('assets/images/background_half.jpg',
@@ -60,7 +59,7 @@ class _ProfileState extends State<Profile> {
             Center(
               child: Column(
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -72,7 +71,7 @@ class _ProfileState extends State<Profile> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           image: NetworkImage(widget.ipic.toString())
-      
+
                           // AssetImage(
                           //   'assets/images/for Mock Up Only/kurt.jpeg',
                           // )
@@ -80,48 +79,50 @@ class _ProfileState extends State<Profile> {
                           fit: BoxFit.cover),
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Text(
                     widget.name.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
-                      width: 150,
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/crown.svg',
-                              height: 12,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              'Premium Member',
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 143, 97, 1)),
-                            ),
-                          ],
+                        child: FittedBox(
+                          fit: BoxFit.none,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/crown.svg',
+                                height: 12,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'Premium Member',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 143, 97, 1)),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 255, 221, 99),
                           borderRadius: BorderRadius.all(Radius.circular(5)))),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Wrap(
                     children: [
                       Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(30),
@@ -131,91 +132,96 @@ class _ProfileState extends State<Profile> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(top: 40, left: 40),
+                                padding:
+                                    const EdgeInsets.only(top: 40, left: 40),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'ชื่อ-นามสกุล',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color:
-                                              Color.fromARGB(255, 143, 143, 143)),
+                                          color: Color.fromARGB(
+                                              255, 143, 143, 143)),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
                                     Text(
                                       widget.name.toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 34, 43, 69)),
+                                          color:
+                                              Color.fromARGB(255, 34, 43, 69)),
                                     ),
-                                    SizedBox(height: 20),
-                                    Text(
+                                    const SizedBox(height: 20),
+                                    const Text(
                                       'เพศ',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color:
-                                              Color.fromARGB(255, 143, 143, 143)),
+                                          color: Color.fromARGB(
+                                              255, 143, 143, 143)),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
+                                    const Text(
                                       'หญิง',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 34, 43, 69)),
+                                          color:
+                                              Color.fromARGB(255, 34, 43, 69)),
                                     ),
-                                    SizedBox(height: 20),
-                                    Text(
+                                    const SizedBox(height: 20),
+                                    const Text(
                                       'วัน เดือน ปีเกิด',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color:
-                                              Color.fromARGB(255, 143, 143, 143)),
+                                          color: Color.fromARGB(
+                                              255, 143, 143, 143)),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
+                                    const Text(
                                       '22 กันยายน 2555',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 34, 43, 69)),
+                                          color:
+                                              Color.fromARGB(255, 34, 43, 69)),
                                     ),
-                                    SizedBox(height: 20),
-                                    Text(
+                                    const SizedBox(height: 20),
+                                    const Text(
                                       'เวลาเกิด',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color:
-                                              Color.fromARGB(255, 143, 143, 143)),
+                                          color: Color.fromARGB(
+                                              255, 143, 143, 143)),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
+                                    const Text(
                                       '05 : 00 น.',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 34, 43, 69)),
+                                          color:
+                                              Color.fromARGB(255, 34, 43, 69)),
                                     ),
-                                    SizedBox(height: 20),
-                                    Text(
+                                    const SizedBox(height: 20),
+                                    const Text(
                                       'ธาตุประจำตัว',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color:
-                                              Color.fromARGB(255, 143, 143, 143)),
+                                          color: Color.fromARGB(
+                                              255, 143, 143, 143)),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 8,
                                     ),
                                     Row(
@@ -224,10 +230,10 @@ class _ProfileState extends State<Profile> {
                                           'assets/images/zodiac & elements/fire.svg',
                                           height: 30,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 8,
                                         ),
-                                        Text(
+                                        const Text(
                                           'ธาตุไฟ +',
                                           style: TextStyle(
                                               fontSize: 18,
@@ -237,7 +243,7 @@ class _ProfileState extends State<Profile> {
                                         )
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 30,
                                     ),
                                   ],
@@ -247,7 +253,7 @@ class _ProfileState extends State<Profile> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 160,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -258,8 +264,8 @@ class _ProfileState extends State<Profile> {
                                                 BorderRadius.circular(5),
                                           )),
                                       onPressed: () {},
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(10.0),
                                         child: Text(
                                           "แก้ไขโปรไฟล์",
                                           style: TextStyle(
@@ -271,16 +277,16 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: 160,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           elevation: 0,
-                                          primary:
-                                              Color.fromARGB(255, 215, 190, 138),
+                                          primary: const Color.fromARGB(
+                                              255, 215, 190, 138),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -291,7 +297,7 @@ class _ProfileState extends State<Profile> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                Start_Page_HuangJui(),
+                                                const Start_Page_HuangJui(),
                                           ),
                                         );
                                       },
@@ -307,7 +313,7 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                 ],
