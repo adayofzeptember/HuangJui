@@ -121,6 +121,7 @@ class _ProfileState extends State<Profile> {
                   const SizedBox(height: 30),
                   Wrap(
                     children: [
+                      
                       Container(
                           decoration: const BoxDecoration(
                               color: Colors.white,
@@ -132,6 +133,7 @@ class _ProfileState extends State<Profile> {
                           child: Column(
                             children: [
                               Padding(
+
                                 padding:
                                     const EdgeInsets.only(top: 40, left: 40),
                                 child: Column(

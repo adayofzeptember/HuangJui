@@ -26,7 +26,7 @@ class Start_Page_HuangJui extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: const Locale('th', 'TH'),
-      supportedLocales: const [
+      supportedLocales: [
         Locale('th', 'TH'), // Thai
       ],
       theme: ThemeData(
@@ -78,15 +78,14 @@ class _AppBackgroundState extends State<AppBackground> {
 
   Future<void> _Load_And_Go() async {
     await Future.delayed(const Duration(seconds: 3), () {
-
-     Navigator.push(
-                  context,
-                  PageTransition(
-                    duration: Duration(seconds: 1),
-                    type: PageTransitionType.rightToLeft,
-                    child: Register_Page(),
-                  ),
-                );
+      Navigator.push(
+        context,
+        PageTransition(
+          duration: Duration(seconds: 1),
+          type: PageTransitionType.rightToLeft,
+          child: Register_Page(),
+        ),
+      );
       // Navigator.pushReplacement(
       //   context,
       //   MaterialPageRoute(
