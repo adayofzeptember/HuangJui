@@ -1,5 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/Login%20&%20Register/register_2_otp.dart';
 import 'package:huangjui/api/OTP_SMS/otp_request.dart';
@@ -23,11 +27,42 @@ class Register_Page extends StatefulWidget {
 }
 
 class _Register_PageState extends State<Register_Page> {
+  Future useFacebook_toLogin() async {
+    await FacebookAuth.instance
+        .login(permissions: ["public_profile", "email"]).then((value) {
+      FacebookAuth.instance.getUserData().then((userDataFacebook) {
+        print(userDataFacebook["name"]);
+        print(userDataFacebook["email"]);
+        print(userDataFacebook["picture"]["data"]["url"]);
+        setState(() {
+          a = userDataFacebook["name"].toString();
+          b = userDataFacebook["picture"]["data"]["url"].toString();
+          setState(() {
+            circleHUD = false;
+          });
+          Navigator.pushReplacement(
+            context,
+            PageTransition(
+              duration: Duration(milliseconds: 500),
+              type: PageTransitionType.rightToLeft,
+              child: Main_Calendar(
+                name: a,
+                ipic: b,
+              ),
+            ),
+          );
+        });
+      });
+    });
+  }
+
   late OTP_Request_Provider otp_provider_model;
   @override
   void initState() {
     super.initState();
     otp_provider_model = OTP_Request_Provider();
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
 
   Future<dynamic> useGoogle_toLogin() async {
@@ -40,9 +75,9 @@ class _Register_PageState extends State<Register_Page> {
         print("id----------------> " + userGoogle!.id.toString());
         print("access token ------------------> " +
             googleKey.accessToken.toString());
-        print("เมล ------------------> " + userGoogle.email.toString());
+        print("เมล  ------------------> " + userGoogle.email.toString());
         print("ชื่อ -------------------> " + userGoogle.displayName.toString());
-        print("รูป ------------------> " + userGoogle.photoUrl.toString());
+        print("รูป -------------------> " + userGoogle.photoUrl.toString());
         setState(() {
           a = userGoogle.displayName.toString();
           b = userGoogle.photoUrl.toString();
@@ -74,13 +109,18 @@ class _Register_PageState extends State<Register_Page> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return ProgressHUD(
         child: _uiSetUp(context), inAsyncCall: circleHUD, opacity: 0.3);
   }
 
   @override
   Widget _uiSetUp(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: <Widget>[
           Image.asset('assets/images/background_full.jpg',
@@ -94,26 +134,26 @@ class _Register_PageState extends State<Register_Page> {
               Center(
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'ปฏิทินฮวงจุ้ย',
                       style: TextStyle(
                           fontSize: 45,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 215, 190, 138)),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 40,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: EdgeInsets.only(left: 20, right: 20),
                       child: Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Color.fromARGB(255, 255, 239, 224),
                         ),
                         width: double.infinity,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(30, 25.0, 30, 50),
+                          padding: EdgeInsets.fromLTRB(30, 25.0, 30, 50),
                           child: Form(
                             key: formKey_phoneNumber,
                             child: Column(
@@ -126,14 +166,14 @@ class _Register_PageState extends State<Register_Page> {
                                           fontWeight: FontWeight.bold,
                                           color: theRed)),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 20,
                                 ),
-                                const Text(
+                                Text(
                                   'ลงทะเบียนด้วยเบอร์โทรศัพท์',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 5,
                                 ),
                                 SizedBox(
@@ -160,7 +200,7 @@ class _Register_PageState extends State<Register_Page> {
                                             input.toString();
                                       },
                                       textInputAction: TextInputAction.done,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         counterText: "",
                                         filled: true,
                                         fillColor: Colors.white,
@@ -184,7 +224,7 @@ class _Register_PageState extends State<Register_Page> {
                                         ),
                                       ),
                                     )),
-                                const SizedBox(
+                                SizedBox(
                                   height: 10,
                                 ),
                                 Row(
@@ -194,7 +234,7 @@ class _Register_PageState extends State<Register_Page> {
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             elevation: 0,
-                                            primary: const Color.fromARGB(
+                                            primary: Color.fromARGB(
                                                 255, 255, 239, 224),
                                             side: BorderSide(color: theRed),
                                             shape: RoundedRectangleBorder(
@@ -211,7 +251,7 @@ class _Register_PageState extends State<Register_Page> {
                                           // );
                                         },
                                         child: Padding(
-                                          padding: const EdgeInsets.all(15.0),
+                                          padding: EdgeInsets.all(15.0),
                                           child: Container(
                                             width: double.infinity,
                                             alignment: Alignment.center,
@@ -226,7 +266,7 @@ class _Register_PageState extends State<Register_Page> {
                                         ),
                                       ),
                                     ),
-                                    const VerticalDivider(width: 5),
+                                    VerticalDivider(width: 5),
                                     Expanded(
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -240,7 +280,6 @@ class _Register_PageState extends State<Register_Page> {
                                         onPressed: () {
                                           FocusManager.instance.primaryFocus
                                               ?.unfocus();
-
                                           if (formKey_phoneNumber.currentState!
                                               .validate()) {
                                             formKey_phoneNumber.currentState
@@ -248,23 +287,23 @@ class _Register_PageState extends State<Register_Page> {
 
                                             send_otp_request(
                                                 otp_provider_model);
-                                            // print(jsonEncode(otp_provider_model));
+                                            //? print(jsonEncode(otp_provider_model));
 
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const Register_Page_OTP(),
+                                                    Register_Page_OTP(),
                                               ),
                                             );
                                           }
                                         },
                                         child: Padding(
-                                          padding: const EdgeInsets.all(15.0),
+                                          padding: EdgeInsets.all(15.0),
                                           child: Container(
                                             width: double.infinity,
                                             alignment: Alignment.center,
-                                            child: const Text(
+                                            child: Text(
                                               "ต่อไป",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
@@ -278,28 +317,33 @@ class _Register_PageState extends State<Register_Page> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 15,
                                 ),
-                                const Center(
+                                Center(
                                     child: Text(
                                   'หรือ',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 )),
-                                const SizedBox(
+                                SizedBox(
                                   height: 15,
                                 ),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       elevation: 0,
-                                      primary: const Color.fromARGB(
-                                          255, 24, 119, 242),
+                                      primary:
+                                          Color.fromARGB(255, 24, 119, 242),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       )),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      circleHUD = true;
+                                    });
+                                    useFacebook_toLogin();
+                                  },
                                   child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
+                                    padding: EdgeInsets.all(15.0),
                                     child: Container(
                                         width: double.infinity,
                                         alignment: Alignment.center,
@@ -308,11 +352,12 @@ class _Register_PageState extends State<Register_Page> {
                                               MainAxisAlignment.center,
                                           children: [
                                             SvgPicture.asset(
-                                                'assets/images/facebook-icon.svg'),
-                                            const SizedBox(
+                                              'assets/images/facebook-icon.svg',
+                                            ),
+                                            SizedBox(
                                               width: 20,
                                             ),
-                                            const Text(
+                                            Text(
                                               "ลงทะเบียน Facebook",
                                               style: TextStyle(
                                                   color: Colors.white,
@@ -322,27 +367,27 @@ class _Register_PageState extends State<Register_Page> {
                                         )),
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 10,
                                 ),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       elevation: 0,
                                       primary: Colors.white,
-                                      side: const BorderSide(
+                                      side: BorderSide(
                                           color: Color.fromARGB(
                                               255, 223, 223, 223)),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       )),
                                   onPressed: () {
-                                      setState(() {
-                                          circleHUD = true;
-                                        });
+                                    setState(() {
+                                      circleHUD = true;
+                                    });
                                     useGoogle_toLogin();
                                   },
                                   child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
+                                    padding: EdgeInsets.all(15.0),
                                     child: Container(
                                         width: double.infinity,
                                         alignment: Alignment.center,
@@ -352,10 +397,10 @@ class _Register_PageState extends State<Register_Page> {
                                           children: [
                                             SvgPicture.asset(
                                                 'assets/images/google-icon.svg'),
-                                            const SizedBox(
+                                            SizedBox(
                                               width: 20,
                                             ),
-                                            const Text(
+                                            Text(
                                               "ลงทะเบียนด้วย Google",
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -365,7 +410,7 @@ class _Register_PageState extends State<Register_Page> {
                                         )),
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 10,
                                 ),
                                 ElevatedButton(
@@ -411,11 +456,6 @@ class _Register_PageState extends State<Register_Page> {
                   ],
                 ),
               ),
-              // Container(
-              //   width:250,
-              //   height: 250,
-              //   color: Colors.white,
-              // )
             ],
           ),
         ],

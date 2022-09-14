@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/main.dart';
-
 import 'api/google_auth.dart';
 
 class Profile extends StatefulWidget {
@@ -90,6 +92,8 @@ class _ProfileState extends State<Profile> {
                   const SizedBox(
                     height: 5,
                   ),
+
+                  //!-------------------------------------------------------------------------------------------------------------
                   Container(
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -118,10 +122,12 @@ class _ProfileState extends State<Profile> {
                       decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 255, 221, 99),
                           borderRadius: BorderRadius.all(Radius.circular(5)))),
-                  const SizedBox(height: 30),
+
+                  //!------------------------------------------------------------------------------------------------------------
+
+                  SizedBox(height: 30),
                   Wrap(
                     children: [
-                      
                       Container(
                           decoration: const BoxDecoration(
                               color: Colors.white,
@@ -133,14 +139,13 @@ class _ProfileState extends State<Profile> {
                           child: Column(
                             children: [
                               Padding(
-
                                 padding:
                                     const EdgeInsets.only(top: 40, left: 40),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    const Text(
+                                    Text(
                                       'ชื่อ-นามสกุล',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -166,29 +171,29 @@ class _ProfileState extends State<Profile> {
                                           color: Color.fromARGB(
                                               255, 143, 143, 143)),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 5,
                                     ),
-                                    const Text(
-                                      'หญิง',
+                                    Text(
+                                      'ชาย',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color:
                                               Color.fromARGB(255, 34, 43, 69)),
                                     ),
-                                    const SizedBox(height: 20),
-                                    const Text(
+                                    SizedBox(height: 20),
+                                    Text(
                                       'วัน เดือน ปีเกิด',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Color.fromARGB(
                                               255, 143, 143, 143)),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 5,
                                     ),
-                                    const Text(
+                                    Text(
                                       '22 กันยายน 2555',
                                       style: TextStyle(
                                           fontSize: 18,
@@ -196,18 +201,18 @@ class _ProfileState extends State<Profile> {
                                           color:
                                               Color.fromARGB(255, 34, 43, 69)),
                                     ),
-                                    const SizedBox(height: 20),
-                                    const Text(
+                                    SizedBox(height: 20),
+                                    Text(
                                       'เวลาเกิด',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Color.fromARGB(
                                               255, 143, 143, 143)),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 5,
                                     ),
-                                    const Text(
+                                    Text(
                                       '05 : 00 น.',
                                       style: TextStyle(
                                           fontSize: 18,
@@ -215,15 +220,15 @@ class _ProfileState extends State<Profile> {
                                           color:
                                               Color.fromARGB(255, 34, 43, 69)),
                                     ),
-                                    const SizedBox(height: 20),
-                                    const Text(
+                                    SizedBox(height: 20),
+                                    Text(
                                       'ธาตุประจำตัว',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Color.fromARGB(
                                               255, 143, 143, 143)),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 8,
                                     ),
                                     Row(
@@ -245,7 +250,7 @@ class _ProfileState extends State<Profile> {
                                         )
                                       ],
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 30,
                                     ),
                                   ],
@@ -283,6 +288,7 @@ class _ProfileState extends State<Profile> {
                                     height: 5,
                                   ),
                                   SizedBox(
+                                    //* แถบขาวโปรไฟล์
                                     width: 160,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -294,7 +300,13 @@ class _ProfileState extends State<Profile> {
                                                 BorderRadius.circular(5),
                                           )),
                                       onPressed: () {
-                                        GoogoleSignInApi.google_LogOut();
+                                        // GoogoleSignInApi.google_LogOut();
+                                        // FacebookAuth.instance.logOut();
+                                        // if (Platform.isAndroid) {
+                                        //   SystemNavigator.pop();
+                                        // } else if (Platform.isIOS) {
+                                        //   exit(0);
+                                        // }
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(

@@ -11,11 +11,6 @@ class Register_Page_OTP extends StatefulWidget {
 
 class _Register_Page_OTPState extends State<Register_Page_OTP> {
   @override
-  void initState() {
-    systemOverlayStyle:
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,22 +71,20 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                                 height: 10,
                               ),
                               OtpTextField(
-                                textStyle:
-                                    const TextStyle(fontWeight: FontWeight.bold),
+                                textStyle: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                                 focusedBorderColor: Palette.thisRed,
                                 numberOfFields: 5,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 fieldWidth: 50,
                                 borderWidth: 1,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(10.0)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0)),
                                 enabledBorderColor: Colors.grey,
                                 borderColor: Palette.thisRed,
                                 showFieldAsBox: true,
-                                onCodeChanged: (String code) {
-                                
-                                },
+                                onCodeChanged: (String code) {},
 
                                 onSubmit: (String verificationCode) {
                                   showDialog(
@@ -99,36 +92,11 @@ class _Register_Page_OTPState extends State<Register_Page_OTP> {
                                       builder: (context) {
                                         return AlertDialog(
                                           title: const Text("รหัส"),
-                                          content: Text(
-                                              verificationCode),
+                                          content: Text(verificationCode),
                                         );
                                       });
-                                }, // end onSubmit
+                                }, 
                               ),
-                              // OTPTextField(
-                              //     otpFieldStyle: OtpFieldStyle(
-                              //         backgroundColor: Colors.white,
-                              //         focusBorderColor: Palette.thisRed),
-                              //     length: 5,
-                              //     width: MediaQuery.of(context).size.width,
-                              //     textFieldAlignment:
-                              //         MainAxisAlignment.spaceBetween,
-                              //     fieldWidth: 45,
-                              //     fieldStyle: FieldStyle.box,
-                              //     outlineBorderRadius: 5,
-                              //     style: TextStyle(fontSize: 17),
-                              //     onChanged: (pin) {
-                              //       Navigator.pushReplacement(
-                              //         context,
-                              //         MaterialPageRoute(
-                              //           builder: (context) => Register_Form(),
-                              //         ),
-                              //       );
-                              //       print("Changed: " + pin);
-                              //     },
-                              //     onCompleted: (pin) {
-                              //       print("Completed: " + pin);
-                              //     }),
                               const SizedBox(
                                 height: 10,
                               ),

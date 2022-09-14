@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:huangjui/Login%20&%20Register/login_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_1_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:page_transition/page_transition.dart';
@@ -27,7 +28,7 @@ class Start_Page_HuangJui extends StatelessWidget {
       ],
       locale: const Locale('th', 'TH'),
       supportedLocales: [
-        Locale('th', 'TH'), // Thai
+        Locale('th', 'TH'),
       ],
       theme: ThemeData(
         fontFamily: 'Kanit',
@@ -49,31 +50,7 @@ class _AppBackgroundState extends State<AppBackground> {
   initState() {
     _Load_And_Go();
 
-    systemOverlayStyle:
-    SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.light,
-        statusBarColor: theRed);
     super.initState();
-  }
-
-  Route route_animated(Widget page) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
-        const end = Offset.zero;
-        const curve = Curves.ease;
-
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
   }
 
   Future<void> _Load_And_Go() async {
@@ -83,21 +60,20 @@ class _AppBackgroundState extends State<AppBackground> {
         PageTransition(
           duration: Duration(seconds: 1),
           type: PageTransitionType.rightToLeft,
-          child: Register_Page(),
+          child: Register_Form(),
         ),
       );
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) =>  Register_Page(),
-      //   ),
-      // );
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
+    SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent
+    );
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
