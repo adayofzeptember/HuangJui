@@ -6,7 +6,6 @@ class ProgressHUD extends StatelessWidget {
   final bool inAsyncCall;
   final double opacity;
   final Color color;
-
   const ProgressHUD({
     key,
     required this.child,
@@ -26,9 +25,28 @@ class ProgressHUD extends StatelessWidget {
             opacity: opacity,
             child: ModalBarrier(dismissible: false, color: color),
           ),
-          const Center(
-              child: CircularProgressIndicator(
-            color: Colors.white,
+          Center(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(
+                color: Colors.white,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              DefaultTextStyle(
+                style: TextStyle(
+                  fontFamily: 'Kanit',
+                  color: Colors.white,
+                ),
+                child: Text(
+                  'โปรดรอสักครู่..',
+                  style: TextStyle(fontSize: 20),
+                ),
+              )
+            ],
           )),
         ],
       );

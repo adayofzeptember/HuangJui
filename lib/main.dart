@@ -10,8 +10,9 @@ import 'package:page_transition/page_transition.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemUiOverlayStyle(statusBarColor: Colors.transparent);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(const Start_Page_HuangJui()));
+      .then((value) => runApp(Start_Page_HuangJui()));
 }
 
 class Start_Page_HuangJui extends StatelessWidget {
@@ -20,6 +21,7 @@ class Start_Page_HuangJui extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -34,7 +36,7 @@ class Start_Page_HuangJui extends StatelessWidget {
         fontFamily: 'Kanit',
         primarySwatch: theRed,
       ),
-      home: const AppBackground(),
+      home: AppBackground(),
     );
   }
 }
@@ -49,18 +51,17 @@ class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
     _Load_And_Go();
-
     super.initState();
   }
 
-  Future<void> _Load_And_Go() async {
+  Future _Load_And_Go() async {
     await Future.delayed(const Duration(seconds: 3), () {
       Navigator.push(
         context,
         PageTransition(
           duration: Duration(seconds: 1),
           type: PageTransitionType.rightToLeft,
-          child: Register_Form(),
+          child: Login_Page(),
         ),
       );
     });
@@ -68,10 +69,7 @@ class _AppBackgroundState extends State<AppBackground> {
 
   @override
   Widget build(BuildContext context) {
-
-    SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent
-    );
+    SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Center(
@@ -88,7 +86,7 @@ class _AppBackgroundState extends State<AppBackground> {
                 width: MediaQuery.of(context).size.width * 1,
                 height: MediaQuery.of(context).size.height * 1,
               ),
-            )
+            ),
           ],
         ),
       ),

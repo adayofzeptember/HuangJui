@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -300,14 +298,14 @@ class _ProfileState extends State<Profile> {
                                                 BorderRadius.circular(5),
                                           )),
                                       onPressed: () {
-                                        // GoogoleSignInApi.google_LogOut();
-                                        // FacebookAuth.instance.logOut();
+                                        GoogoleSignInApi.google_LogOut();
+                                        FacebookAuth.instance.logOut();
                                         // if (Platform.isAndroid) {
                                         //   SystemNavigator.pop();
                                         // } else if (Platform.isIOS) {
                                         //   exit(0);
                                         // }
-                                        Navigator.push(
+                                        Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>

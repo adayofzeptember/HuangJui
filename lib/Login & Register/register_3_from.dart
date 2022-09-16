@@ -52,6 +52,7 @@ class _Register_FormState extends State<Register_Form> {
                 ),
                 SizedBox(
                   height: 20,
+     
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
@@ -96,7 +97,9 @@ class _Register_FormState extends State<Register_Form> {
                                       width: double.infinity,
                                       child: TextFormField(
                                         validator: (value) {
-                                          if (value!.isEmpty) {}
+                                          if (value!.isEmpty) {
+                                     
+                                          }
                                           return null;
                                         },
                                         controller: phoneNumber_Controller,

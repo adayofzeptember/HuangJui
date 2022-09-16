@@ -137,7 +137,7 @@ class _Register_PageState extends State<Register_Page> {
                     Text(
                       'ปฏิทินฮวงจุ้ย',
                       style: TextStyle(
-                          fontSize: 45,
+                          fontSize: 40,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 215, 190, 138)),
                     ),

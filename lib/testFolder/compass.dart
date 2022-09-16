@@ -1,5 +1,6 @@
 // import 'dart:math' as math;
 // import 'package:flutter/material.dart';
+// import 'package:flutter/scheduler.dart';
 // import 'package:flutter/services.dart';
 // import 'package:flutter_compass/flutter_compass.dart';
 // import 'package:huangjui/Etc/color_for_app.dart';
@@ -29,12 +30,15 @@
 //   bool _hasPermissions = false;
 //   CompassEvent? _lastRead;
 //   DateTime? _lastReadAt;
+//   String? j;
+
+//   _fectX() {
+//     setState(() {});
+//   }
 
 //   @override
 //   void initState() {
 //     super.initState();
-
-//     _fetchPermissionStatus();
 //   }
 
 //   @override
@@ -47,15 +51,15 @@
 //               systemOverlayStyle: SystemUiOverlayStyle(
 //                   statusBarIconBrightness: Brightness.light,
 //                   statusBarBrightness: Brightness.light,
-//                   statusBarColor: theRed),
-//               backgroundColor: Palette.thisRed,
-//               title: const Text('Compass 555'),
+//                   statusBarColor: Colors.green),
+//               backgroundColor: Colors.green,
+//               title: const Text('Test Compass'),
 //             ),
 //             body: Center(
 //               child: Column(
 //                 children: <Widget>[
-//                   _buildManualReader(),
-//                   Expanded(child: _buildCompass()),
+//                   //_buildManualReader(),
+//                   //Expanded(child: _buildCompass()),
 //                   Stack(
 //                     alignment: Alignment.center,
 //                     children: [
@@ -64,6 +68,7 @@
 //                         compassAsset: Container(
 //                           height: 500,
 //                           decoration: BoxDecoration(
+//                               color: Colors.amber,
 //                               shape: BoxShape.circle,
 //                               image: DecorationImage(
 //                                   image:
@@ -73,20 +78,14 @@
 //                         compassBuilder: (context,
 //                             AsyncSnapshot<CompassModel>? compassData,
 //                             Widget compassAsset) {
-//                           //print(compassData!.data!.angle);
+//                           print(compassData!.data!.angle.toString());
 
 //                           return compassAsset;
 //                         },
 //                       ),
-//                       // Container(
-//                       //   height: 550,
-//                       //   decoration: BoxDecoration(
-//                       //       image: DecorationImage(
-//                       //           image: AssetImage('assets/images/needles.png'),
-//                       //           fit: BoxFit.cover)),
-//                       // ),
 //                     ],
-//                   )
+//                   ),
+//                   InkWell(child: Text(j.toString()))
 //                 ],
 //               ),
 //             )));
@@ -98,7 +97,7 @@
 //       child: Row(
 //         children: <Widget>[
 //           ElevatedButton(
-//             child: Text('กด'),
+//             child: Text('testกด'),
 //             onPressed: () async {
 //               final CompassEvent tmp = await FlutterCompass.events!.first;
 //               setState(() {
@@ -135,7 +134,7 @@
 //       stream: FlutterCompass.events,
 //       builder: (context, snapshot) {
 //         double? direction = snapshot.data!.heading;
-//         print('---------------'+direction.toString());
+//         print('---------------' + direction.toString());
 
 //         if (direction == null)
 //           return Center(
@@ -148,7 +147,6 @@
 //           elevation: 0.0,
 //           child: InkWell(
 //             onTap: () {
-//               print('object');
 //               setState(() {});
 //             },
 //             child: Container(
@@ -170,63 +168,4 @@
 //       },
 //     );
 //   }
-
-//   Widget _buildManualReader1() {
-//     return Padding(
-//       padding: const EdgeInsets.all(16.0),
-//       child: Row(
-//         children: <Widget>[
-//           ElevatedButton(
-//             child: Text('Read Value'),
-//             onPressed: () async {
-//               final CompassEvent tmp = await FlutterCompass.events!.first;
-//               setState(() {
-//                 _lastRead = tmp;
-//                 _lastReadAt = DateTime.now();
-//               });
-//             },
-//           ),
-//           Expanded(
-//             child: Padding(
-//               padding: const EdgeInsets.all(8.0),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: <Widget>[
-//                   Text(
-//                     '$_lastRead',
-//                     style: Theme.of(context).textTheme.caption,
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildPermissionSheet() {
-//     return Center(
-//       child: Column(
-//         mainAxisSize: MainAxisSize.min,
-//         children: <Widget>[
-//           Text('Location Permission Required'),
-//           ElevatedButton(
-//             child: Text('Request Permissions'),
-//             onPressed: () {},
-//           ),
-//           SizedBox(height: 16),
-//           ElevatedButton(
-//             child: Text('Open App Settings'),
-//             onPressed: () {
-//               //
-//               ;
-//             },
-//           )
-//         ],
-//       ),
-//     );
-//   }
-
-//   void _fetchPermissionStatus() {}
 // }

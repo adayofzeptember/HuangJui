@@ -104,7 +104,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
         },
         child: Stack(
           children: <Widget>[
-            Image.asset('assets/images/background_full.jpg',
+            Image.asset('assets/images/background_half.jpg',
                 width: MediaQuery.of(context).size.width * 1,
                 height: MediaQuery.of(context).size.height * 1,
                 fit: BoxFit.fill),
@@ -268,6 +268,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                               selectionMode:
                                   DateRangePickerSelectionMode.single,
                               view: DateRangePickerView.month,
+                              
                               onSelectionChanged: _onSelectionChanged,
                               initialSelectedRange: PickerDateRange(
                                   DateTime.now()
