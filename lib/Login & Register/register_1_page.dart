@@ -241,15 +241,7 @@ class _Register_PageState extends State<Register_Page> {
                                               borderRadius:
                                                   BorderRadius.circular(5),
                                             )),
-                                        onPressed: () {
-                                          // Navigator.push(
-                                          //   context,
-                                          //   MaterialPageRoute(
-                                          //     builder: (context) =>
-                                          //         Login_Page(),
-                                          //   ),
-                                          // );
-                                        },
+                                        onPressed: () {},
                                         child: Padding(
                                           padding: EdgeInsets.all(15.0),
                                           child: Container(
@@ -287,7 +279,7 @@ class _Register_PageState extends State<Register_Page> {
 
                                             send_otp_request(
                                                 otp_provider_model);
-                                            //? print(jsonEncode(otp_provider_model));
+                                            //* print(jsonEncode(otp_provider_model));
 
                                             Navigator.push(
                                               context,
@@ -424,7 +416,7 @@ class _Register_PageState extends State<Register_Page> {
                                     GoogoleSignInApi.google_LogOut();
                                   },
                                   child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
+                                    padding: EdgeInsets.all(15.0),
                                     child: Container(
                                         width: double.infinity,
                                         alignment: Alignment.center,
@@ -434,10 +426,10 @@ class _Register_PageState extends State<Register_Page> {
                                           children: [
                                             SvgPicture.asset(
                                                 'assets/images/apple-icon.svg'),
-                                            const SizedBox(
+                                            SizedBox(
                                               width: 20,
                                             ),
-                                            const Text(
+                                            Text(
                                               "ลงทะเบียนด้วย Apple",
                                               style: TextStyle(
                                                   color: Colors.white,

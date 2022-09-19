@@ -77,6 +77,7 @@ class _Login_PageState extends State<Login_Page> {
       FacebookAuth.instance.getUserData().then((userDataFacebook) {
         print(userDataFacebook["name"]);
         print(userDataFacebook["email"]);
+
         print(userDataFacebook["picture"]["data"]["url"]);
         setState(() {
           a = userDataFacebook["name"].toString();
@@ -89,7 +90,7 @@ class _Login_PageState extends State<Login_Page> {
             PageTransition(
               duration: Duration(milliseconds: 500),
               type: PageTransitionType.rightToLeft,
-              child: Main_Calendar(
+              child: Main_Calendar( 
                 name: a,
                 ipic: b,
               ),

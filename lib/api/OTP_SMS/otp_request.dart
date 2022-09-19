@@ -46,6 +46,7 @@ Future<OTP_Request_Response> send_otp_request(
   String urlPost = "https://otp.thaibulksms.com/v2/otp/request";
 
   var bodyOtp = json.encode(otpRequestModel.toJson());
+
   final response = await http.post(
     Uri.parse(urlPost),
     headers: {
@@ -57,13 +58,14 @@ Future<OTP_Request_Response> send_otp_request(
       "msisdn": otpRequestModel.msisdn
     },
   );
-
-  print('body..........'+bodyOtp);
   var jsonRes = json.decode(response.body);
-  print('jsonres........'+jsonRes.toString());
+  print('body..........' + bodyOtp);
+  print('jsonResponse........' + jsonRes.toString());
 
   if (response.statusCode == 400 || response.statusCode == 200) {
     return OTP_Request_Response.fromJson(json.decode(response.body));
+  } else if (1 == 1) {
+    throw Exception("error");
   } else {
     throw Exception("error");
   }
