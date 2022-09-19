@@ -36,7 +36,6 @@ class OTP_Request_Provider {
     data['key'] = key;
     data['secret'] = secret;
     data['msisdn'] = msisdn;
-
     return data;
   }
 }
@@ -64,8 +63,6 @@ Future<OTP_Request_Response> send_otp_request(
 
   if (response.statusCode == 400 || response.statusCode == 200) {
     return OTP_Request_Response.fromJson(json.decode(response.body));
-  } else if (1 == 1) {
-    throw Exception("error");
   } else {
     throw Exception("error");
   }
