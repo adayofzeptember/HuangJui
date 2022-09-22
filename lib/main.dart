@@ -53,7 +53,7 @@ class _AppBackgroundState extends State<AppBackground> {
     super.initState();
   }
 
-  Future _Load_And_Go() async {
+  Future<void> _Load_And_Go() async {
     await Future.delayed(const Duration(seconds: 3), () {
       Navigator.push(
         context,
@@ -75,7 +75,9 @@ class _AppBackgroundState extends State<AppBackground> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+           
             InkWell(
+              
               onTap: () {
                 _Load_And_Go();
               },

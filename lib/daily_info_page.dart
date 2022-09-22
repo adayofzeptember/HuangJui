@@ -22,17 +22,17 @@ class _Info_PageState extends State<Info_Page> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: const Icon(
+                child: Icon(
                   Icons.arrow_back_ios,
                   color: Colors.white,
                 ),
               ),
-              const Text(
-                'วันอังคารที่ 30 พฤษจิกายน 2565',
+              Text(
+                'วันอังคารที่ 30 พฤษจิกายน 1999',
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
-              const Text('')
+              Text('')
             ],
           ),
           systemOverlayStyle: SystemUiOverlayStyle(
@@ -56,25 +56,25 @@ class _Info_PageState extends State<Info_Page> {
                     Center(
                       child: Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 30,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            padding: EdgeInsets.only(left: 20, right: 20),
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: const Color.fromARGB(255, 215, 190, 138),
+                                    color: Color.fromARGB(255, 215, 190, 138),
                                     width: 5),
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(5)),
-                                color: const Color.fromARGB(255, 255, 244, 220),
+                                color: Color.fromARGB(255, 255, 244, 220),
                               ),
                               width: double.infinity,
                               child: Stack(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: EdgeInsets.all(20.0),
                                     child: Center(
                                       child: SvgPicture.asset(
                                         'assets/images/badge-background.svg',
@@ -95,29 +95,29 @@ class _Info_PageState extends State<Info_Page> {
                                               color: theRed,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 20,
                                         ),
-                                        const Text(
+                                        Text(
                                           'ถ่ายเท',
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 10,
                                         ),
-                                        const Text(
+                                        Text(
                                           '(พิฆาตติถี พลังเดียวกัน)',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 8,
                                         ),
-                                        const Text(
+                                        Text(
                                             'ดาวอำนาจฝ่ายบู๊ เกี่ยวกับเรื่องตำแหน่ง ยศศักดิ์ การสอบแข่งขัน เลือกตั้งจะทำให้มีจิตใจแบบนักเลง คือยึดถือสัจจะพูดจาขวานผ่า ซาก ตรงประเด็นไม่อ้อมค้อม ถ้าติถีมีกำลังจะเป็นขุนนาง ฝ่ายบู๊ปราบอิทธิพลถ้าติถีอ่อนแอมากจะถูกผู้ใหญ่ข่มเหง'),
                                       ],
                                     ),
@@ -134,12 +134,13 @@ class _Info_PageState extends State<Info_Page> {
                       right: 35,
                       child: CircleAvatar(
                         radius: 43,
-                        backgroundColor: const Color.fromARGB(255, 215, 190, 138),
+                        backgroundColor:
+                            const Color.fromARGB(255, 215, 190, 138),
                         child: CircleAvatar(
                           radius: 40,
                           backgroundColor: Colors.white,
                           child: Padding(
-                            padding: const EdgeInsets.all(8), // Border radius
+                            padding: EdgeInsets.all(8), // Border radius
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -148,10 +149,10 @@ class _Info_PageState extends State<Info_Page> {
                                   'assets/images/zodiac & elements/fire.svg',
                                   height: 40,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 3,
                                 ),
-                                const Text(
+                                Text(
                                   'ธาตุไฟ +',
                                   style: TextStyle(
                                       fontSize: 10,
@@ -180,17 +181,17 @@ class _Info_PageState extends State<Info_Page> {
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: const Color.fromARGB(255, 215, 190, 138),
+                                    color: Color.fromARGB(255, 215, 190, 138),
                                     width: 5),
                                 borderRadius:
-                                    const BorderRadius.all(Radius.circular(5)),
-                                color: const Color.fromARGB(255, 255, 244, 220),
+                                    BorderRadius.all(Radius.circular(5)),
+                                color: Color.fromARGB(255, 255, 244, 220),
                               ),
                               width: double.infinity,
                               child: Stack(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: EdgeInsets.all(20.0),
                                     child: Center(
                                       child: SvgPicture.asset(
                                         'assets/images/badge-background.svg',
@@ -198,7 +199,7 @@ class _Info_PageState extends State<Info_Page> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(15.0),
+                                    padding: EdgeInsets.all(15.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -211,26 +212,26 @@ class _Info_PageState extends State<Info_Page> {
                                               color: theRed,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 20,
                                         ),
-                                        const Text(
+                                        Text(
                                           'โชคลาภ',
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 10,
                                         ),
-                                        const Text(
+                                        Text(
                                           '(พิฆาตติถี พลังเดียวกัน)',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 8,
                                         ),
                                         const Text(
@@ -250,8 +251,8 @@ class _Info_PageState extends State<Info_Page> {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   border: Border.all(color: theRed, width: 3),
-                                  borderRadius:
-                                      const BorderRadius.all(Radius.circular(10)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10)),
                                   color: Colors.white),
                               child: const Padding(
                                 padding: EdgeInsets.all(10.0),
@@ -273,7 +274,8 @@ class _Info_PageState extends State<Info_Page> {
                       right: 35,
                       child: CircleAvatar(
                         radius: 43,
-                        backgroundColor: const Color.fromARGB(255, 215, 190, 138),
+                        backgroundColor:
+                            const Color.fromARGB(255, 215, 190, 138),
                         child: CircleAvatar(
                           radius: 40,
                           backgroundColor: Colors.white,

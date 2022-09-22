@@ -9,8 +9,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/Login%20&%20Register/register_2_otp.dart';
 import 'package:huangjui/api/OTP_SMS/otp_request.dart';
+import 'package:huangjui/api/register_social.dart';
 import 'package:huangjui/main_Calendar.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../Etc/ProgressHUD.dart';
 import '../api/google_auth.dart';
 
@@ -42,6 +44,7 @@ class _Login_PageState extends State<Login_Page> {
         print("เมล  ------------------> " + userGoogle.email.toString());
         print("ชื่อ -------------------> " + userGoogle.displayName.toString());
         print("รูป -------------------> " + userGoogle.photoUrl.toString());
+        login_test();
         setState(() {
           a = userGoogle.displayName.toString();
           b = userGoogle.photoUrl.toString();
@@ -90,7 +93,7 @@ class _Login_PageState extends State<Login_Page> {
             PageTransition(
               duration: Duration(milliseconds: 500),
               type: PageTransitionType.rightToLeft,
-              child: Main_Calendar( 
+              child: Main_Calendar(
                 name: a,
                 ipic: b,
               ),
@@ -421,7 +424,16 @@ class _Login_PageState extends State<Login_Page> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
-                                onPressed: () {
+                                onPressed: () async {
+                                  final appleCredential_test555 =
+                                      await SignInWithApple
+                                          .getAppleIDCredential(
+                                    scopes: [
+                                      AppleIDAuthorizationScopes.email,
+                                      AppleIDAuthorizationScopes.fullName,
+                                    ],
+                                  );
+                                  print(appleCredential_test555.email);
                                   GoogoleSignInApi.google_LogOut();
                                   FacebookAuth.instance.logOut();
                                 },

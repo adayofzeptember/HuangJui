@@ -12,7 +12,6 @@ class Main_Calendar extends StatefulWidget {
   String? name;
   String? ipic;
   Main_Calendar({Key? key, this.name, this.ipic}) : super(key: key);
-
   @override
   State<Main_Calendar> createState() => _Main_CalendarState();
 }
@@ -26,11 +25,13 @@ class _Main_CalendarState extends State<Main_Calendar> {
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => Info_Page(),
+      PageTransition(
+        duration: Duration(milliseconds: 500),
+        type: PageTransitionType.rightToLeft,
+        child: Info_Page(),
       ),
     );
-    print(args.value.toString());
+
     setState(() {
       if (args.value is PickerDateRange) {
         _range = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
@@ -54,8 +55,8 @@ class _Main_CalendarState extends State<Main_Calendar> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(' '),
-            const Text(
+            Text('  '),
+            Text(
               'ปฏิทินฮวงจุ้ย',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -76,13 +77,22 @@ class _Main_CalendarState extends State<Main_Calendar> {
                   ),
                 );
               },
-              child: CircleAvatar(
-                radius: 15,
-                child: Icon(
-                  Icons.person,
-                  color: theRed,
-                ),
-                backgroundColor: const Color.fromARGB(255, 255, 253, 237),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 15,
+                    child: Icon(
+                      Icons.person,
+                      color: theRed,
+                    ),
+                    backgroundColor: Color.fromARGB(255, 255, 253, 237),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'โปรไฟล์',
+                    style: TextStyle(fontSize: 10),
+                  )
+                ],
               ),
             ),
           ],
@@ -98,7 +108,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Info_Page(),
+              builder: (context) => Info_Page(),
             ),
           );
         },
@@ -110,22 +120,22 @@ class _Main_CalendarState extends State<Main_Calendar> {
                 fit: BoxFit.fill),
             Center(
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       height: 25,
                     ),
                     Container(
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: const Color.fromARGB(255, 232, 229, 229)),
-                          color: const Color.fromARGB(255, 232, 229, 229),
-                          borderRadius: const BorderRadius.only(
+                              color: Color.fromARGB(255, 232, 229, 229)),
+                          color: Color.fromARGB(255, 232, 229, 229),
+                          borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15))),
                       child: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: EdgeInsets.all(20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -147,25 +157,28 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                         fit: BoxFit.cover),
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 10,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    Column(
+                                      children: [SizedBox()],
+                                    ),
                                     Text(
                                       widget.name.toString(),
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 5,
                                     ),
                                     Container(
                                         child: Padding(
-                                          padding: const EdgeInsets.all(5.0),
+                                          padding: EdgeInsets.all(5.0),
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -176,10 +189,10 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                                 'assets/images/crown.svg',
                                                 height: 8,
                                               ),
-                                              const SizedBox(
+                                              SizedBox(
                                                 width: 3,
                                               ),
-                                              const Text(
+                                              Text(
                                                 'Premium Member',
                                                 style: TextStyle(
                                                     color: Color.fromARGB(
@@ -188,7 +201,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                             ],
                                           ),
                                         ),
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                             color: Color.fromARGB(
                                                 255, 255, 221, 99),
                                             borderRadius: BorderRadius.all(
@@ -205,10 +218,10 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                   'assets/images/zodiac & elements/fire.svg',
                                   height: 40,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 3,
                                 ),
-                                const Text(
+                                Text(
                                   'ธาตุไฟ +',
                                   style: TextStyle(
                                       fontSize: 10,
@@ -222,17 +235,17 @@ class _Main_CalendarState extends State<Main_Calendar> {
                       ),
                     ),
                     Container(
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           color: Color.fromARGB(255, 243, 243, 243),
                           borderRadius: BorderRadius.only(
                               bottomRight: Radius.circular(15),
                               bottomLeft: Radius.circular(15))),
                       child: Padding(
-                        padding: const EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
                         child: Column(
                           children: [
                             SfDateRangePicker(
-                              headerStyle: const DateRangePickerHeaderStyle(
+                              headerStyle: DateRangePickerHeaderStyle(
                                   textAlign: TextAlign.center,
                                   textStyle: TextStyle(
                                       fontSize: 17,
@@ -241,12 +254,12 @@ class _Main_CalendarState extends State<Main_Calendar> {
                               selectionShape:
                                   DateRangePickerSelectionShape.rectangle,
                               allowViewNavigation: true,
-                              selectionTextStyle: const TextStyle(
+                              selectionTextStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                               monthViewSettings:
-                                  const DateRangePickerMonthViewSettings(
+                                  DateRangePickerMonthViewSettings(
                                       viewHeaderStyle:
                                           DateRangePickerViewHeaderStyle(
                                               textStyle: TextStyle(
@@ -254,26 +267,22 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                 color: Color.fromARGB(255, 143, 155, 179),
                                 fontFamily: 'Kanit',
                               ))),
-                              monthCellStyle:
-                                  const DateRangePickerMonthCellStyle(
-                                      textStyle: TextStyle(
-                                          fontFamily: 'Kanit',
-                                          color:
-                                              Color.fromARGB(255, 34, 43, 69),
-                                          fontWeight: FontWeight.bold)),
+                              monthCellStyle: DateRangePickerMonthCellStyle(
+                                  textStyle: TextStyle(
+                                      fontFamily: 'Kanit',
+                                      color: Color.fromARGB(255, 34, 43, 69),
+                                      fontWeight: FontWeight.bold)),
                               backgroundColor:
-                                  const Color.fromARGB(255, 243, 243, 243),
+                                  Color.fromARGB(255, 243, 243, 243),
                               todayHighlightColor: Palette.thisRed,
                               selectionColor: Palette.thisRed,
                               selectionMode:
                                   DateRangePickerSelectionMode.single,
                               view: DateRangePickerView.month,
-                              
                               onSelectionChanged: _onSelectionChanged,
                               initialSelectedRange: PickerDateRange(
-                                  DateTime.now()
-                                      .subtract(const Duration(days: 4)),
-                                  DateTime.now().add(const Duration(days: 3))),
+                                  DateTime.now().subtract(Duration(days: 4)),
+                                  DateTime.now().add(Duration(days: 3))),
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -291,7 +300,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                 // );
                               },
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: EdgeInsets.all(10.0),
                                 child: Container(
                                     width: double.infinity,
                                     alignment: Alignment.center,
@@ -303,10 +312,10 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                       children: [
                                         SvgPicture.asset(
                                             'assets/images/compass.svg'),
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 10,
                                         ),
-                                        const Text(
+                                        Text(
                                           "ดูเข็มทิศ",
                                           style: TextStyle(
                                               color: Colors.white,
@@ -316,7 +325,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                     )),
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 15,
                             )
                           ],
