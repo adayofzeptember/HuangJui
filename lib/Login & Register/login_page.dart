@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/Login%20&%20Register/register_2_otp.dart';
 import 'package:huangjui/api/OTP_SMS/otp_request.dart';
-import 'package:huangjui/api/register_social.dart';
+import 'package:huangjui/api/post_register_social.dart';
 import 'package:huangjui/main_Calendar.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -31,6 +30,19 @@ class Login_Page extends StatefulWidget {
 }
 
 class _Login_PageState extends State<Login_Page> {
+  late OTP_Request_Provider otp_provider_model;
+  late Request_Social_Provider _request_social_provider;
+
+  @override
+  void initState() {
+    circleHUD = false;
+    super.initState();
+    _request_social_provider = Request_Social_Provider();
+    otp_provider_model = OTP_Request_Provider();
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  }
+
   Future<dynamic> useGoogle_toLogin() async {
     final userGoogle = await GoogoleSignInApi.google_SignIn2();
     GoogoleSignInApi.google_SignIn2().then((result) {
@@ -44,11 +56,16 @@ class _Login_PageState extends State<Login_Page> {
         print("เมล  ------------------> " + userGoogle.email.toString());
         print("ชื่อ -------------------> " + userGoogle.displayName.toString());
         print("รูป -------------------> " + userGoogle.photoUrl.toString());
-        login_test();
+
         setState(() {
           a = userGoogle.displayName.toString();
           b = userGoogle.photoUrl.toString();
         });
+        _request_social_provider.name = userGoogle.displayName.toString();
+        _request_social_provider.email = userGoogle.email.toString();
+        _request_social_provider.avatar = userGoogle.photoUrl.toString();
+
+        login_Social(_request_social_provider);
         Navigator.pushReplacement(
           context,
           PageTransition(
@@ -88,6 +105,12 @@ class _Login_PageState extends State<Login_Page> {
           setState(() {
             circleHUD = false;
           });
+          _request_social_provider.name = userDataFacebook["name"].toString();
+          _request_social_provider.email = userDataFacebook["email"];
+          _request_social_provider.avatar =
+              userDataFacebook["picture"]["data"]["url"];
+
+          login_Social(_request_social_provider);
           Navigator.pushReplacement(
             context,
             PageTransition(
@@ -102,16 +125,6 @@ class _Login_PageState extends State<Login_Page> {
         });
       });
     });
-  }
-
-  late OTP_Request_Provider otp_provider_model;
-  @override
-  void initState() {
-    circleHUD = false;
-    super.initState();
-    otp_provider_model = OTP_Request_Provider();
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
 
   @override
@@ -189,9 +202,9 @@ class _Login_PageState extends State<Login_Page> {
                                   child: TextFormField(
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "กรุณากรอกหมายเลขเบอร์มือถือ";
+                                        return "กรุณากรอกหมายเลขเบอร์มือถือ!";
                                       }
-                                      return null;
+                                      return "";
                                     },
                                     controller: phoneNumber_Controller,
                                     maxLength: 10,

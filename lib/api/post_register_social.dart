@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
-import 'package:huangjui/api/wnaheng_api_url.dart';
+import 'package:huangjui/api/api_url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Register_Login_Social {
@@ -96,26 +96,26 @@ class Request_Social_Provider {
     data['name'] = this.name;
     data['email'] = this.email;
     data['avatar'] = this.avatar;
-
     return data;
   }
 }
 
 Future<Register_Login_Social> login_Social(
     Request_Social_Provider request_social_provider) async {
-  String urlPost = wanheng_api_url.toString();
+  //String urlPost = 'https://api.wanheng789.com/register-social';
+  String urlPost = wanhengURL + 'register-social';
   var bodySocial = json.encode(request_social_provider.toJson());
   final response = await http.post(
     Uri.parse(urlPost),
     headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
     body: bodySocial,
   );
+  var jsonRes = json.decode(response.body);
+  var token = jsonRes['accessToken'];
+  // String id_toStore2 = jsonRes['data']['id'].toString();
+  print(jsonRes);
+  print(token);
   if (response.statusCode == 200 || response.statusCode == 201) {
-    var jsonRes = json.decode(response.body);
-    var kkk = jsonRes['data']['token'];
-    String id_toStore2 = jsonRes['data']['id'].toString();
-
-
     return Register_Login_Social.fromJson(json.decode(response.body));
   } else {
     throw Exception("error");

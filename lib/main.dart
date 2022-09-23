@@ -16,8 +16,10 @@ void main() {
 }
 
 class Start_Page_HuangJui extends StatelessWidget {
+  
   const Start_Page_HuangJui({Key? key}) : super(key: key);
   @override
+  
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
