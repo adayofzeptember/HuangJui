@@ -7,7 +7,6 @@ import 'package:huangjui/main.dart';
 import 'api/google_auth.dart';
 
 class Profile extends StatefulWidget {
-   
   String? name;
   String? ipic;
   Profile({Key? key, this.name, this.ipic}) : super(key: key);
