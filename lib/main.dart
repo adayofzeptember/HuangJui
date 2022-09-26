@@ -16,10 +16,8 @@ void main() {
 }
 
 class Start_Page_HuangJui extends StatelessWidget {
-  
   const Start_Page_HuangJui({Key? key}) : super(key: key);
   @override
-  
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -77,9 +75,7 @@ class _AppBackgroundState extends State<AppBackground> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           
             InkWell(
-              
               onTap: () {
                 _Load_And_Go();
               },

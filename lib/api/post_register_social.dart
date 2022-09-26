@@ -102,19 +102,23 @@ class Request_Social_Provider {
 
 Future<Register_Login_Social> login_Social(
     Request_Social_Provider request_social_provider) async {
-  //String urlPost = 'https://api.wanheng789.com/register-social';
   String urlPost = wanhengURL + 'register-social';
   var bodySocial = json.encode(request_social_provider.toJson());
   final response = await http.post(
     Uri.parse(urlPost),
-    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
     body: bodySocial,
   );
+
   var jsonRes = json.decode(response.body);
   var token = jsonRes['accessToken'];
   // String id_toStore2 = jsonRes['data']['id'].toString();
   print(jsonRes);
   print(token);
+
   if (response.statusCode == 200 || response.statusCode == 201) {
     return Register_Login_Social.fromJson(json.decode(response.body));
   } else {

@@ -31,6 +31,7 @@ class Login_Page extends StatefulWidget {
 
 class _Login_PageState extends State<Login_Page> {
   late OTP_Request_Provider otp_provider_model;
+
   late Request_Social_Provider _request_social_provider;
 
   @override
@@ -97,7 +98,6 @@ class _Login_PageState extends State<Login_Page> {
       FacebookAuth.instance.getUserData().then((userDataFacebook) {
         print(userDataFacebook["name"]);
         print(userDataFacebook["email"]);
-
         print(userDataFacebook["picture"]["data"]["url"]);
         setState(() {
           a = userDataFacebook["name"].toString();

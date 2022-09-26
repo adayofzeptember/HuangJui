@@ -7,6 +7,7 @@ import 'package:huangjui/main.dart';
 import 'api/google_auth.dart';
 
 class Profile extends StatefulWidget {
+   
   String? name;
   String? ipic;
   Profile({Key? key, this.name, this.ipic}) : super(key: key);
@@ -19,6 +20,7 @@ class _ProfileState extends State<Profile> {
   late MediaQueryData queryData = MediaQuery.of(context);
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -26,9 +28,10 @@ class _ProfileState extends State<Profile> {
           children: [
             InkWell(
               onTap: () {
+                
                 Navigator.pop(context);
               },
-              child: const Icon(
+              child: Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white,
               ),
@@ -305,6 +308,7 @@ class _ProfileState extends State<Profile> {
                                         // } else if (Platform.isIOS) {
                                         //   exit(0);
                                         // }
+
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
