@@ -51,10 +51,7 @@ class _Login_PageState extends State<Login_Page> {
         circleHUD = false;
       });
       result!.authentication.then((googleKey) {
-        print("id----------------> " + userGoogle!.id.toString());
-        print("access token ------------------> " +
-            googleKey.accessToken.toString());
-        print("เมล  ------------------> " + userGoogle.email.toString());
+        print("เมล  ------------------> " + userGoogle!.email.toString());
         print("ชื่อ -------------------> " + userGoogle.displayName.toString());
         print("รูป -------------------> " + userGoogle.photoUrl.toString());
 
@@ -62,22 +59,22 @@ class _Login_PageState extends State<Login_Page> {
           a = userGoogle.displayName.toString();
           b = userGoogle.photoUrl.toString();
         });
-        _request_social_provider.name = userGoogle.displayName.toString();
         _request_social_provider.email = userGoogle.email.toString();
+        _request_social_provider.name = userGoogle.displayName.toString();
         _request_social_provider.avatar = userGoogle.photoUrl.toString();
 
-        login_Social(_request_social_provider);
-        Navigator.pushReplacement(
-          context,
-          PageTransition(
-            duration: Duration(milliseconds: 500),
-            type: PageTransitionType.rightToLeft,
-            child: Main_Calendar(
-              name: a,
-              ipic: b,
-            ),
-          ),
-        );
+        login_Social(context, _request_social_provider, a, b);
+        // Navigator.pushReplacement(
+        //   context,
+        //   PageTransition(
+        //     duration: Duration(milliseconds: 500),
+        //     type: PageTransitionType.rightToLeft,
+        //     child: Main_Calendar(
+        //       name: a,
+        //       ipic: b,
+        //     ),
+        //   ),
+        // );
       }).catchError((error1) {
         setState(() {
           circleHUD = false;
@@ -110,18 +107,18 @@ class _Login_PageState extends State<Login_Page> {
           _request_social_provider.avatar =
               userDataFacebook["picture"]["data"]["url"];
 
-          login_Social(_request_social_provider);
-          Navigator.pushReplacement(
-            context,
-            PageTransition(
-              duration: Duration(milliseconds: 500),
-              type: PageTransitionType.rightToLeft,
-              child: Main_Calendar(
-                name: a,
-                ipic: b,
-              ),
-            ),
-          );
+          login_Social(context, _request_social_provider, a, b);
+          // Navigator.pushReplacement(
+          //   context,
+          //   PageTransition(
+          //     duration: Duration(milliseconds: 500),
+          //     type: PageTransitionType.rightToLeft,
+          //     child: Main_Calendar(
+          //       name: a,
+          //       ipic: b,
+          //     ),
+          //   ),
+          // );
         });
       });
     });

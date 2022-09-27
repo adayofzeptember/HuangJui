@@ -4,8 +4,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
+import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:huangjui/api/api_url.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../main_Calendar.dart';
 
 class Register_Login_Social {
   String? message;
@@ -101,25 +105,50 @@ class Request_Social_Provider {
 }
 
 Future<Register_Login_Social> login_Social(
-    Request_Social_Provider request_social_provider) async {
+    BuildContext context,
+    Request_Social_Provider request_social_provider,
+    String? xa,
+    String? xb) async {
   String urlPost = wanhengURL + 'register-social';
   var bodySocial = json.encode(request_social_provider.toJson());
   final response = await http.post(
     Uri.parse(urlPost),
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
     body: bodySocial,
   );
 
   var jsonRes = json.decode(response.body);
   var token = jsonRes['accessToken'];
   // String id_toStore2 = jsonRes['data']['id'].toString();
-  print(jsonRes);
-  print(token);
+  // print(jsonRes);
+  // print(token);
+  print(xa.toString()+xb.toString());
 
-  if (response.statusCode == 200 || response.statusCode == 201) {
+  if (response.statusCode == 201) {
+    print('เข้าครั้งแรก');
+
+    Navigator.pushReplacement(
+      context,
+      PageTransition(
+        duration: Duration(milliseconds: 500),
+        type: PageTransitionType.rightToLeft,
+        child: Register_Form(),
+      ),
+    );
+    return Register_Login_Social.fromJson(json.decode(response.body));
+  } else if (response.statusCode == 409) {
+    print('ไม่ใช่ครั้งแรก');
+    Navigator.pushReplacement(
+      context,
+      PageTransition(
+        duration: Duration(milliseconds: 500),
+        type: PageTransitionType.rightToLeft,
+        child: Main_Calendar(
+          name: xa,
+          ipic: xb,
+        ),
+      ),
+    );
     return Register_Login_Social.fromJson(json.decode(response.body));
   } else {
     throw Exception("error");

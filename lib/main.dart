@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -30,6 +32,7 @@ class Start_Page_HuangJui extends StatelessWidget {
       locale: const Locale('th', 'TH'),
       supportedLocales: [
         Locale('th', 'TH'),
+  
       ],
       theme: ThemeData(
         fontFamily: 'Kanit',

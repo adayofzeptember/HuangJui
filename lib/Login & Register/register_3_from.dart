@@ -52,7 +52,6 @@ class _Register_FormState extends State<Register_Form> {
                 ),
                 SizedBox(
                   height: 20,
-     
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
@@ -70,20 +69,20 @@ class _Register_FormState extends State<Register_Form> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Center(
-                              child: Text('ลงทะเบียนด้วยเบอร์โทรศัพท์',
+                              child: Text('กรอกข้อมูลส่วนตัว',
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                       color: theRed)),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 20,
                             ),
-                            const Text(
+                            Text(
                               'ชื่อ-นามสกุล',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 5,
                             ),
                             Row(
@@ -97,9 +96,7 @@ class _Register_FormState extends State<Register_Form> {
                                       width: double.infinity,
                                       child: TextFormField(
                                         validator: (value) {
-                                          if (value!.isEmpty) {
-                                     
-                                          }
+                                          if (value!.isEmpty) {}
                                           return null;
                                         },
                                         controller: phoneNumber_Controller,

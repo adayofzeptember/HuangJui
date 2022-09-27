@@ -19,7 +19,6 @@ class _ProfileState extends State<Profile> {
   late MediaQueryData queryData = MediaQuery.of(context);
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -27,7 +26,6 @@ class _ProfileState extends State<Profile> {
           children: [
             InkWell(
               onTap: () {
-                
                 Navigator.pop(context);
               },
               child: Icon(
@@ -35,12 +33,12 @@ class _ProfileState extends State<Profile> {
                 color: Colors.white,
               ),
             ),
-            const Text(
+            Text(
               'โปรไฟล์',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
-            const Text('')
+            Text('')
           ],
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -61,7 +59,7 @@ class _ProfileState extends State<Profile> {
             Center(
               child: Column(
                 children: <Widget>[
-                  const SizedBox(
+                  SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -81,22 +79,22 @@ class _ProfileState extends State<Profile> {
                           fit: BoxFit.cover),
                     ),
                   ),
-                  const SizedBox(height: 15),
+                  SizedBox(height: 15),
                   Text(
                     widget.name.toString(),
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 5,
                   ),
 
                   //!-------------------------------------------------------------------------------------------------------------
                   Container(
                       child: Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: EdgeInsets.all(5.0),
                         child: FittedBox(
                           fit: BoxFit.none,
                           child: Row(
@@ -119,7 +117,7 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           color: Color.fromARGB(255, 255, 221, 99),
                           borderRadius: BorderRadius.all(Radius.circular(5)))),
 
@@ -129,7 +127,7 @@ class _ProfileState extends State<Profile> {
                   Wrap(
                     children: [
                       Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(30),
@@ -139,8 +137,7 @@ class _ProfileState extends State<Profile> {
                           child: Column(
                             children: [
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 40, left: 40),
+                                padding: EdgeInsets.only(top: 40, left: 40),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -152,19 +149,19 @@ class _ProfileState extends State<Profile> {
                                           color: Color.fromARGB(
                                               255, 143, 143, 143)),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 5,
                                     ),
                                     Text(
                                       widget.name.toString(),
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color:
                                               Color.fromARGB(255, 34, 43, 69)),
                                     ),
-                                    const SizedBox(height: 20),
-                                    const Text(
+                                    SizedBox(height: 20),
+                                    Text(
                                       'เพศ',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
