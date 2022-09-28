@@ -461,7 +461,7 @@ class _Register_FormState extends State<Register_Form> {
                                         keyboardType: TextInputType.name,
                                         onSaved: (input) {},
                                         textInputAction: TextInputAction.done,
-                                        decoration: const InputDecoration(
+                                        decoration: InputDecoration(
                                           contentPadding: EdgeInsets.all(10.0),
                                           counterText: "",
                                           filled: true,
@@ -505,6 +505,7 @@ class _Register_FormState extends State<Register_Form> {
                                 child: const Padding(
                                   padding: EdgeInsets.all(10.0),
                                   child: Text(
+                               
                                     "สมัครสมาชิก",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,

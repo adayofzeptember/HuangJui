@@ -90,8 +90,6 @@ class _ProfileState extends State<Profile> {
                   SizedBox(
                     height: 5,
                   ),
-
-                  //!-------------------------------------------------------------------------------------------------------------
                   Container(
                       child: Padding(
                         padding: EdgeInsets.all(5.0),
@@ -120,9 +118,6 @@ class _ProfileState extends State<Profile> {
                       decoration: BoxDecoration(
                           color: Color.fromARGB(255, 255, 221, 99),
                           borderRadius: BorderRadius.all(Radius.circular(5)))),
-
-                  //!------------------------------------------------------------------------------------------------------------
-
                   SizedBox(height: 30),
                   Wrap(
                     children: [
@@ -281,7 +276,7 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 5,
                                   ),
                                   SizedBox(
@@ -290,7 +285,7 @@ class _ProfileState extends State<Profile> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           elevation: 0,
-                                          primary: const Color.fromARGB(
+                                          primary: Color.fromARGB(
                                               255, 215, 190, 138),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -304,17 +299,15 @@ class _ProfileState extends State<Profile> {
                                         // } else if (Platform.isIOS) {
                                         //   exit(0);
                                         // }
-
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Start_Page_HuangJui(),
-                                          ),
+                                              builder: (context) =>
+                                                  Start_Page_HuangJui()),
                                         );
                                       },
                                       child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
+                                        padding: EdgeInsets.all(10.0),
                                         child: Text(
                                           "ออกจากระบบ",
                                           style: TextStyle(
@@ -325,9 +318,16 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 5,
                                   ),
+                                  Container(
+                                    child: Column(
+                                      children: [
+                                        Container()
+                                      ],
+                                    ),
+                                  )
                                 ],
                               )
                             ],

@@ -122,11 +122,10 @@ Future<Register_Login_Social> login_Social(
   // String id_toStore2 = jsonRes['data']['id'].toString();
   // print(jsonRes);
   // print(token);
-  print(xa.toString()+xb.toString());
+  print(xa.toString() + "  " + xb.toString());
 
   if (response.statusCode == 201) {
     print('เข้าครั้งแรก');
-
     Navigator.pushReplacement(
       context,
       PageTransition(
@@ -138,6 +137,7 @@ Future<Register_Login_Social> login_Social(
     return Register_Login_Social.fromJson(json.decode(response.body));
   } else if (response.statusCode == 409) {
     print('ไม่ใช่ครั้งแรก');
+
     Navigator.pushReplacement(
       context,
       PageTransition(
