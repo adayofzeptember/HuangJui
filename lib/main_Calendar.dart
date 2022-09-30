@@ -155,9 +155,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    children: [SizedBox()],
-                                  ),
+                               
                                   Text(
                                     widget.name.toString(),
                                     style: TextStyle(
