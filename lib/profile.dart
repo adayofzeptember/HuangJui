@@ -21,25 +21,25 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(
+        title: InkWell(
+          onTap: (){
+                      Navigator.pop(context);
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white,
               ),
-            ),
-            Text(
-              'โปรไฟล์',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            Text('')
-          ],
+              Text(
+                'โปรไฟล์',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              Text('')
+            ],
+          ),
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarIconBrightness: Brightness.light,

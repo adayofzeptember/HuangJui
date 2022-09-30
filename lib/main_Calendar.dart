@@ -103,241 +103,220 @@ class _Main_CalendarState extends State<Main_Calendar> {
             statusBarColor: theRed),
         backgroundColor: theRed,
       ),
-      body: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Info_Page(),
-            ),
-          );
-        },
-        child: Stack(
-          children: <Widget>[
-            Image.asset('assets/images/background_half.jpg',
-                width: MediaQuery.of(context).size.width * 1,
-                height: MediaQuery.of(context).size.height * 1,
-                fit: BoxFit.fill),
-            Center(
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Color.fromARGB(255, 232, 229, 229)),
-                          color: Color.fromARGB(255, 232, 229, 229),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              topRight: Radius.circular(15))),
-                      child: Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 70,
-                                  width: 70,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: theRed, width: 2),
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            widget.ipic.toString()),
-                                        // AssetImage(
-                                        //   'assets/images/for Mock Up Only/kurt.jpeg',
-                                        // ),
-                                        fit: BoxFit.cover),
+      body: Stack(
+        children: <Widget>[
+          Image.asset('assets/images/background_half.jpg',
+              width: MediaQuery.of(context).size.width * 1,
+              height: MediaQuery.of(context).size.height * 1,
+              fit: BoxFit.fill),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Color.fromARGB(255, 232, 229, 229)),
+                        color: Color.fromARGB(255, 232, 229, 229),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            topRight: Radius.circular(15))),
+                    child: Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: theRed, width: 2),
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image:
+                                          NetworkImage(widget.ipic.toString()),
+                                      // AssetImage(
+                                      //   'assets/images/for Mock Up Only/kurt.jpeg',
+                                      // ),
+                                      fit: BoxFit.cover),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Column(
+                                    children: [SizedBox()],
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      children: [SizedBox()],
-                                    ),
-                                    Text(
-                                      widget.name.toString(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Container(
-                                        child: Padding(
-                                          padding: EdgeInsets.all(5.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              SvgPicture.asset(
-                                                'assets/images/crown.svg',
-                                                height: 8,
-                                              ),
-                                              SizedBox(
-                                                width: 3,
-                                              ),
-                                              Text(
-                                                'Premium Member',
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 143, 97, 1)),
-                                              ),
-                                            ],
-                                          ),
+                                  Text(
+                                    widget.name.toString(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(5.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            SvgPicture.asset(
+                                              'assets/images/crown.svg',
+                                              height: 8,
+                                            ),
+                                            SizedBox(
+                                              width: 3,
+                                            ),
+                                            Text(
+                                              'Premium Member',
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 143, 97, 1)),
+                                            ),
+                                          ],
                                         ),
-                                        decoration: BoxDecoration(
-                                            color: Color.fromARGB(
-                                                255, 255, 221, 99),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5)))),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/images/zodiac & elements/fire.svg',
-                                  height: 40,
-                                ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  'ธาตุไฟ +',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 235, 87, 87)),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color:
+                                              Color.fromARGB(255, 255, 221, 99),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)))),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/zodiac & elements/fire.svg',
+                                height: 40,
+                              ),
+                              SizedBox(
+                                height: 3,
+                              ),
+                              Text(
+                                'ธาตุไฟ +',
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 235, 87, 87)),
+                              )
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 243, 243, 243),
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(15),
-                              bottomLeft: Radius.circular(15))),
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Column(
-                          children: [
-                            SfDateRangePicker(
-                              headerStyle: DateRangePickerHeaderStyle(
-                                  textAlign: TextAlign.center,
-                                  textStyle: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 34, 43, 69))),
-                              selectionShape:
-                                  DateRangePickerSelectionShape.rectangle,
-                              allowViewNavigation: true,
-                              selectionTextStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                              monthViewSettings:
-                                  DateRangePickerMonthViewSettings(
-                                      viewHeaderStyle:
-                                          DateRangePickerViewHeaderStyle(
-                                              textStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 143, 155, 179),
-                                fontFamily: 'Kanit',
-                              ))),
-                              monthCellStyle: DateRangePickerMonthCellStyle(
-                                  textStyle: TextStyle(
-                                      fontFamily: 'Kanit',
-                                      color: Color.fromARGB(255, 34, 43, 69),
-                                      fontWeight: FontWeight.bold)),
-                              backgroundColor:
-                                  Color.fromARGB(255, 243, 243, 243),
-                              todayHighlightColor: Palette.thisRed,
-                              selectionColor: Palette.thisRed,
-                              selectionMode:
-                                  DateRangePickerSelectionMode.single,
-                              view: DateRangePickerView.month,
-                              onSelectionChanged: _onSelectionChanged,
-                              initialSelectedRange: PickerDateRange(
-                                  DateTime.now().subtract(Duration(days: 4)),
-                                  DateTime.now().add(Duration(days: 3))),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 243, 243, 243),
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(15),
+                            bottomLeft: Radius.circular(15))),
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        children: [
+                          SfDateRangePicker(
+                            headerStyle: DateRangePickerHeaderStyle(
+                                textAlign: TextAlign.center,
+                                textStyle: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 34, 43, 69))),
+                            selectionShape:
+                                DateRangePickerSelectionShape.rectangle,
+                            allowViewNavigation: true,
+                            selectionTextStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  elevation: 0,
-                                  primary: Palette.thisRed,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                            monthViewSettings: DateRangePickerMonthViewSettings(
+                                viewHeaderStyle: DateRangePickerViewHeaderStyle(
+                                    textStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 143, 155, 179),
+                              fontFamily: 'Kanit',
+                            ))),
+                            monthCellStyle: DateRangePickerMonthCellStyle(
+                                textStyle: TextStyle(
+                                    fontFamily: 'Kanit',
+                                    color: Color.fromARGB(255, 34, 43, 69),
+                                    fontWeight: FontWeight.bold)),
+                            backgroundColor: Color.fromARGB(255, 243, 243, 243),
+                            todayHighlightColor: Palette.thisRed,
+                            selectionColor: Palette.thisRed,
+                            selectionMode: DateRangePickerSelectionMode.single,
+                            view: DateRangePickerView.month,
+                            onSelectionChanged: _onSelectionChanged,
+                            initialSelectedRange: PickerDateRange(
+                                DateTime.now().subtract(Duration(days: 4)),
+                                DateTime.now().add(Duration(days: 3))),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                primary: Colors.green,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                            onPressed: null,
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Container(
+                                  width: double.infinity,
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/images/compass.svg',
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "เข็มทิศ (Coming Soon..)",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15),
+                                      ),
+                                    ],
                                   )),
-                              onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => Compass_Page(),
-                                //   ),
-                                // );
-                              },
-                              child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Container(
-                                    width: double.infinity,
-                                    alignment: Alignment.center,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SvgPicture.asset(
-                                            'assets/images/compass.svg'),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "ดูเข็มทิศ",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15),
-                                        ),
-                                      ],
-                                    )),
-                              ),
                             ),
-                            SizedBox(
-                              height: 15,
-                            )
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          )
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

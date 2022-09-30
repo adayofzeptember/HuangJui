@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:huangjui/api/put_register_form.dart';
 import '../api/google_auth.dart';
 
-var phoneNumber_Controller = TextEditingController();
 String? k;
 String? a;
 String? b;
+String form_name = '';
+String form_surename = '';
+
+final formKey_register_form = GlobalKey<FormState>();
+late Provider_registerForm _provider_registerForm;
+var _nameController = TextEditingController();
+var _surenameController = TextEditingController();
 
 class Register_Form extends StatefulWidget {
-  const Register_Form({Key? key}) : super(key: key);
+  String? id;
+  String? email;
+  Register_Form({Key? key, required this.id, required this.email})
+      : super(key: key);
 
   @override
   State<Register_Form> createState() => _Register_FormState();
@@ -19,13 +30,15 @@ class Register_Form extends StatefulWidget {
 class _Register_FormState extends State<Register_Form> {
   @override
   void initState() {
+    _provider_registerForm = Provider_registerForm();
+
     super.initState();
   }
 
   String radioButtonItem = 'ONE';
   int id = 1;
+  String x = '';
 
-  final formKey_phoneNumber = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -44,7 +57,7 @@ class _Register_FormState extends State<Register_Form> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'ปฏิทินฮวงจุ้ย',
+                  'ลงทะเบียน',
                   style: TextStyle(
                       fontSize: 45,
                       fontWeight: FontWeight.bold,
@@ -64,7 +77,7 @@ class _Register_FormState extends State<Register_Form> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(30, 25.0, 30, 30),
                       child: Form(
-                        key: formKey_phoneNumber,
+                        key: formKey_register_form,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -95,13 +108,15 @@ class _Register_FormState extends State<Register_Form> {
                                               0.05,
                                       width: double.infinity,
                                       child: TextFormField(
+                                        controller: _nameController,
                                         validator: (value) {
                                           if (value!.isEmpty) {}
                                           return null;
                                         },
-                                        controller: phoneNumber_Controller,
                                         keyboardType: TextInputType.name,
-                                        onSaved: (input) {},
+                                        onSaved: (input) {
+                                          form_name = input.toString();
+                                        },
                                         textAlignVertical:
                                             TextAlignVertical.center,
                                         textInputAction: TextInputAction.done,
@@ -139,12 +154,15 @@ class _Register_FormState extends State<Register_Form> {
                                               0.05,
                                       width: double.infinity,
                                       child: TextFormField(
+                                        controller: _surenameController,
                                         validator: (value) {
                                           if (value!.isEmpty) {}
                                           return null;
                                         },
                                         keyboardType: TextInputType.name,
-                                        onSaved: (input) {},
+                                        onSaved: (input) {
+                                          form_surename = input.toString();
+                                        },
                                         textInputAction: TextInputAction.done,
                                         decoration: const InputDecoration(
                                           contentPadding: EdgeInsets.all(10.0),
@@ -501,11 +519,27 @@ class _Register_FormState extends State<Register_Form> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                     )),
-                                onPressed: () {},
+                                onPressed: () {
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                  if (formKey_register_form.currentState!
+                                      .validate()) {
+                                    formKey_register_form.currentState?.save();
+                                    setState(() {
+                                      _provider_registerForm.email =
+                                          widget.email.toString();
+
+                                      _provider_registerForm.name =
+                                          form_name.toString() +
+                                              " " +
+                                              form_surename.toString();
+                                    });
+                                    put_register_form(_provider_registerForm,
+                                        widget.id.toString());
+                                  }
+                                },
                                 child: const Padding(
                                   padding: EdgeInsets.all(10.0),
                                   child: Text(
-                               
                                     "สมัครสมาชิก",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,

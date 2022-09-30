@@ -15,25 +15,26 @@ class _Info_PageState extends State<Info_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(
+          title: InkWell(
+            splashColor: Colors.transparent,
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
                   Icons.arrow_back_ios,
                   color: Colors.white,
                 ),
-              ),
-              Text(
-                'วันอังคารที่ 30 พฤษจิกายน 1999',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-              Text('')
-            ],
+                Text(
+                  'วันอังคารที่ 30 พฤษจิกายน 2552',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                Text('')
+              ],
+            ),
           ),
           systemOverlayStyle: SystemUiOverlayStyle(
               statusBarIconBrightness: Brightness.light,

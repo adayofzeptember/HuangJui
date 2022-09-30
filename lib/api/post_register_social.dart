@@ -8,7 +8,6 @@ import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:huangjui/api/api_url.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../main_Calendar.dart';
 
 class Register_Login_Social {
@@ -119,25 +118,24 @@ Future<Register_Login_Social> login_Social(
 
   var jsonRes = json.decode(response.body);
   var token = jsonRes['accessToken'];
-  // String id_toStore2 = jsonRes['data']['id'].toString();
-  // print(jsonRes);
-  // print(token);
-  print(xa.toString() + "  " + xb.toString());
 
   if (response.statusCode == 201) {
+    String newUser_id = jsonRes['user']['id'].toString();
+    String newUser_email = jsonRes['user']['email'].toString();
+    print(newUser_id + newUser_email);
     print('เข้าครั้งแรก');
+
     Navigator.pushReplacement(
       context,
       PageTransition(
         duration: Duration(milliseconds: 500),
         type: PageTransitionType.rightToLeft,
-        child: Register_Form(),
+        child: Register_Form(id: newUser_id , email: newUser_email,),
       ),
     );
     return Register_Login_Social.fromJson(json.decode(response.body));
   } else if (response.statusCode == 409) {
     print('ไม่ใช่ครั้งแรก');
-
     Navigator.pushReplacement(
       context,
       PageTransition(

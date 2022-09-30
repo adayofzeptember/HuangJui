@@ -1,4 +1,16 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:async';
+import 'dart:convert';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:http/http.dart' as http;
+import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
+import 'package:huangjui/api/api_url.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../main_Calendar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +19,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/Login%20&%20Register/register_2_otp.dart';
+import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:huangjui/api/OTP_SMS/otp_request.dart';
 import 'package:huangjui/api/post_register_social.dart';
 import 'package:huangjui/main_Calendar.dart';
@@ -19,6 +32,9 @@ var phoneNumber_Controller = TextEditingController();
 String? k;
 String? a;
 String? b;
+
+String? _new_userId;
+String? _new_userEmail;
 bool circleHUD = false;
 final formKey_phoneNumber = GlobalKey<FormState>();
 
@@ -31,7 +47,6 @@ class Login_Page extends StatefulWidget {
 
 class _Login_PageState extends State<Login_Page> {
   late OTP_Request_Provider otp_provider_model;
-
   late Request_Social_Provider _request_social_provider;
 
   @override
@@ -44,6 +59,63 @@ class _Login_PageState extends State<Login_Page> {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
 
+  // Future<Register_Login_Social> login_Social(
+  //     BuildContext context,
+  //     Request_Social_Provider request_social_provider,
+  //     String? xa,
+  //     String? xb) async {
+  //   String urlPost = wanhengURL + 'register-social';
+  //   var bodySocial = json.encode(request_social_provider.toJson());
+  //   final response = await http.post(
+  //     Uri.parse(urlPost),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //     body: bodySocial,
+  //   );
+
+  //   var jsonRes = json.decode(response.body);
+  //   var token = jsonRes['accessToken'];
+
+  //   if (response.statusCode == 201) {
+  //     String newUser_id = jsonRes['user']['id'].toString();
+  //     String newUser_email = jsonRes['user']['email'].toString();
+  //     print(newUser_id + newUser_email);
+  //     print('เข้าครั้งแรก');
+  //     setState(() {
+  //       _new_userEmail = newUser_email;
+  //       _new_userId = newUser_id;
+  //     });
+
+  //     Navigator.pushReplacement(
+  //       context,
+  //       PageTransition(
+  //         duration: Duration(milliseconds: 500),
+  //         type: PageTransitionType.rightToLeft,
+  //         child: Register_Form(id: _new_userId, email: _new_userEmail),
+  //       ),
+  //     );
+  //     return Register_Login_Social.fromJson(json.decode(response.body));
+  //   } else if (response.statusCode == 409) {
+  //     print('ไม่ใช่ครั้งแรก');
+  //     Navigator.pushReplacement(
+  //       context,
+  //       PageTransition(
+  //         duration: Duration(milliseconds: 500),
+  //         type: PageTransitionType.rightToLeft,
+  //         child: Main_Calendar(
+  //           name: xa,
+  //           ipic: xb,
+  //         ),
+  //       ),
+  //     );
+  //     return Register_Login_Social.fromJson(json.decode(response.body));
+  //   } else {
+  //     throw Exception("error");
+  //   }
+  // }
+
   Future<dynamic> useGoogle_toLogin() async {
     final userGoogle = await GoogoleSignInApi.google_SignIn2();
     GoogoleSignInApi.google_SignIn2().then((result) {
@@ -51,17 +123,22 @@ class _Login_PageState extends State<Login_Page> {
         circleHUD = false;
       });
       result!.authentication.then((googleKey) {
-        print("เมล  ------------------> " + userGoogle!.email.toString());
-        print("ชื่อ -------------------> " + userGoogle.displayName.toString());
-        print("รูป -------------------> " + userGoogle.photoUrl.toString());
+        print("--------------------------");
+        print(userGoogle!.email.toString());
+        print(userGoogle.displayName.toString());
+        print(userGoogle.photoUrl.toString());
 
         setState(() {
           a = userGoogle.displayName.toString();
           b = userGoogle.photoUrl.toString();
         });
-        _request_social_provider.email = userGoogle.email.toString();
-        _request_social_provider.name = userGoogle.displayName.toString();
-        _request_social_provider.avatar = userGoogle.photoUrl.toString();
+        _request_social_provider.email = '1fff21ced@gxtest.com';
+        _request_social_provider.name = 'userGoogle.displayName.toString()';
+        _request_social_provider.avatar = 'userGoogle.photoUrl.toString()';
+
+        // _request_social_provider.email = userGoogle.email.toString();
+        // _request_social_provider.name = userGoogle.displayName.toString();
+        // _request_social_provider.avatar = userGoogle.photoUrl.toString();
 
         login_Social(context, _request_social_provider, a, b);
         // Navigator.pushReplacement(
@@ -93,6 +170,7 @@ class _Login_PageState extends State<Login_Page> {
     await FacebookAuth.instance
         .login(permissions: ["public_profile", "email"]).then((value) {
       FacebookAuth.instance.getUserData().then((userDataFacebook) {
+        print("----------------------------------");
         print(userDataFacebook["name"]);
         print(userDataFacebook["email"]);
         print(userDataFacebook["picture"]["data"]["url"]);
@@ -102,6 +180,7 @@ class _Login_PageState extends State<Login_Page> {
           setState(() {
             circleHUD = false;
           });
+
           _request_social_provider.name = userDataFacebook["name"].toString();
           _request_social_provider.email = userDataFacebook["email"];
           _request_social_provider.avatar =
@@ -303,7 +382,6 @@ class _Login_PageState extends State<Login_Page> {
 
                                           send_otp_request(otp_provider_model);
                                           //? print(jsonEncode(otp_provider_model));
-
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(

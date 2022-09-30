@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -54,9 +53,10 @@ class _AppBackgroundState extends State<AppBackground> {
   initState() {
     _Load_And_Go();
     super.initState();
+    
   }
 
-  Future<void> _Load_And_Go() async {
+  Future _Load_And_Go() async {
     await Future.delayed(const Duration(seconds: 3), () {
       Navigator.push(
         context,
