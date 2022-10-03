@@ -9,13 +9,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Get_Profile {
   String? message;
-  User? user;
+  User_Profile? user;
 
   Get_Profile({this.message, this.user});
 
   Get_Profile.fromJson(Map<String, dynamic> json) {
     message = json['message'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? new User_Profile.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -28,7 +28,7 @@ class Get_Profile {
   }
 }
 
-class User {
+class User_Profile {
   int? id;
   String? name;
   String? email;
@@ -39,7 +39,7 @@ class User {
   String? createdAt;
   String? updatedAt;
 
-  User(
+  User_Profile(
       {this.id,
       this.name,
       this.email,
@@ -50,7 +50,7 @@ class User {
       this.createdAt,
       this.updatedAt});
 
-  User.fromJson(Map<String, dynamic> json) {
+  User_Profile.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
@@ -77,7 +77,7 @@ class User {
   }
 }
 
-Future<User> fetch_profile_ByID(var userID) async {
+Future<User_Profile> fetch_profile_ByID(var userID) async {
   String url = wanhengURL + "profile/" + userID.toString();
   final response = await http.get(Uri.parse(url),
       headers: {'Content-Type': 'application/json', 'Charset': 'utf-8'});
@@ -85,12 +85,9 @@ Future<User> fetch_profile_ByID(var userID) async {
   var jsonResponse = json.decode(response.body);
   var jsonCon = jsonResponse['user'];
   String testgetID = jsonResponse['user']['id'].toString();
-  User profileData = User.fromJson(jsonCon);
+  User_Profile profileData = User_Profile.fromJson(jsonCon);
   print(jsonResponse);
   print(testgetID.toString());
   return profileData;
 }
 
-void main() {
-  fetch_profile_ByID(13);
-}

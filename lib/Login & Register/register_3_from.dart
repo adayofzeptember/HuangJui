@@ -320,7 +320,7 @@ class _Register_FormState extends State<Register_Form> {
                                         ),
                                       ),
                                     )),
-                                const VerticalDivider(width: 5),
+                             VerticalDivider(width: 5),
                                 Expanded(
                                   child: SizedBox(
                                       height:

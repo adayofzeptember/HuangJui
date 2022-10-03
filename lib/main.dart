@@ -31,7 +31,6 @@ class Start_Page_HuangJui extends StatelessWidget {
       locale: const Locale('th', 'TH'),
       supportedLocales: [
         Locale('th', 'TH'),
-  
       ],
       theme: ThemeData(
         fontFamily: 'Kanit',
@@ -51,9 +50,9 @@ class AppBackground extends StatefulWidget {
 class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
+    
     _Load_And_Go();
     super.initState();
-    
   }
 
   Future _Load_And_Go() async {
