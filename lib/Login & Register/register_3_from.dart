@@ -11,7 +11,6 @@ String? a;
 String? b;
 String form_name = '';
 String form_surename = '';
-
 final formKey_register_form = GlobalKey<FormState>();
 late Provider_registerForm _provider_registerForm;
 var _nameController = TextEditingController();
@@ -164,7 +163,7 @@ class _Register_FormState extends State<Register_Form> {
                                           form_surename = input.toString();
                                         },
                                         textInputAction: TextInputAction.done,
-                                        decoration: const InputDecoration(
+                                        decoration: InputDecoration(
                                           contentPadding: EdgeInsets.all(10.0),
                                           counterText: "",
                                           filled: true,
@@ -273,7 +272,7 @@ class _Register_FormState extends State<Register_Form> {
                             SizedBox(
                               height: 5,
                             ),
-                            const Text(
+                            Text(
                               'วัน เดือน ปีเกิด',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
@@ -320,7 +319,7 @@ class _Register_FormState extends State<Register_Form> {
                                         ),
                                       ),
                                     )),
-                             VerticalDivider(width: 5),
+                                VerticalDivider(width: 5),
                                 Expanded(
                                   child: SizedBox(
                                       height:
@@ -361,7 +360,7 @@ class _Register_FormState extends State<Register_Form> {
                                         ),
                                       )),
                                 ),
-                                const VerticalDivider(width: 5),
+                                VerticalDivider(width: 5),
                                 SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.05,
@@ -401,14 +400,14 @@ class _Register_FormState extends State<Register_Form> {
                                     )),
                               ],
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 10,
                             ),
-                            const Text(
+                            Text(
                               'เวลาเกิด',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 5,
                             ),
                             Row(

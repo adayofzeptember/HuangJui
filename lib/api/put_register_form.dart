@@ -107,6 +107,7 @@ Future<Register_Form> put_register_form(
   if (response.statusCode == 400 ||
       response.statusCode >= 200 && response.statusCode <= 299) {
     var jsonRes = json.decode(response.body);
+
     print('update success');
     return Register_Form.fromJson(json.decode(response.body));
   } else {

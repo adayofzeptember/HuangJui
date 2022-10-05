@@ -28,7 +28,6 @@ class Start_Page_HuangJui extends StatelessWidget {
         DefaultCupertinoLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: const Locale('th', 'TH'),
       supportedLocales: [
         Locale('th', 'TH'),
       ],
@@ -50,8 +49,8 @@ class AppBackground extends StatefulWidget {
 class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
-    
     _Load_And_Go();
+    
     super.initState();
   }
 
