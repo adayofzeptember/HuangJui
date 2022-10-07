@@ -430,7 +430,9 @@ class _ProfileState extends State<Profile> {
                                             color: Color.fromARGB(
                                                 255, 34, 43, 69)),
                                       ),
-                                      SizedBox(height: 20),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
                                       Text(
                                         'เวลาเกิด',
                                         style: TextStyle(
@@ -466,10 +468,10 @@ class _ProfileState extends State<Profile> {
                                             'assets/images/zodiac & elements/fire.svg',
                                             height: 30,
                                           ),
-                                          const SizedBox(
+                                          SizedBox(
                                             width: 8,
                                           ),
-                                          const Text(
+                                          Text(
                                             'ธาตุไฟ +',
                                             style: TextStyle(
                                                 fontSize: 18,

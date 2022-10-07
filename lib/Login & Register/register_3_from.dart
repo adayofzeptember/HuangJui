@@ -11,8 +11,9 @@ String? a;
 String? b;
 String form_name = '';
 String form_surename = '';
-final formKey_register_form = GlobalKey<FormState>();
+
 late Provider_registerForm _provider_registerForm;
+final formKey_register_form = GlobalKey<FormState>();
 var _nameController = TextEditingController();
 var _surenameController = TextEditingController();
 
@@ -30,7 +31,6 @@ class _Register_FormState extends State<Register_Form> {
   @override
   void initState() {
     _provider_registerForm = Provider_registerForm();
-
     super.initState();
   }
 
@@ -66,15 +66,15 @@ class _Register_FormState extends State<Register_Form> {
                   height: 20,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  padding: EdgeInsets.only(left: 20, right: 20),
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: Color.fromARGB(255, 255, 239, 224),
                     ),
                     width: double.infinity,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 25.0, 30, 30),
+                      padding: EdgeInsets.fromLTRB(30, 25.0, 30, 30),
                       child: Form(
                         key: formKey_register_form,
                         child: Column(
@@ -119,50 +119,6 @@ class _Register_FormState extends State<Register_Form> {
                                         textAlignVertical:
                                             TextAlignVertical.center,
                                         textInputAction: TextInputAction.done,
-                                        decoration: const InputDecoration(
-                                          contentPadding: EdgeInsets.all(10.0),
-                                          counterText: "",
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          hintStyle: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 212, 212, 212)),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            borderSide: BorderSide(
-                                                color: Color.fromARGB(
-                                                    255, 230, 228, 228),
-                                                width: 0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            borderSide: BorderSide(
-                                                color: Palette.thisRed,
-                                                width: 1),
-                                          ),
-                                        ),
-                                      )),
-                                ),
-                                const VerticalDivider(width: 5),
-                                Expanded(
-                                  child: SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.05,
-                                      width: double.infinity,
-                                      child: TextFormField(
-                                        controller: _surenameController,
-                                        validator: (value) {
-                                          if (value!.isEmpty) {}
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.name,
-                                        onSaved: (input) {
-                                          form_surename = input.toString();
-                                        },
-                                        textInputAction: TextInputAction.done,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.all(10.0),
                                           counterText: "",
@@ -189,9 +145,55 @@ class _Register_FormState extends State<Register_Form> {
                                         ),
                                       )),
                                 ),
+                                VerticalDivider(width: 5),
+                                Expanded(
+                                  child: SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.05,
+                                      width: double.infinity,
+                                      child: TextFormField(
+                                        controller: _surenameController,
+                                        validator: (value) {
+                                          if (value!.isEmpty) {}
+                                          return null;
+                                        },
+                                        
+                                    keyboardType: TextInputType.name,
+                                        onSaved: (input) {
+                                          form_surename = input.toString();
+                                        },
+                                        textInputAction: TextInputAction.done,
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.all(10.0),
+                                          counterText: "",
+                                          
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          hintStyle: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 212, 212, 212)),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0)),
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 230, 228, 228),
+                                                width: 0),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0)),
+                                            borderSide: BorderSide(
+                                                color: Palette.thisRed,
+                                                width: 1),
+                                          ),
+                                        ),
+                                      )),
+                                ),
                               ],
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 5,
                             ),
                             Text(
@@ -217,7 +219,7 @@ class _Register_FormState extends State<Register_Form> {
                                         });
                                       },
                                     ),
-                                    Text(
+                                   Text(
                                       'ไม่ระบุ',
                                       style: new TextStyle(fontSize: 17.0),
                                     ),
@@ -227,6 +229,7 @@ class _Register_FormState extends State<Register_Form> {
                                   width: 5,
                                 ),
                                 Row(
+                                  
                                   children: [
                                     Radio(
                                       value: 2,
