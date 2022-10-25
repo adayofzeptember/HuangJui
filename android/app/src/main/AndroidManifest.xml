@@ -46,13 +46,6 @@
             android:value="2" 
         />
 
-
-
-
-
-
-
-
     
     <activity android:name="com.facebook.FacebookActivity"
         android:configChanges=

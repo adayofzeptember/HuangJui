@@ -119,6 +119,9 @@ Future<Register_Login_Social> login_Social(
   var jsonRes = json.decode(response.body);
   var token = jsonRes['accessToken'];
 
+
+  print(jsonRes);
+
   if (response.statusCode == 201) {
     String newUser_id = jsonRes['user']['id'].toString();
     String newUser_email = jsonRes['user']['email'].toString();

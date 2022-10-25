@@ -8,6 +8,7 @@ import 'package:huangjui/Login%20&%20Register/login_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_1_page.dart';
 import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,22 @@ class Start_Page_HuangJui extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: ((context, child) => ResponsiveWrapper.builder(
+            BouncingScrollWrapper.builder(context, child!),
+            maxWidth: 1200,
+            minWidth: 450,
+            defaultScale: true,
+            breakpoints: [
+              const ResponsiveBreakpoint.resize(480, name: MOBILE),
+              const ResponsiveBreakpoint.autoScale(800, name: MOBILE),
+              const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+              // const ResponsiveBreakpoint.resize(480, name: MOBILE),
+              // const ResponsiveBreakpoint.autoScale(800, name: MOBILE),
+              // const ResponsiveBreakpoint.autoScale(900, name: MOBILE),
+              // const ResponsiveBreakpoint.resize(1000, name: MOBILE),
+              // const ResponsiveBreakpoint.resize(1200, name: TABLET),
+            ],
+          )),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -50,13 +67,13 @@ class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
     _Load_And_Go();
-    
+
     super.initState();
   }
 
   Future _Load_And_Go() async {
     await Future.delayed(const Duration(seconds: 3), () {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         PageTransition(
           duration: Duration(seconds: 1),

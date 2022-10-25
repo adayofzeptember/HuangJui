@@ -245,17 +245,17 @@ class _Info_PageState extends State<Info_Page> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
+                            padding:  EdgeInsets.only(
                                 left: 20, right: 20, top: 15),
                             child: Container(
                               alignment: Alignment.center,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   border: Border.all(color: theRed, width: 3),
-                                  borderRadius: const BorderRadius.all(
+                                  borderRadius: BorderRadius.all(
                                       Radius.circular(10)),
                                   color: Colors.white),
-                              child: const Padding(
+                              child: Padding(
                                 padding: EdgeInsets.all(10.0),
                                 child: Text(
                                   'ดวงวันนี้ให้คุณ',
@@ -275,13 +275,12 @@ class _Info_PageState extends State<Info_Page> {
                       right: 35,
                       child: CircleAvatar(
                         radius: 43,
-                        backgroundColor:
-                            const Color.fromARGB(255, 215, 190, 138),
+                        backgroundColor: Color.fromARGB(255, 215, 190, 138),
                         child: CircleAvatar(
                           radius: 40,
                           backgroundColor: Colors.white,
                           child: Padding(
-                            padding: const EdgeInsets.all(8), // Border radius
+                            padding: EdgeInsets.all(8), // Border radius
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -290,10 +289,10 @@ class _Info_PageState extends State<Info_Page> {
                                   'assets/images/zodiac & elements/marong.svg',
                                   height: 40,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 3,
                                 ),
-                                const Text(
+                                Text(
                                   'มะโรง',
                                   style: TextStyle(
                                       fontSize: 10,

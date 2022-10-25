@@ -261,163 +261,163 @@ class _Login_PageState extends State<Login_Page> {
                                         fontWeight: FontWeight.bold,
                                         color: theRed)),
                               ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                'เข้าสู่ระบบด้วยเบอร์โทรศัพท์',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.08,
-                                  width: double.infinity,
-                                  child: TextFormField(
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "กรุณากรอกหมายเลขเบอร์มือถือ!";
-                                      }
-                                      return "";
-                                    },
-                                    controller: phoneNumber_Controller,
-                                    maxLength: 10,
-                                    keyboardType: TextInputType.number,
-                                    onSaved: (input) {
-                                      k = input.toString();
-                                      otp_provider_model.key =
-                                          '1743122628803977';
-                                      otp_provider_model.secret =
-                                          'fe2b8dc85833369fad71662c34db2149';
-                                      otp_provider_model.msisdn =
-                                          input.toString();
-                                    },
-                                    textInputAction: TextInputAction.done,
-                                    decoration: InputDecoration(
-                                      counterText: "",
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      hintText: 'กรอกเบอร์โทรศัพท์',
-                                      hintStyle: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 212, 212, 212)),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5.0)),
-                                        borderSide: BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 230, 228, 228),
-                                            width: 0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5.0)),
-                                        borderSide: BorderSide(
-                                            color: Colors.white, width: 0),
-                                      ),
-                                    ),
-                                  )),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          primary: Color.fromARGB(
-                                              255, 255, 239, 224),
-                                          side: BorderSide(color: theRed),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          )),
-                                      onPressed: () {
-                                        // Navigator.push(
-                                        //   context,
-                                        //   MaterialPageRoute(
-                                        //     builder: (context) =>
-                                        //         Login_Page(),
-                                        //   ),
-                                        // );
-                                      },
-                                      child: Padding(
-                                        padding: EdgeInsets.all(15.0),
-                                        child: Container(
-                                          width: double.infinity,
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "ลงทะเบียน",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: theRed,
-                                                fontSize: 15),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  VerticalDivider(width: 5),
-                                  Expanded(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          primary: theRed,
-                                          side: BorderSide(color: theRed),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          )),
-                                      onPressed: () {
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-                                        if (formKey_phoneNumber.currentState!
-                                            .validate()) {
-                                          formKey_phoneNumber.currentState
-                                              ?.save();
+                              // SizedBox(
+                              //   height: 20,
+                              // ),
+                              // Text(
+                              //   'เข้าสู่ระบบด้วยเบอร์โทรศัพท์',
+                              //   style: TextStyle(fontWeight: FontWeight.bold),
+                              // ),
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+                              // SizedBox(
+                              //     height:
+                              //         MediaQuery.of(context).size.height * 0.08,
+                              //     width: double.infinity,
+                              //     child: TextFormField(
+                              //       validator: (value) {
+                              //         if (value!.isEmpty) {
+                              //           return "กรุณากรอกหมายเลขเบอร์มือถือ!";
+                              //         }
+                              //         return "";
+                              //       },
+                              //       controller: phoneNumber_Controller,
+                              //       maxLength: 10,
+                              //       keyboardType: TextInputType.number,
+                              //       onSaved: (input) {
+                              //         k = input.toString();
+                              //         otp_provider_model.key =
+                              //             '1743122628803977';
+                              //         otp_provider_model.secret =
+                              //             'fe2b8dc85833369fad71662c34db2149';
+                              //         otp_provider_model.msisdn =
+                              //             input.toString();
+                              //       },
+                              //       textInputAction: TextInputAction.done,
+                              //       decoration: InputDecoration(
+                              //         counterText: "",
+                              //         filled: true,
+                              //         fillColor: Colors.white,
+                              //         hintText: 'กรอกเบอร์โทรศัพท์',
+                              //         hintStyle: TextStyle(
+                              //             color: Color.fromARGB(
+                              //                 255, 212, 212, 212)),
+                              //         enabledBorder: OutlineInputBorder(
+                              //           borderRadius: BorderRadius.all(
+                              //               Radius.circular(5.0)),
+                              //           borderSide: BorderSide(
+                              //               color: Color.fromARGB(
+                              //                   255, 230, 228, 228),
+                              //               width: 0),
+                              //         ),
+                              //         focusedBorder: OutlineInputBorder(
+                              //           borderRadius: BorderRadius.all(
+                              //               Radius.circular(5.0)),
+                              //           borderSide: BorderSide(
+                              //               color: Colors.white, width: 0),
+                              //         ),
+                              //       ),
+                              //     )),
+                              // SizedBox(
+                              //   height: 10,
+                              // ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   children: [
+                              //     Expanded(
+                              //       child: ElevatedButton(
+                              //         style: ElevatedButton.styleFrom(
+                              //             elevation: 0,
+                              //             primary: Color.fromARGB(
+                              //                 255, 255, 239, 224),
+                              //             side: BorderSide(color: theRed),
+                              //             shape: RoundedRectangleBorder(
+                              //               borderRadius:
+                              //                   BorderRadius.circular(5),
+                              //             )),
+                              //         onPressed: () {
+                              //           // Navigator.push(
+                              //           //   context,
+                              //           //   MaterialPageRoute(
+                              //           //     builder: (context) =>
+                              //           //         Login_Page(),
+                              //           //   ),
+                              //           // );
+                              //         },
+                              //         child: Padding(
+                              //           padding: EdgeInsets.all(15.0),
+                              //           child: Container(
+                              //             width: double.infinity,
+                              //             alignment: Alignment.center,
+                              //             child: Text(
+                              //               "ลงทะเบียน",
+                              //               style: TextStyle(
+                              //                   fontWeight: FontWeight.bold,
+                              //                   color: theRed,
+                              //                   fontSize: 15),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     VerticalDivider(width: 5),
+                              //     Expanded(
+                              //       child: ElevatedButton(
+                              //         style: ElevatedButton.styleFrom(
+                              //             elevation: 0,
+                              //             primary: theRed,
+                              //             side: BorderSide(color: theRed),
+                              //             shape: RoundedRectangleBorder(
+                              //               borderRadius:
+                              //                   BorderRadius.circular(5),
+                              //             )),
+                              //         onPressed: () {
+                              //           FocusManager.instance.primaryFocus
+                              //               ?.unfocus();
+                              //           if (formKey_phoneNumber.currentState!
+                              //               .validate()) {
+                              //             formKey_phoneNumber.currentState
+                              //                 ?.save();
 
-                                          send_otp_request(otp_provider_model);
-                                          //? print(jsonEncode(otp_provider_model));
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Register_Page_OTP(),
-                                            ),
-                                          );
-                                        }
-                                      },
-                                      child: Padding(
-                                        padding: EdgeInsets.all(15.0),
-                                        child: Container(
-                                          width: double.infinity,
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "ต่อไป",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Color.fromARGB(
-                                                    255, 255, 255, 255),
-                                                fontSize: 15),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              //             send_otp_request(otp_provider_model);
+                              //             //? print(jsonEncode(otp_provider_model));
+                              //             Navigator.push(
+                              //               context,
+                              //               MaterialPageRoute(
+                              //                 builder: (context) =>
+                              //                     Register_Page_OTP(),
+                              //               ),
+                              //             );
+                              //           }
+                              //         },
+                              //         child: Padding(
+                              //           padding: EdgeInsets.all(15.0),
+                              //           child: Container(
+                              //             width: double.infinity,
+                              //             alignment: Alignment.center,
+                              //             child: Text(
+                              //               "ต่อไป",
+                              //               style: TextStyle(
+                              //                   fontWeight: FontWeight.bold,
+                              //                   color: Color.fromARGB(
+                              //                       255, 255, 255, 255),
+                              //                   fontSize: 15),
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                               SizedBox(
                                 height: 15,
                               ),
-                              Center(
-                                  child: Text(
-                                'หรือ',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )),
+                              // Center(
+                              //     child: Text(
+                              //   'หรือ',
+                              //   style: TextStyle(fontWeight: FontWeight.bold),
+                              // )),
                               SizedBox(
                                 height: 15,
                               ),
@@ -502,9 +502,9 @@ class _Login_PageState extends State<Login_Page> {
                                       )),
                                 ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
+                              // SizedBox(
+                              //   height: 10,
+                              // ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
@@ -513,15 +513,23 @@ class _Login_PageState extends State<Login_Page> {
                                       borderRadius: BorderRadius.circular(10),
                                     )),
                                 onPressed: () async {
-                                  final appleCredential_test555 =
-                                      await SignInWithApple
-                                          .getAppleIDCredential(
-                                    scopes: [
-                                      AppleIDAuthorizationScopes.email,
-                                      AppleIDAuthorizationScopes.fullName,
-                                    ],
-                                  );
-                                  print(appleCredential_test555.email);
+                                     Navigator.pushReplacement(
+        context,
+        PageTransition(
+          duration: Duration(seconds: 1),
+          type: PageTransitionType.rightToLeft,
+          child: Main_Calendar(),
+        ),
+      );
+                                  // final appleCredential_test555 =
+                                  //     await SignInWithApple
+                                  //         .getAppleIDCredential(
+                                  //   scopes: [
+                                  //     AppleIDAuthorizationScopes.email,
+                                  //     AppleIDAuthorizationScopes.fullName,
+                                  //   ],
+                                  // );
+                                  // print(appleCredential_test555.email);
                                   GoogoleSignInApi.google_LogOut();
                                   FacebookAuth.instance.logOut();
                                 },
@@ -540,7 +548,7 @@ class _Login_PageState extends State<Login_Page> {
                                             width: 20,
                                           ),
                                           Text(
-                                            "เข้าสู่ระบบด้วย Apple",
+                                            "ทดสอบ",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15),

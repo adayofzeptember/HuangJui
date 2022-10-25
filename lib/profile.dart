@@ -43,6 +43,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: theRed,
       appBar: AppBar(
         title: InkWell(
           onTap: () {
@@ -72,78 +73,78 @@ class _ProfileState extends State<Profile> {
         elevation: 0,
         backgroundColor: theRed,
       ),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Image.asset('assets/images/background_half.jpg',
-                fit: BoxFit.contain),
-            Center(
-              child: Form(
-                key: formKey_profile_edit_form,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 20,
+      body: 
+          Center(
+            child: Form(
+              key: formKey_profile_edit_form,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 5),
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: NetworkImage(widget.ipic.toString()),
+                          fit: BoxFit.cover),
                     ),
-                    Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 5),
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    widget.name.toString(),
+                    style: TextStyle(
+                        fontSize: 20,
                         color: Colors.white,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: NetworkImage(widget.ipic.toString()),
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    Text(
-                      widget.name.toString(),
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                        child: Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: FittedBox(
-                            fit: BoxFit.none,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/images/crown.svg',
-                                  height: 12,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  'Premium Member',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 143, 97, 1)),
-                                ),
-                              ],
-                            ),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                      child: Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: FittedBox(
+                          fit: BoxFit.none,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/crown.svg',
+                                height: 12,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'Premium Member',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 143, 97, 1)),
+                              ),
+                            ],
                           ),
                         ),
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 255, 221, 99),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5)))),
-                    SizedBox(height: 30),
-                    Wrap(
+                      ),
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 255, 221, 99),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(5)))),
+                  SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Wrap(
                       children: [
                         Container(
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(30),
+                                    bottomRight: Radius.circular(30),
                                     topLeft: Radius.circular(30),
                                     topRight: Radius.circular(30))),
                             width: double.infinity,
@@ -648,7 +649,7 @@ class _ProfileState extends State<Profile> {
                                             ),
                                           ),
                                     SizedBox(
-                                      height: 5,
+                                      height: 30,
                                     ),
                                   ],
                                 )
@@ -656,13 +657,13 @@ class _ProfileState extends State<Profile> {
                             )),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          ));
+        
+      
+    
   }
 }
