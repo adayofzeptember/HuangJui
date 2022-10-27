@@ -90,9 +90,9 @@ class Provider_registerForm {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['email'] = this.email;
     data['name'] = this.name;
-    data['name'] = this.gender;
-    data['name'] = this.birthDate;
-    data['name'] = this.birthTime;
+    data['gender'] = this.gender;
+    data['birthDate'] = this.birthDate;
+    data['birthTime'] = this.birthTime;
     return data;
   }
 }

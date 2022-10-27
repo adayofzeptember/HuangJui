@@ -23,7 +23,7 @@ String? monthInThai = '';
 String? hourBirth = '';
 String? minuteBirth = '';
 
-String gender = '';
+String gender = 'ชาย';
 
 late Provider_registerForm _provider_registerForm;
 final formKey_register_form = GlobalKey<FormState>();
@@ -574,15 +574,19 @@ class _Register_FormState extends State<Register_Form> {
                                               form_surename.toString();
 
                                       _provider_registerForm.gender =
-                                          "gender.toString()";
+                                          gender;
 
-                                         _provider_registerForm.gender =
-                                          dayBirth.toString()+monthBirth.toString();
+                                      _provider_registerForm.birthDate =
+                                          monthBirth.toString();
+
+                                      _provider_registerForm.birthTime =
+                                          hourBirth.toString();
                                     });
                                     // put_register_form(_provider_registerForm,
                                     //     widget.id.toString());
                                   }
-                                  print(jsonEncode(_provider_registerForm.gender));
+                                  print(jsonEncode(
+                                      _provider_registerForm));
                                 },
                                 child: const Padding(
                                   padding: EdgeInsets.all(10.0),
