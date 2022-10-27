@@ -10,7 +10,7 @@ class ProgressHUD extends StatelessWidget {
     key,
     required this.child,
     required this.inAsyncCall,
-    this.opacity = 1,
+    this.opacity = 5,
     this.color = Palette.thisRed,
   }) : super(key: key);
 
@@ -33,19 +33,19 @@ class ProgressHUD extends StatelessWidget {
               CircularProgressIndicator(
                 color: Colors.white,
               ),
-              SizedBox(
-                height: 20,
-              ),
-              DefaultTextStyle(
-                style: TextStyle(
-                  fontFamily: 'Kanit',
-                  color: Colors.white,
-                ),
-                child: Text(
-                  'โปรดรอสักครู่..',
-                  style: TextStyle(fontSize: 20),
-                ),
-              )
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // DefaultTextStyle(
+              //   style: TextStyle(
+              //     fontFamily: 'Kanit',
+              //     color: Colors.white,
+              //   ),
+              //   child: Text(
+              //     'โปรดรอสักครู่..',
+              //     style: TextStyle(fontSize: 20),
+              //   ),
+              // )
             ],
           )),
         ],

@@ -68,7 +68,7 @@ class _Info_PageState extends State<Info_Page> {
                                     color: Color.fromARGB(255, 215, 190, 138),
                                     width: 5),
                                 borderRadius:
-                                    const BorderRadius.all(Radius.circular(5)),
+                                    BorderRadius.all(Radius.circular(5)),
                                 color: Color.fromARGB(255, 255, 244, 220),
                               ),
                               width: double.infinity,
@@ -83,7 +83,7 @@ class _Info_PageState extends State<Info_Page> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(15.0),
+                                    padding: EdgeInsets.all(15.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -135,8 +135,7 @@ class _Info_PageState extends State<Info_Page> {
                       right: 35,
                       child: CircleAvatar(
                         radius: 43,
-                        backgroundColor:
-                            const Color.fromARGB(255, 215, 190, 138),
+                        backgroundColor: Color.fromARGB(255, 215, 190, 138),
                         child: CircleAvatar(
                           radius: 40,
                           backgroundColor: Colors.white,
@@ -168,17 +167,17 @@ class _Info_PageState extends State<Info_Page> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 15),
+                SizedBox(height: 15),
                 Stack(
                   children: [
                     Center(
                       child: Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 30,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            padding: EdgeInsets.only(left: 20, right: 20),
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -244,29 +243,6 @@ class _Info_PageState extends State<Info_Page> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding:  EdgeInsets.only(
-                                left: 20, right: 20, top: 15),
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: theRed, width: 3),
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(10)),
-                                  color: Colors.white),
-                              child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Text(
-                                  'ดวงวันนี้ให้คุณ',
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                          )
                         ],
                       ),
                     ),

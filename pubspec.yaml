@@ -22,6 +22,8 @@ dependencies:
   flutter_otp_text_field: ^1.1.0+2
   syncfusion_flutter_datepicker: ^19.4.38
   page_transition: ^2.0.9
+  flutter_datetime_picker: ^1.5.1
+  restart_app: ^1.1.0
 
 dev_dependencies:
   flutter_test:

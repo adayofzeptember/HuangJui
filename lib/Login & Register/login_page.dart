@@ -59,63 +59,6 @@ class _Login_PageState extends State<Login_Page> {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
 
-  // Future<Register_Login_Social> login_Social(
-  //     BuildContext context,
-  //     Request_Social_Provider request_social_provider,
-  //     String? xa,
-  //     String? xb) async {
-  //   String urlPost = wanhengURL + 'register-social';
-  //   var bodySocial = json.encode(request_social_provider.toJson());
-  //   final response = await http.post(
-  //     Uri.parse(urlPost),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     body: bodySocial,
-  //   );
-
-  //   var jsonRes = json.decode(response.body);
-  //   var token = jsonRes['accessToken'];
-
-  //   if (response.statusCode == 201) {
-  //     String newUser_id = jsonRes['user']['id'].toString();
-  //     String newUser_email = jsonRes['user']['email'].toString();
-  //     print(newUser_id + newUser_email);
-  //     print('เข้าครั้งแรก');
-  //     setState(() {
-  //       _new_userEmail = newUser_email;
-  //       _new_userId = newUser_id;
-  //     });
-
-  //     Navigator.pushReplacement(
-  //       context,
-  //       PageTransition(
-  //         duration: Duration(milliseconds: 500),
-  //         type: PageTransitionType.rightToLeft,
-  //         child: Register_Form(id: _new_userId, email: _new_userEmail),
-  //       ),
-  //     );
-  //     return Register_Login_Social.fromJson(json.decode(response.body));
-  //   } else if (response.statusCode == 409) {
-  //     print('ไม่ใช่ครั้งแรก');
-  //     Navigator.pushReplacement(
-  //       context,
-  //       PageTransition(
-  //         duration: Duration(milliseconds: 500),
-  //         type: PageTransitionType.rightToLeft,
-  //         child: Main_Calendar(
-  //           name: xa,
-  //           ipic: xb,
-  //         ),
-  //       ),
-  //     );
-  //     return Register_Login_Social.fromJson(json.decode(response.body));
-  //   } else {
-  //     throw Exception("error");
-  //   }
-  // }
-
   Future<dynamic> useGoogle_toLogin() async {
     final userGoogle = await GoogoleSignInApi.google_SignIn2();
     GoogoleSignInApi.google_SignIn2().then((result) {
@@ -126,13 +69,12 @@ class _Login_PageState extends State<Login_Page> {
         print("--------------------------");
         print(userGoogle!.email.toString());
         print(userGoogle.displayName.toString());
-        print(userGoogle.photoUrl.toString());
-
+       
         setState(() {
           a = userGoogle.displayName.toString();
           b = userGoogle.photoUrl.toString();
         });
-        _request_social_provider.email = '1fff21ced@gxtest.com';
+        _request_social_provider.email = '1ffพำเเเเเเเำพเดเxced@gxtest.com';
         _request_social_provider.name = 'userGoogle.displayName.toString()';
         _request_social_provider.avatar = 'userGoogle.photoUrl.toString()';
 
@@ -140,18 +82,9 @@ class _Login_PageState extends State<Login_Page> {
         // _request_social_provider.name = userGoogle.displayName.toString();
         // _request_social_provider.avatar = userGoogle.photoUrl.toString();
 
+        print(_request_social_provider.email);
+
         login_Social(context, _request_social_provider, a, b);
-        // Navigator.pushReplacement(
-        //   context,
-        //   PageTransition(
-        //     duration: Duration(milliseconds: 500),
-        //     type: PageTransitionType.rightToLeft,
-        //     child: Main_Calendar(
-        //       name: a,
-        //       ipic: b,
-        //     ),
-        //   ),
-        // );
       }).catchError((error1) {
         setState(() {
           circleHUD = false;
@@ -187,17 +120,6 @@ class _Login_PageState extends State<Login_Page> {
               userDataFacebook["picture"]["data"]["url"];
 
           login_Social(context, _request_social_provider, a, b);
-          // Navigator.pushReplacement(
-          //   context,
-          //   PageTransition(
-          //     duration: Duration(milliseconds: 500),
-          //     type: PageTransitionType.rightToLeft,
-          //     child: Main_Calendar(
-          //       name: a,
-          //       ipic: b,
-          //     ),
-          //   ),
-          // );
         });
       });
     });
@@ -237,7 +159,7 @@ class _Login_PageState extends State<Login_Page> {
                         color: Color.fromARGB(255, 215, 190, 138)),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 20, right: 20),
@@ -502,39 +424,31 @@ class _Login_PageState extends State<Login_Page> {
                                       )),
                                 ),
                               ),
-                              // SizedBox(
-                              //   height: 10,
-                              // ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    primary: Colors.black,
+                                    primary: Colors.white,
+                                    side: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 223, 223, 223)),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
-                                onPressed: () async {
-                                     Navigator.pushReplacement(
-        context,
-        PageTransition(
-          duration: Duration(seconds: 1),
-          type: PageTransitionType.rightToLeft,
-          child: Main_Calendar(),
-        ),
-      );
-                                  // final appleCredential_test555 =
-                                  //     await SignInWithApple
-                                  //         .getAppleIDCredential(
-                                  //   scopes: [
-                                  //     AppleIDAuthorizationScopes.email,
-                                  //     AppleIDAuthorizationScopes.fullName,
-                                  //   ],
-                                  // );
-                                  // print(appleCredential_test555.email);
+                                onPressed: () {
                                   GoogoleSignInApi.google_LogOut();
                                   FacebookAuth.instance.logOut();
+                                 
+                                    Navigator.push(
+        context,
+        PageTransition(
+          duration: Duration(milliseconds: 250),
+          type: PageTransitionType.rightToLeft,
+          child:  Register_Form(id: '1', email: 'df',),
+        ),
+      );
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
+                                  padding: EdgeInsets.all(15.0),
                                   child: Container(
                                       width: double.infinity,
                                       alignment: Alignment.center,
@@ -542,21 +456,16 @@ class _Login_PageState extends State<Login_Page> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          SvgPicture.asset(
-                                              'assets/images/apple-icon.svg'),
-                                          SizedBox(
-                                            width: 20,
-                                          ),
                                           Text(
-                                            "ทดสอบ",
+                                            "ออกระบบ",
                                             style: TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 fontSize: 15),
                                           ),
                                         ],
                                       )),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

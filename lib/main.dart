@@ -12,6 +12,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemUiOverlayStyle(statusBarColor: Colors.transparent);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(Start_Page_HuangJui()));
@@ -28,14 +29,11 @@ class Start_Page_HuangJui extends StatelessWidget {
             minWidth: 450,
             defaultScale: true,
             breakpoints: [
-              const ResponsiveBreakpoint.resize(480, name: MOBILE),
+              const ResponsiveBreakpoint.resize(450, name: MOBILE),
               const ResponsiveBreakpoint.autoScale(800, name: MOBILE),
-              const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
-              // const ResponsiveBreakpoint.resize(480, name: MOBILE),
-              // const ResponsiveBreakpoint.autoScale(800, name: MOBILE),
-              // const ResponsiveBreakpoint.autoScale(900, name: MOBILE),
-              // const ResponsiveBreakpoint.resize(1000, name: MOBILE),
-              // const ResponsiveBreakpoint.resize(1200, name: TABLET),
+              const ResponsiveBreakpoint.autoScale(900, name: MOBILE),
+              const ResponsiveBreakpoint.resize(1000, name: MOBILE),
+              const ResponsiveBreakpoint.resize(1200, name: TABLET),
             ],
           )),
       debugShowCheckedModeBanner: false,
@@ -67,7 +65,6 @@ class _AppBackgroundState extends State<AppBackground> {
   @override
   initState() {
     _Load_And_Go();
-
     super.initState();
   }
 
@@ -76,7 +73,7 @@ class _AppBackgroundState extends State<AppBackground> {
       Navigator.pushReplacement(
         context,
         PageTransition(
-          duration: Duration(seconds: 1),
+          duration: Duration(milliseconds: 250),
           type: PageTransitionType.rightToLeft,
           child: Login_Page(),
         ),

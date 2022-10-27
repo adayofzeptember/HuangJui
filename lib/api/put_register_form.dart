@@ -79,13 +79,20 @@ class User {
 class Provider_registerForm {
   String? email;
   String? name;
+  String? gender;
+  String? birthDate;
+  String? birthTime;
 
-  Provider_registerForm({this.email, this.name});
+  Provider_registerForm(
+      {this.email, this.name, this.gender, this.birthDate, this.birthTime});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['email'] = this.email;
     data['name'] = this.name;
+    data['name'] = this.gender;
+    data['name'] = this.birthDate;
+    data['name'] = this.birthTime;
     return data;
   }
 }

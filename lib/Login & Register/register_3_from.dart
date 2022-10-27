@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
+import 'package:huangjui/Etc/timepickClass.dart';
 import 'package:huangjui/api/put_register_form.dart';
 import '../api/google_auth.dart';
 
@@ -11,6 +15,15 @@ String? a;
 String? b;
 String form_name = '';
 String form_surename = '';
+
+String? dayBirth = '';
+String? monthBirth = '';
+String? yearBirth = '';
+String? monthInThai = '';
+String? hourBirth = '';
+String? minuteBirth = '';
+
+String gender = '';
 
 late Provider_registerForm _provider_registerForm;
 final formKey_register_form = GlobalKey<FormState>();
@@ -34,7 +47,6 @@ class _Register_FormState extends State<Register_Form> {
     super.initState();
   }
 
-  String radioButtonItem = 'ONE';
   int id = 1;
   String x = '';
 
@@ -158,8 +170,7 @@ class _Register_FormState extends State<Register_Form> {
                                           if (value!.isEmpty) {}
                                           return null;
                                         },
-                                        
-                                    keyboardType: TextInputType.name,
+                                        keyboardType: TextInputType.name,
                                         onSaved: (input) {
                                           form_surename = input.toString();
                                         },
@@ -167,7 +178,6 @@ class _Register_FormState extends State<Register_Form> {
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.all(10.0),
                                           counterText: "",
-                                          
                                           filled: true,
                                           fillColor: Colors.white,
                                           hintStyle: TextStyle(
@@ -214,12 +224,13 @@ class _Register_FormState extends State<Register_Form> {
                                       groupValue: id,
                                       onChanged: (val) {
                                         setState(() {
-                                          radioButtonItem = 'ONE';
+                                          gender = 'ไม่ระบุ';
                                           id = 1;
                                         });
+                                        print(gender);
                                       },
                                     ),
-                                   Text(
+                                    Text(
                                       'ไม่ระบุ',
                                       style: new TextStyle(fontSize: 17.0),
                                     ),
@@ -229,16 +240,16 @@ class _Register_FormState extends State<Register_Form> {
                                   width: 5,
                                 ),
                                 Row(
-                                  
                                   children: [
                                     Radio(
                                       value: 2,
                                       groupValue: id,
                                       onChanged: (val) {
                                         setState(() {
-                                          radioButtonItem = 'TWO';
+                                          gender = 'หญิง';
                                           id = 2;
                                         });
+                                        print(gender);
                                       },
                                     ),
                                     Text(
@@ -259,9 +270,10 @@ class _Register_FormState extends State<Register_Form> {
                                       groupValue: id,
                                       onChanged: (val) {
                                         setState(() {
-                                          radioButtonItem = 'THREE';
+                                          gender = 'ชาย';
                                           id = 3;
                                         });
+                                        print(gender);
                                       },
                                     ),
                                     Text(
@@ -275,141 +287,205 @@ class _Register_FormState extends State<Register_Form> {
                             SizedBox(
                               height: 5,
                             ),
-                            Text(
-                              'วัน เดือน ปีเกิด',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            TextButton(
+                                style: TextButton.styleFrom(
+                                  minimumSize: Size.zero,
+                                  padding: EdgeInsets.zero,
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                ),
+                                onPressed: () {
+                                  DatePicker.showDatePicker(context,
+                                      showTitleActions: true,
+                                      minTime: DateTime(1960, 1, 1),
+                                      maxTime: DateTime.now(),
+                                      onConfirm: (date) {
+                                    if (date.month.toString() == '1') {
+                                      setState(() {
+                                        monthInThai = 'มกราคม';
+                                      });
+                                    } else if (date.month.toString() == '2') {
+                                      setState(() {
+                                        monthInThai = 'กุมภาพันธ์';
+                                      });
+                                    } else if (date.month.toString() == '3') {
+                                      setState(() {
+                                        monthInThai = 'มีนาคม';
+                                      });
+                                    } else if (date.month.toString() == '4') {
+                                      setState(() {
+                                        monthInThai = 'เมษายน';
+                                      });
+                                    } else if (date.month.toString() == '5') {
+                                      setState(() {
+                                        monthInThai = 'พฤษภาคม';
+                                      });
+                                      print(monthInThai);
+                                    } else if (date.month.toString() == '6') {
+                                      setState(() {
+                                        monthInThai = 'มิถุนายน';
+                                      });
+                                    } else if (date.month.toString() == '7') {
+                                      setState(() {
+                                        monthInThai = 'กรกฏาคม';
+                                      });
+                                      print(monthInThai);
+                                    } else if (date.month.toString() == '8') {
+                                      setState(() {
+                                        monthInThai = 'สิงหาคม';
+                                      });
+                                    } else if (date.month.toString() == '9') {
+                                      setState(() {
+                                        monthInThai = 'กันยายน';
+                                      });
+                                    } else if (date.month.toString() == '10') {
+                                      setState(() {
+                                        monthInThai = 'ตุลาคม';
+                                      });
+                                    } else if (date.month.toString() == '11') {
+                                      setState(() {
+                                        monthInThai = 'พฤษจิกายน';
+                                      });
+                                    } else {
+                                      setState(() {
+                                        monthInThai = 'ธันวาคม';
+                                      });
+                                    }
+                                    setState(() {
+                                      dayBirth = date.day.toString();
+                                      monthBirth = monthInThai;
+                                      yearBirth = (date.year + 543).toString();
+                                    });
+                                    print(dayBirth.toString() +
+                                        monthBirth.toString() +
+                                        yearBirth.toString());
+                                  },
+                                      currentTime: DateTime.now(),
+                                      locale: LocaleType.th);
+                                },
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'เลือกวันเดือนปีเกิด (วัน/เดือน/ปี)',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Icon(Icons.arrow_drop_down_sharp),
+                                  ],
+                                )),
                             SizedBox(
                               height: 5,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.05,
-                                    width: 60,
-                                    child: TextFormField(
-                                      maxLength: 2,
-                                      validator: (value) {
-                                        if (value!.isEmpty) {}
-                                        return null;
-                                      },
-                                      keyboardType: TextInputType.number,
-                                      onSaved: (input) {},
-                                      textInputAction: TextInputAction.done,
-                                      decoration: const InputDecoration(
-                                        counterText: "",
-                                        contentPadding: EdgeInsets.all(10.0),
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        hintStyle: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 212, 212, 212)),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0)),
-                                          borderSide: BorderSide(
-                                              color: Color.fromARGB(
-                                                  255, 230, 228, 228),
-                                              width: 0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0)),
-                                          borderSide: BorderSide(
-                                              color: Palette.thisRed, width: 1),
-                                        ),
-                                      ),
-                                    )),
-                                VerticalDivider(width: 5),
-                                Expanded(
-                                  child: SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.05,
-                                      width: double.infinity,
-                                      child: TextFormField(
-                                        validator: (value) {
-                                          if (value!.isEmpty) {}
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.name,
-                                        onSaved: (input) {},
-                                        textInputAction: TextInputAction.done,
-                                        decoration: const InputDecoration(
-                                          contentPadding: EdgeInsets.all(10.0),
-                                          counterText: "",
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          hintStyle: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 212, 212, 212)),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            borderSide: BorderSide(
-                                                color: Color.fromARGB(
-                                                    255, 230, 228, 228),
-                                                width: 0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            borderSide: BorderSide(
-                                                color: Palette.thisRed,
-                                                width: 1),
-                                          ),
-                                        ),
-                                      )),
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 0,
+                                        color:
+                                            Color.fromARGB(255, 212, 212, 212)),
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    dayBirth.toString(),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )),
                                 ),
                                 VerticalDivider(width: 5),
-                                SizedBox(
+                                Expanded(
+                                  child: Container(
                                     height: MediaQuery.of(context).size.height *
                                         0.05,
-                                    width: 100,
-                                    child: TextFormField(
-                                      maxLength: 4,
-                                      validator: (value) {
-                                        if (value!.isEmpty) {}
-                                        return null;
-                                      },
-                                      keyboardType: TextInputType.number,
-                                      onSaved: (input) {},
-                                      textInputAction: TextInputAction.done,
-                                      decoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.all(10.0),
-                                        counterText: "",
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        hintStyle: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 212, 212, 212)),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0)),
-                                          borderSide: BorderSide(
-                                              color: Color.fromARGB(
-                                                  255, 230, 228, 228),
-                                              width: 0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0)),
-                                          borderSide: BorderSide(
-                                              color: Palette.thisRed, width: 1),
-                                        ),
-                                      ),
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 0,
+                                          color: Color.fromARGB(
+                                              255, 212, 212, 212)),
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0)),
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      monthBirth.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     )),
+                                  ),
+                                ),
+                                VerticalDivider(width: 5),
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 0,
+                                        color:
+                                            Color.fromARGB(255, 212, 212, 212)),
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    yearBirth.toString(),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )),
+                                ),
                               ],
                             ),
                             SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              'เวลาเกิด',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            TextButton(
+                                style: TextButton.styleFrom(
+                                  minimumSize: Size.zero,
+                                  padding: EdgeInsets.zero,
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                ),
+                                onPressed: () {
+                                  DatePicker.showPicker(context,
+                                      showTitleActions: true,
+                                      onChanged: (date) {}, onConfirm: (time) {
+                                    setState(() {
+                                      hourBirth =
+                                          time.minute.toString() + " นาฬิกา";
+                                      minuteBirth =
+                                          time.second.toString() + " นาที";
+                                    });
+                                    print(time.minute.toString() +
+                                        " : " +
+                                        time.second.toString());
+                                  },
+                                      pickerModel: CustomPicker(
+                                          currentTime: DateTime.now(),
+                                          locale: LocaleType.th),
+                                      locale: LocaleType.th);
+                                },
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      'เลือกเวลาเกิด (ชม./นาที)',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Icon(Icons.arrow_drop_down_sharp),
+                                  ],
+                                )),
                             SizedBox(
                               height: 5,
                             ),
@@ -418,46 +494,26 @@ class _Register_FormState extends State<Register_Form> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Expanded(
-                                  child: SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.05,
-                                      width: double.infinity,
-                                      child: TextFormField(
-                                        validator: (value) {
-                                          if (value!.isEmpty) {}
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.name,
-                                        onSaved: (input) {},
-                                        textAlignVertical:
-                                            TextAlignVertical.center,
-                                        textInputAction: TextInputAction.done,
-                                        decoration: const InputDecoration(
-                                          contentPadding: EdgeInsets.all(10.0),
-                                          counterText: "",
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          hintStyle: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 212, 212, 212)),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            borderSide: BorderSide(
-                                                color: Color.fromARGB(
-                                                    255, 230, 228, 228),
-                                                width: 0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            borderSide: BorderSide(
-                                                color: Palette.thisRed,
-                                                width: 1),
-                                          ),
-                                        ),
-                                      )),
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.05,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 0,
+                                          color: Color.fromARGB(
+                                              255, 212, 212, 212)),
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0)),
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      hourBirth.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                  ),
                                 ),
                                 VerticalDivider(width: 5),
                                 Text(
@@ -468,44 +524,26 @@ class _Register_FormState extends State<Register_Form> {
                                 ),
                                 VerticalDivider(width: 5),
                                 Expanded(
-                                  child: SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.05,
-                                      width: double.infinity,
-                                      child: TextFormField(
-                                        validator: (value) {
-                                          if (value!.isEmpty) {}
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.name,
-                                        onSaved: (input) {},
-                                        textInputAction: TextInputAction.done,
-                                        decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.all(10.0),
-                                          counterText: "",
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          hintStyle: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 212, 212, 212)),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            borderSide: BorderSide(
-                                                color: Color.fromARGB(
-                                                    255, 230, 228, 228),
-                                                width: 0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            borderSide: BorderSide(
-                                                color: Palette.thisRed,
-                                                width: 1),
-                                          ),
-                                        ),
-                                      )),
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.05,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 0,
+                                          color: Color.fromARGB(
+                                              255, 212, 212, 212)),
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0)),
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      minuteBirth.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                  ),
                                 ),
                               ],
                             ),
@@ -534,10 +572,17 @@ class _Register_FormState extends State<Register_Form> {
                                           form_name.toString() +
                                               " " +
                                               form_surename.toString();
+
+                                      _provider_registerForm.gender =
+                                          "gender.toString()";
+
+                                         _provider_registerForm.gender =
+                                          dayBirth.toString()+monthBirth.toString();
                                     });
-                                    put_register_form(_provider_registerForm,
-                                        widget.id.toString());
+                                    // put_register_form(_provider_registerForm,
+                                    //     widget.id.toString());
                                   }
+                                  print(jsonEncode(_provider_registerForm.gender));
                                 },
                                 child: const Padding(
                                   padding: EdgeInsets.all(10.0),

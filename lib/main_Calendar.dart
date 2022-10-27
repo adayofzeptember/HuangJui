@@ -26,7 +26,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
     Navigator.push(
       context,
       PageTransition(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 250),
         type: PageTransitionType.rightToLeft,
         child: Info_Page(),
       ),
@@ -44,6 +44,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
         _rangeCount = args.value.length.toString();
       }
     });
+    print(_selectedDate);
   }
 
   @override
@@ -68,7 +69,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                 Navigator.push(
                   context,
                   PageTransition(
-                    duration: Duration(milliseconds: 500),
+                    duration: Duration(milliseconds: 250),
                     type: PageTransitionType.rightToLeft,
                     child: Profile(
                       name: widget.name,
@@ -111,7 +112,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
               fit: BoxFit.fill),
           Center(
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
               child: Column(
                 children: [
                   SizedBox(
@@ -241,7 +242,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                     color: Color.fromARGB(255, 34, 43, 69))),
                             selectionShape:
                                 DateRangePickerSelectionShape.rectangle,
-                            allowViewNavigation: true,
+                            allowViewNavigation: false,
                             selectionTextStyle: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -278,28 +279,33 @@ class _Main_CalendarState extends State<Main_Calendar> {
                             onPressed: null,
                             child: Padding(
                               padding: EdgeInsets.all(10.0),
-                              child: Container(
-                                  width: double.infinity,
-                                  alignment: Alignment.center,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/images/compass.svg',
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        "เข็มทิศ (Coming Soon..)",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 15),
-                                      ),
-                                    ],
-                                  )),
+                              child: Column(
+                                children: [
+                                  
+                                  Container(
+                                      width: double.infinity,
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          SvgPicture.asset(
+                                            'assets/images/compass.svg',
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            "เข็มทิศ (Coming Soon..)",
+                                            style: TextStyle(
+                                                color: Colors.white, fontSize: 15),
+                                          ),
+                                        ],
+                                      )),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
