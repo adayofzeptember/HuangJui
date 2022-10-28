@@ -23,7 +23,7 @@ String? monthInThai = '';
 String? hourBirth = '';
 String? minuteBirth = '';
 
-String gender = 'ชาย';
+String gender = 'ไม่ระบุ';
 
 late Provider_registerForm _provider_registerForm;
 final formKey_register_form = GlobalKey<FormState>();
@@ -31,10 +31,9 @@ var _nameController = TextEditingController();
 var _surenameController = TextEditingController();
 
 class Register_Form extends StatefulWidget {
-  String? id;
-  String? email;
-  Register_Form({Key? key, required this.id, required this.email})
-      : super(key: key);
+  String? id = '1';
+  String? email = 'x@mail.com';
+  Register_Form({Key? key, this.id, this.email}) : super(key: key);
 
   @override
   State<Register_Form> createState() => _Register_FormState();
@@ -47,7 +46,7 @@ class _Register_FormState extends State<Register_Form> {
     super.initState();
   }
 
-  int id = 1;
+  int radioID = 1;
   String x = '';
 
   @override
@@ -101,6 +100,7 @@ class _Register_FormState extends State<Register_Form> {
                             ),
                             SizedBox(
                               height: 20,
+                              width: 0.0,
                             ),
                             Text(
                               'ชื่อ-นามสกุล',
@@ -221,11 +221,11 @@ class _Register_FormState extends State<Register_Form> {
                                   children: [
                                     Radio(
                                       value: 1,
-                                      groupValue: id,
+                                      groupValue: radioID,
                                       onChanged: (val) {
                                         setState(() {
                                           gender = 'ไม่ระบุ';
-                                          id = 1;
+                                          radioID = 1;
                                         });
                                         print(gender);
                                       },
@@ -243,11 +243,11 @@ class _Register_FormState extends State<Register_Form> {
                                   children: [
                                     Radio(
                                       value: 2,
-                                      groupValue: id,
+                                      groupValue: radioID,
                                       onChanged: (val) {
                                         setState(() {
                                           gender = 'หญิง';
-                                          id = 2;
+                                          radioID = 2;
                                         });
                                         print(gender);
                                       },
@@ -267,11 +267,11 @@ class _Register_FormState extends State<Register_Form> {
                                   children: [
                                     Radio(
                                       value: 3,
-                                      groupValue: id,
+                                      groupValue: radioID,
                                       onChanged: (val) {
                                         setState(() {
                                           gender = 'ชาย';
-                                          id = 3;
+                                          radioID = 3;
                                         });
                                         print(gender);
                                       },
@@ -297,6 +297,15 @@ class _Register_FormState extends State<Register_Form> {
                                 onPressed: () {
                                   DatePicker.showDatePicker(context,
                                       showTitleActions: true,
+                                      theme: DatePickerTheme(
+                                          itemStyle:
+                                              TextStyle(fontFamily: 'Kanit'),
+                                          doneStyle: TextStyle(
+                                              fontFamily: 'Kanit',
+                                              fontWeight: FontWeight.bold),
+                                          cancelStyle: TextStyle(
+                                              fontFamily: 'Kanit',
+                                              color: Colors.grey)),
                                       minTime: DateTime(1960, 1, 1),
                                       maxTime: DateTime.now(),
                                       onConfirm: (date) {
@@ -459,6 +468,15 @@ class _Register_FormState extends State<Register_Form> {
                                 onPressed: () {
                                   DatePicker.showPicker(context,
                                       showTitleActions: true,
+                                      theme: DatePickerTheme(
+                                          itemStyle:
+                                              TextStyle(fontFamily: 'Kanit'),
+                                          doneStyle: TextStyle(
+                                              fontFamily: 'Kanit',
+                                              fontWeight: FontWeight.bold),
+                                          cancelStyle: TextStyle(
+                                              fontFamily: 'Kanit',
+                                              color: Colors.grey)),
                                       onChanged: (date) {}, onConfirm: (time) {
                                     setState(() {
                                       hourBirth =
@@ -466,6 +484,7 @@ class _Register_FormState extends State<Register_Form> {
                                       minuteBirth =
                                           time.second.toString() + " นาที";
                                     });
+
                                     print(time.minute.toString() +
                                         " : " +
                                         time.second.toString());
@@ -573,20 +592,21 @@ class _Register_FormState extends State<Register_Form> {
                                               " " +
                                               form_surename.toString();
 
-                                      _provider_registerForm.gender =
-                                          gender;
+                                      _provider_registerForm.gender = gender;
 
                                       _provider_registerForm.birthDate =
-                                          monthBirth.toString();
+                                          dayBirth.toString() +
+                                              monthBirth.toString() +
+                                              yearBirth.toString();
 
                                       _provider_registerForm.birthTime =
-                                          hourBirth.toString();
+                                          hourBirth.toString() +
+                                              minuteBirth.toString();
                                     });
                                     // put_register_form(_provider_registerForm,
                                     //     widget.id.toString());
                                   }
-                                  print(jsonEncode(
-                                      _provider_registerForm));
+                                  print(jsonEncode(_provider_registerForm));
                                 },
                                 child: const Padding(
                                   padding: EdgeInsets.all(10.0),

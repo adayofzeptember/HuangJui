@@ -12,7 +12,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
   SystemUiOverlayStyle(statusBarColor: Colors.transparent);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(Start_Page_HuangJui()));
