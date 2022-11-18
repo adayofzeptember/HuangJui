@@ -100,7 +100,6 @@ class _Register_FormState extends State<Register_Form> {
                             ),
                             SizedBox(
                               height: 20,
-                              width: 0.0,
                             ),
                             Text(
                               'ชื่อ-นามสกุล',

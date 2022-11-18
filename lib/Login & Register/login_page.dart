@@ -82,7 +82,7 @@ class _Login_PageState extends State<Login_Page> {
         _request_social_provider.name = userGoogle.displayName.toString();
         _request_social_provider.avatar = userGoogle.photoUrl.toString();
 
-        print(jsonEncode(_request_social_provider.email));
+        //! print(jsonEncode(_request_social_provider.email));
 
         login_Social(context, _request_social_provider, a, b);
       }).catchError((error1) {
@@ -118,7 +118,7 @@ class _Login_PageState extends State<Login_Page> {
           _request_social_provider.email = userDataFacebook["email"];
           _request_social_provider.avatar =
               userDataFacebook["picture"]["data"]["url"];
-          print(jsonEncode(_request_social_provider.email));
+          //!print(jsonEncode(_request_social_provider.email));
 
           login_Social(context, _request_social_provider, a, b);
         });

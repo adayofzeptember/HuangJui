@@ -103,25 +103,21 @@ class Request_Social_Provider {
   }
 }
 
-Future<Register_Login_Social> login_Social(
-    BuildContext context,
-    Request_Social_Provider request_social_provider,
-    String? xa,
-    String? xb) async {
-  print('object');
+Future<Register_Login_Social> login_Social2(
+
+) async {
   String urlPost = wanhengURL + 'register-social';
-  var bodySocial = json.encode(request_social_provider.toJson());
+
   final response = await http.post(
     Uri.parse(urlPost),
     headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-    body: bodySocial,
-  );
 
-  print('object');
-  print(response.body);
+  );
 
   var jsonRes = json.decode(response.body);
   var token = jsonRes['accessToken'];
+
+  print(jsonRes);
 
   if (response.statusCode == 201) {
     String newUser_id = jsonRes['user']['id'].toString();
@@ -129,36 +125,16 @@ Future<Register_Login_Social> login_Social(
     print(newUser_id + newUser_email);
     print('เข้าครั้งแรก');
 
-    Navigator.pushReplacement(
-      context,
-      PageTransition(
-        duration: Duration(milliseconds: 500),
-        type: PageTransitionType.rightToLeft,
-        child: Register_Form(
-          id: newUser_id,
-          email: newUser_email,
-        ),
-      ),
-    );
     return Register_Login_Social.fromJson(json.decode(response.body));
   } else if (response.statusCode == 409) {
     print('ไม่ใช่ครั้งแรก');
-    
-    Navigator.pushReplacement(
-      context,
-      PageTransition(
-        duration: Duration(milliseconds: 500),
-        type: PageTransitionType.rightToLeft,
-        child: Main_Calendar(
-          name: xa,
-          ipic: xb,
-        ),
-      ),
-    );
+
     return Register_Login_Social.fromJson(json.decode(response.body));
   } else {
     throw Exception("error");
   }
 }
 
-void main(List<String> args) {}
+void main(List<String> args) {
+login_Social2();
+}
