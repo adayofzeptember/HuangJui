@@ -5,12 +5,14 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/Login%20&%20Register/register_2_otp.dart';
+import 'package:huangjui/Screens/Login%20&%20Register/register_2_otp.dart';
 import 'package:huangjui/api/OTP_SMS/otp_request.dart';
-import 'package:huangjui/main_Calendar.dart';
 import 'package:page_transition/page_transition.dart';
-import '../Etc/ProgressHUD.dart';
-import '../api/google_auth.dart';
+
+import '../../Etc/ProgressHUD.dart';
+import '../../api/google_auth.dart';
+import '../main_Calendar.dart';
+
 
 var phoneNumber_Controller = TextEditingController();
 String? k;

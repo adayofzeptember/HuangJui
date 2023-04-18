@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -8,7 +7,7 @@ import 'package:http/http.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
 import 'package:huangjui/Etc/timepickClass.dart';
 import 'package:huangjui/api/put_register_form.dart';
-import '../api/google_auth.dart';
+
 
 String? k;
 String? a;

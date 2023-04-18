@@ -1,32 +1,24 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
-import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:huangjui/api/api_url.dart';
+import 'package:huangjui/api/google_auth.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../Etc/ProgressHUD.dart';
 import '../main_Calendar.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/Login%20&%20Register/register_2_otp.dart';
-import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:huangjui/api/OTP_SMS/otp_request.dart';
 import 'package:huangjui/api/post_register_social.dart';
-import 'package:huangjui/main_Calendar.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import '../Etc/ProgressHUD.dart';
-import '../api/google_auth.dart';
+import 'register_3_from.dart';
 
 var phoneNumber_Controller = TextEditingController();
 String? k;
@@ -56,7 +48,7 @@ class _Login_PageState extends State<Login_Page> {
     _request_social_provider = Request_Social_Provider();
     otp_provider_model = OTP_Request_Provider();
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
 
   Future<dynamic> useGoogle_toLogin() async {
@@ -129,7 +121,7 @@ class _Login_PageState extends State<Login_Page> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return ProgressHUD(
         child: _uiSetUp(context), inAsyncCall: circleHUD, opacity: 0.3);
   }
@@ -137,8 +129,9 @@ class _Login_PageState extends State<Login_Page> {
   @override
   Widget _uiSetUp(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
+      
       extendBodyBehindAppBar: true,
       body: Stack(
         children: <Widget>[
@@ -152,26 +145,26 @@ class _Login_PageState extends State<Login_Page> {
             children: [
               Column(
                 children: [
-                  Text(
+                  const Text(
                     'ปฏิทินฮวงจุ้ย',
                     style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 215, 190, 138)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 20),
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Color.fromARGB(255, 255, 239, 224),
                       ),
                       width: double.infinity,
                       child: Padding(
-                        padding: EdgeInsets.fromLTRB(30, 25.0, 30, 50),
+                        padding: const EdgeInsets.fromLTRB(30, 25.0, 30, 50),
                         child: Form(
                           key: formKey_phoneNumber,
                           child: Column(
@@ -184,156 +177,155 @@ class _Login_PageState extends State<Login_Page> {
                                         fontWeight: FontWeight.bold,
                                         color: theRed)),
                               ),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Text(
-                              //   'เข้าสู่ระบบด้วยเบอร์โทรศัพท์',
-                              //   style: TextStyle(fontWeight: FontWeight.bold),
-                              // ),
-                              // SizedBox(
-                              //   height: 5,
-                              // ),
-                              // SizedBox(
-                              //     height:
-                              //         MediaQuery.of(context).size.height * 0.08,
-                              //     width: double.infinity,
-                              //     child: TextFormField(
-                              //       validator: (value) {
-                              //         if (value!.isEmpty) {
-                              //           return "กรุณากรอกหมายเลขเบอร์มือถือ!";
-                              //         }
-                              //         return "";
-                              //       },
-                              //       controller: phoneNumber_Controller,
-                              //       maxLength: 10,
-                              //       keyboardType: TextInputType.number,
-                              //       onSaved: (input) {
-                              //         k = input.toString();
-                              //         otp_provider_model.key =
-                              //             '1743122628803977';
-                              //         otp_provider_model.secret =
-                              //             'fe2b8dc85833369fad71662c34db2149';
-                              //         otp_provider_model.msisdn =
-                              //             input.toString();
-                              //       },
-                              //       textInputAction: TextInputAction.done,
-                              //       decoration: InputDecoration(
-                              //         counterText: "",
-                              //         filled: true,
-                              //         fillColor: Colors.white,
-                              //         hintText: 'กรอกเบอร์โทรศัพท์',
-                              //         hintStyle: TextStyle(
-                              //             color: Color.fromARGB(
-                              //                 255, 212, 212, 212)),
-                              //         enabledBorder: OutlineInputBorder(
-                              //           borderRadius: BorderRadius.all(
-                              //               Radius.circular(5.0)),
-                              //           borderSide: BorderSide(
-                              //               color: Color.fromARGB(
-                              //                   255, 230, 228, 228),
-                              //               width: 0),
-                              //         ),
-                              //         focusedBorder: OutlineInputBorder(
-                              //           borderRadius: BorderRadius.all(
-                              //               Radius.circular(5.0)),
-                              //           borderSide: BorderSide(
-                              //               color: Colors.white, width: 0),
-                              //         ),
-                              //       ),
-                              //     )),
-                              // SizedBox(
-                              //   height: 10,
-                              // ),
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.center,
-                              //   children: [
-                              //     Expanded(
-                              //       child: ElevatedButton(
-                              //         style: ElevatedButton.styleFrom(
-                              //             elevation: 0,
-                              //             primary: Color.fromARGB(
-                              //                 255, 255, 239, 224),
-                              //             side: BorderSide(color: theRed),
-                              //             shape: RoundedRectangleBorder(
-                              //               borderRadius:
-                              //                   BorderRadius.circular(5),
-                              //             )),
-                              //         onPressed: () {
-                              //           // Navigator.push(
-                              //           //   context,
-                              //           //   MaterialPageRoute(
-                              //           //     builder: (context) =>
-                              //           //         Login_Page(),
-                              //           //   ),
-                              //           // );
-                              //         },
-                              //         child: Padding(
-                              //           padding: EdgeInsets.all(15.0),
-                              //           child: Container(
-                              //             width: double.infinity,
-                              //             alignment: Alignment.center,
-                              //             child: Text(
-                              //               "ลงทะเบียน",
-                              //               style: TextStyle(
-                              //                   fontWeight: FontWeight.bold,
-                              //                   color: theRed,
-                              //                   fontSize: 15),
-                              //             ),
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     ),
-                              //     VerticalDivider(width: 5),
-                              //     Expanded(
-                              //       child: ElevatedButton(
-                              //         style: ElevatedButton.styleFrom(
-                              //             elevation: 0,
-                              //             primary: theRed,
-                              //             side: BorderSide(color: theRed),
-                              //             shape: RoundedRectangleBorder(
-                              //               borderRadius:
-                              //                   BorderRadius.circular(5),
-                              //             )),
-                              //         onPressed: () {
-                              //           FocusManager.instance.primaryFocus
-                              //               ?.unfocus();
-                              //           if (formKey_phoneNumber.currentState!
-                              //               .validate()) {
-                              //             formKey_phoneNumber.currentState
-                              //                 ?.save();
-
-                              //             send_otp_request(otp_provider_model);
-                              //             //? print(jsonEncode(otp_provider_model));
-                              //             Navigator.push(
-                              //               context,
-                              //               MaterialPageRoute(
-                              //                 builder: (context) =>
-                              //                     Register_Page_OTP(),
-                              //               ),
-                              //             );
-                              //           }
-                              //         },
-                              //         child: Padding(
-                              //           padding: EdgeInsets.all(15.0),
-                              //           child: Container(
-                              //             width: double.infinity,
-                              //             alignment: Alignment.center,
-                              //             child: Text(
-                              //               "ต่อไป",
-                              //               style: TextStyle(
-                              //                   fontWeight: FontWeight.bold,
-                              //                   color: Color.fromARGB(
-                              //                       255, 255, 255, 255),
-                              //                   fontSize: 15),
-                              //             ),
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text(
+                                'เข้าสู่ระบบด้วยเบอร์โทรศัพท์',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
                               SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.08,
+                                  width: double.infinity,
+                                  child: TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "กรุณากรอกหมายเลขเบอร์มือถือ!";
+                                      }
+                                      return "";
+                                    },
+                                    controller: phoneNumber_Controller,
+                                    maxLength: 10,
+                                    keyboardType: TextInputType.number,
+                                    onSaved: (input) {
+                                      k = input.toString();
+                                      otp_provider_model.key =
+                                          '1743122628803977';
+                                      otp_provider_model.secret =
+                                          'fe2b8dc85833369fad71662c34db2149';
+                                      otp_provider_model.msisdn =
+                                          input.toString();
+                                    },
+                                    textInputAction: TextInputAction.done,
+                                    decoration: const InputDecoration(
+                                      counterText: "",
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      hintStyle: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 212, 212, 212)),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5.0)),
+                                        borderSide: BorderSide(
+                                            color: Color.fromARGB(
+                                                255, 230, 228, 228),
+                                            width: 0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5.0)),
+                                        borderSide: BorderSide(
+                                            color: Colors.white, width: 0),
+                                      ),
+                                    ),
+                                  )),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          elevation: 0,
+                                          primary: const Color.fromARGB(
+                                              255, 255, 239, 224),
+                                          side: BorderSide(color: theRed),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          )),
+                                      onPressed: () {
+                                        // Navigator.push(
+                                        //   context,
+                                        //   MaterialPageRoute(
+                                        //     builder: (context) =>
+                                        //         Login_Page(),
+                                        //   ),
+                                        // );
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "ลงทะเบียน",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: theRed,
+                                                fontSize: 15),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  // VerticalDivider(width: 5),
+                                  // Expanded(
+                                  //   child: ElevatedButton(
+                                  //     style: ElevatedButton.styleFrom(
+                                  //         elevation: 0,
+                                  //         primary: theRed,
+                                  //         side: BorderSide(color: theRed),
+                                  //         shape: RoundedRectangleBorder(
+                                  //           borderRadius:
+                                  //               BorderRadius.circular(5),
+                                  //         )),
+                                  //     onPressed: () {
+                                  //       FocusManager.instance.primaryFocus
+                                  //           ?.unfocus();
+                                  //       if (formKey_phoneNumber.currentState!
+                                  //           .validate()) {
+                                  //         formKey_phoneNumber.currentState
+                                  //             ?.save();
+
+                                  //         send_otp_request(otp_provider_model);
+                                  //         //? print(jsonEncode(otp_provider_model));
+                                  //         Navigator.push(
+                                  //           context,
+                                  //           MaterialPageRoute(
+                                  //             builder: (context) =>
+                                  //                 Register_Page_OTP(),
+                                  //           ),
+                                  //         );
+                                  //       }
+                                  //     },
+                                  //     child: Padding(
+                                  //       padding: EdgeInsets.all(15.0),
+                                  //       child: Container(
+                                  //         width: double.infinity,
+                                  //         alignment: Alignment.center,
+                                  //         child: Text(
+                                  //           "ต่อไป",
+                                  //           style: TextStyle(
+                                  //               fontWeight: FontWeight.bold,
+                                  //               color: Color.fromARGB(
+                                  //                   255, 255, 255, 255),
+                                  //               fontSize: 15),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                              const SizedBox(
                                 height: 15,
                               ),
                               // Center(
@@ -341,13 +333,13 @@ class _Login_PageState extends State<Login_Page> {
                               //   'หรือ',
                               //   style: TextStyle(fontWeight: FontWeight.bold),
                               // )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    primary: Color.fromARGB(255, 24, 119, 242),
+                                    primary: const Color.fromARGB(255, 24, 119, 242),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
@@ -358,7 +350,7 @@ class _Login_PageState extends State<Login_Page> {
                                   useFacebook_toLogin();
                                 },
                                 child: Padding(
-                                  padding: EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(15.0),
                                   child: Container(
                                       width: double.infinity,
                                       alignment: Alignment.center,
@@ -369,10 +361,10 @@ class _Login_PageState extends State<Login_Page> {
                                           SvgPicture.asset(
                                             'assets/images/facebook-icon.svg',
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 20,
                                           ),
-                                          Text(
+                                          const Text(
                                             "เข้าสู่ระบบด้วย Facebook",
                                             style: TextStyle(
                                                 color: Colors.white,
@@ -382,14 +374,14 @@ class _Login_PageState extends State<Login_Page> {
                                       )),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
                                     primary: Colors.white,
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                         color:
                                             Color.fromARGB(255, 223, 223, 223)),
                                     shape: RoundedRectangleBorder(
@@ -402,7 +394,7 @@ class _Login_PageState extends State<Login_Page> {
                                   useGoogle_toLogin();
                                 },
                                 child: Padding(
-                                  padding: EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(15.0),
                                   child: Container(
                                       width: double.infinity,
                                       alignment: Alignment.center,
@@ -412,10 +404,10 @@ class _Login_PageState extends State<Login_Page> {
                                         children: [
                                           SvgPicture.asset(
                                               'assets/images/google-icon.svg'),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 20,
                                           ),
-                                          Text(
+                                          const Text(
                                             "เข้าสู่ระบบด้วย Google",
                                             style: TextStyle(
                                                 color: Colors.black,
@@ -429,7 +421,7 @@ class _Login_PageState extends State<Login_Page> {
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
                                     primary: Colors.white,
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                         color:
                                             Color.fromARGB(255, 223, 223, 223)),
                                     shape: RoundedRectangleBorder(
@@ -442,7 +434,7 @@ class _Login_PageState extends State<Login_Page> {
                                   Navigator.push(
                                     context,
                                     PageTransition(
-                                      duration: Duration(milliseconds: 250),
+                                      duration: const Duration(milliseconds: 250),
                                       type: PageTransitionType.rightToLeft,
                                       child: Register_Form(
                                         id: '1',
@@ -452,7 +444,7 @@ class _Login_PageState extends State<Login_Page> {
                                   );
                                 },
                                 child: Padding(
-                                  padding: EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(15.0),
                                   child: Container(
                                       width: double.infinity,
                                       alignment: Alignment.center,
@@ -460,8 +452,8 @@ class _Login_PageState extends State<Login_Page> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            "ออกระบบ",
+                                          const Text(
+                                            "กลับ",
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 15),

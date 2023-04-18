@@ -15,25 +15,18 @@ class _Info_PageState extends State<Info_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: InkWell(
-            splashColor: Colors.transparent,
-            onTap: () {
+          title: const Text(
+            'ฮวงจุ้ยประจำวัน',
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () async {
               Navigator.pop(context);
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
-                ),
-                Text(
-                  'วันอังคารที่ 30 พฤษจิกายน 2552',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-                Text('')
-              ],
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.white,
             ),
           ),
           systemOverlayStyle: SystemUiOverlayStyle(

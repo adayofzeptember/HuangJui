@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/daily_info_page.dart';
-import 'package:huangjui/profile.dart';
+import 'package:huangjui/Screens/profile.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'daily_info_page.dart';
 
 class Main_Calendar extends StatefulWidget {
   String? name;
@@ -26,8 +26,8 @@ class _Main_CalendarState extends State<Main_Calendar> {
     Navigator.push(
       context,
       PageTransition(
-        duration: Duration(milliseconds: 250),
-        type: PageTransitionType.rightToLeft,
+        duration: Duration(milliseconds: 500),
+        type: PageTransitionType.fade,
         child: Info_Page(),
       ),
     );
@@ -53,51 +53,83 @@ class _Main_CalendarState extends State<Main_Calendar> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('  '),
-            Text(
-              'ปฏิทินฮวงจุ้ย',
-              style: TextStyle(
+        centerTitle: true,
+        title: const Text(
+          'ปฏิทินฮวงจุ้ย',
+                  style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
                   color: Color.fromARGB(255, 215, 190, 138)),
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
+        ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+                 Navigator.push(
                   context,
                   PageTransition(
-                    duration: Duration(milliseconds: 250),
-                    type: PageTransitionType.rightToLeft,
+                    duration: Duration(milliseconds: 500),
+                    type: PageTransitionType.fade,
                     child: Profile(
                       name: widget.name,
                       ipic: widget.ipic,
                     ),
                   ),
-                );
-              },
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 15,
-                    child: Icon(
-                      Icons.person,
-                      color: theRed,
-                    ),
-                    backgroundColor: Color.fromARGB(255, 255, 253, 237),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'โปรไฟล์',
-                    style: TextStyle(fontSize: 10),
-                  )
-                ],
-              ),
+                 );
+            },
+            icon: const Icon(
+              
+              Icons.person,
+              color: Colors.white,
+              size: 30,
             ),
-          ],
-        ),
+          ),
+        ],
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     Text('  '),
+        //     Text(
+        //       'ปฏิทินฮวงจุ้ย',
+              // style: TextStyle(
+              //     fontWeight: FontWeight.bold,
+              //     fontSize: 25,
+              //     color: Color.fromARGB(255, 215, 190, 138)),
+        //     ),
+        //     InkWell(
+        //       onTap: () {
+        //         Navigator.push(
+        //           context,
+        //           PageTransition(
+        //             duration: Duration(milliseconds: 300),
+        //             type: PageTransitionType.fade,
+        //             child: Profile(
+        //               name: widget.name,
+        //               ipic: widget.ipic,
+        //             ),
+        //           ),
+        // //         );
+        //       },
+        //       child:
+        // Column(
+        //         children: [
+        //           CircleAvatar(
+        //             radius: 15,
+        //             child: Icon(
+        //               Icons.person,
+        //               color: theRed,
+        //             ),
+        //             backgroundColor: Color.fromARGB(255, 255, 253, 237),
+        //           ),
+        //           SizedBox(height: 5),
+        //           Text(
+        //             'โปรไฟล์',
+        //             style: TextStyle(fontSize: 10),
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //   ],
+        // ),
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarIconBrightness: Brightness.light,
             statusBarBrightness: Brightness.light,
@@ -149,7 +181,7 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                       fit: BoxFit.cover),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
@@ -281,14 +313,14 @@ class _Main_CalendarState extends State<Main_Calendar> {
                               padding: EdgeInsets.all(10.0),
                               child: Column(
                                 children: [
-                                  
                                   Container(
                                       width: double.infinity,
                                       alignment: Alignment.center,
                                       child: Row(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
                                             'assets/images/compass.svg',
@@ -300,7 +332,8 @@ class _Main_CalendarState extends State<Main_Calendar> {
                                           Text(
                                             "เข็มทิศ (Coming Soon..)",
                                             style: TextStyle(
-                                                color: Colors.white, fontSize: 15),
+                                                color: Colors.white,
+                                                fontSize: 15),
                                           ),
                                         ],
                                       )),

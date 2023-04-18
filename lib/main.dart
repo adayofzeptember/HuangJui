@@ -4,11 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:huangjui/Etc/color_for_app.dart';
-import 'package:huangjui/Login%20&%20Register/login_page.dart';
-import 'package:huangjui/Login%20&%20Register/register_1_page.dart';
-import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'Screens/Login & Register/login_page.dart';
+import 'Screens/main_Calendar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,7 +61,7 @@ class AppBackground extends StatefulWidget {
 
 class _AppBackgroundState extends State<AppBackground> {
   @override
-  initState() {
+  void initState() {
     _Load_And_Go();
     super.initState();
   }
@@ -72,7 +71,7 @@ class _AppBackgroundState extends State<AppBackground> {
       Navigator.pushReplacement(
         context,
         PageTransition(
-          duration: Duration(milliseconds: 250),
+          duration: Duration(milliseconds: 500),
           type: PageTransitionType.rightToLeft,
           child: Login_Page(),
         ),

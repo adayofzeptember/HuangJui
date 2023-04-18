@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:http/http.dart' as http;
-import 'package:huangjui/Login%20&%20Register/register_3_from.dart';
 import 'package:huangjui/api/api_url.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../main_Calendar.dart';
+
+import '../Screens/Login & Register/register_3_from.dart';
+import '../Screens/main_Calendar.dart';
+
 
 class Register_Login_Social {
   String? message;
@@ -41,6 +44,7 @@ class User {
   String? email;
   String? password;
   String? phone;
+
   String? avatar;
   String? updatedAt;
   String? createdAt;
@@ -108,7 +112,6 @@ Future<Register_Login_Social> login_Social(
     Request_Social_Provider request_social_provider,
     String? xa,
     String? xb) async {
-  print('object');
   String urlPost = wanhengURL + 'register-social';
   var bodySocial = json.encode(request_social_provider.toJson());
   final response = await http.post(
@@ -117,9 +120,9 @@ Future<Register_Login_Social> login_Social(
     body: bodySocial,
   );
 
-  print('object');
   print(response.body);
-
+  print('object');
+  print('object');
   var jsonRes = json.decode(response.body);
   var token = jsonRes['accessToken'];
 
@@ -141,11 +144,10 @@ Future<Register_Login_Social> login_Social(
       ),
     );
 
-    
     return Register_Login_Social.fromJson(json.decode(response.body));
   } else if (response.statusCode == 409) {
     print('ไม่ใช่ครั้งแรก');
-    
+
     Navigator.pushReplacement(
       context,
       PageTransition(
@@ -162,5 +164,3 @@ Future<Register_Login_Social> login_Social(
     throw Exception("error");
   }
 }
-
-void main(List<String> args) {}
